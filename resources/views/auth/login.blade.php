@@ -1,47 +1,50 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
+<div class="grid grid-cols-1 md:grid-cols-2 h-screen">
+    <!-- Left Section (Image) -->
+    <div class="hidden md:block bg-gray-100 p-6">
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <img src="images/login.svg" alt="signin Image" class="w-full object-cover rounded-lg shadow-none">
         </div>
+    </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+    <!-- Login Form -->
+    <div class="flex-1 text-black p-8 flex flex-col justify-center items-center bg-gray-200 h-full">
+        <h2 class="text-3xl font-bold mb-4">DartaApp Login</h2>
+        <small class="text-black text-2xl">Welcome! Please log in to continue.</small>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+        <!-- Display Error Messages -->
+        @if ($errors->any())
+            <div class="w-full bg-red-100 text-orange-600 p-4 mb-4 rounded-lg shadow-sm">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+        <form method="POST" action="{{ route('login') }}" class="w-full max-w-md mt-8 space-y-6">
+            @csrf
+            <!-- Email -->
+            <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email"
+                class="w-full p-4 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300 shadow-md">
+
+            <!-- Password -->
+            <input id="password" type="password" name="password" required autocomplete="current-password"
+                placeholder="Password"
+                class="w-full p-4 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300 shadow-md">
+
+            <!-- Forgot Password -->
+            <div class="flex justify-end mt-2">
+                <a href="#" class="text-orange-600 text-sm font-medium hover:underline">Forgot Password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-colors shadow-md focus:ring-2 focus:ring-red-500">
+                Login
+            </button>
+        </form>
+    </div>
+</div>
