@@ -52,6 +52,6 @@ class RegisteredUserController extends Controller
 
         ]);
 
-        return redirect(route('welcome', absolute: false));
+        return redirect('welcome');
     }
 }

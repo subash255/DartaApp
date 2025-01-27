@@ -1,36 +1,64 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'User Profile')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-gray-50 font-sans leading-normal">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div class="bg-orange-400 text-white w-72  ">
+            <div class="flex justify-center mb-12">
+                <!-- Optional Logo or App Name here -->
+                <h2 class="text-2xl font-semibold text-white">Your App</h2>
+            </div>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+            <ul>
+                <li>
+                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block  py-2 rounded-md transition-all duration-300">
+                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-2 rounded-md transition-all duration-300">
+                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Address</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-6 rounded-md transition-all duration-300">
+                        <span class="hover:bg-orange-500 hover:bg-py-5  w-full transition-all duration-300 block">Bank Details</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-2 rounded-md transition-all duration-300">
+                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Share Amount</span>
+                    </a>
+                </li>
+                
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                <li>
+                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-2 rounded-md transition-all duration-300">
+                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Notification</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-2 rounded-md transition-all duration-300">
+                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Logout</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </body>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 p-10">
+            <div class="max-w-7xl mx-auto">
+                @yield('content')
+            </div>
+        </div>
+    </div>
+
+</body>
 </html>
