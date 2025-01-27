@@ -6,14 +6,24 @@
     <title>Welcome to Darta App</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white flex justify-center items-center min-h-screen">
+<body class="bg-gray-100">
 
-    <div class="text-center p-8 shadow-lg rounded-lg">
-        <h1 class="text-4xl font-bold text-orange-500 mb-6">Welcome to Darta App</h1>
-        
-        <div class="space-x-4 mt-6">
-            <a href="/login" class="inline-block px-6 py-3 bg-orange-500 text-white text-lg font-medium rounded-md hover:bg-orange-400 transition-colors">Login</a>
-            <a href="/register" class="inline-block px-6 py-3 bg-orange-500 text-white text-lg font-medium rounded-md hover:bg-orange-400 transition-colors">Register</a>
+    <div class="flex items-center justify-center min-h-screen px-6">
+        <div class="bg-white shadow-xl rounded-lg p-10 w-full max-w-lg text-center">
+            <h1 class="text-3xl font-bold text-orange-600 mb-6">
+                Welcome to Darta App
+            </h1>
+            <p class="text-gray-600 mb-8 text-lg">
+             Join us now to get started!
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="/login" class="inline-block px-8 py-3 bg-orange-600 text-white text-lg font-semibold rounded-md hover:bg-orange-500 transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none">
+                    Login
+                </a>
+                <a href="/register" class="inline-block px-8 py-3 bg-gray-800 text-white text-lg font-semibold rounded-md hover:bg-gray-700 transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none">
+                    Register
+                </a>
+            </div>
         </div>
     </div>
 
