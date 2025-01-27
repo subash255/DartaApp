@@ -44,7 +44,7 @@
         <a href="#" class="inline-block px-8 py-3 bg-orange-400 text-white text-lg font-semibold rounded-md hover:bg-orange-600 transition duration-300 ease-in-out">
             Edit Profile
         </a>
-        <a href="#" class="inline-block px-8 py-3 bg-red-600 text-white text-lg font-semibold rounded-md hover:bg-red-500 transition duration-300 ease-in-out">
+        <a href="" class="inline-block px-8 py-3 bg-red-600 text-white text-lg font-semibold rounded-md hover:bg-red-500 transition duration-300 ease-in-out">
             Log Out
         </a>
     </div>

@@ -20,6 +20,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/admin/customers', [AdminController::class, 'CustomerIndex'])->name('admin.customer.index');
+    Route::get('delete/{id}',[AdminController::class,'delete'])->name('admin.delete');
 });
 
 require __DIR__.'/auth.php';
