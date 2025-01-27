@@ -1,8 +1,4 @@
-<!-- resources/views/profile.blade.php -->
-@extends('layouts.app')
-
-@section('title', 'user')
-
+@extends('layouts.master')
 @section('content')
     <div class="text-center mb-12">
         <h1 class="text-3xl font-semibold text-orange-400">User Profile</h1>
