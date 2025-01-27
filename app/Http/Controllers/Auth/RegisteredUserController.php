@@ -35,8 +35,9 @@ class RegisteredUserController extends Controller
             'companyname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'type' => ['required', 'string', 'in:it,sales,bank'],
+            'password' => ['required'],
+            'type' => ['required', 'in:it,sales,bank'],
+
 
         ]);
 
@@ -55,6 +56,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('welcome', absolute: false));
     }
 }
