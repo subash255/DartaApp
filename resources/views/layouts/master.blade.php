@@ -8,56 +8,65 @@
 </head>
 <body class="bg-gray-50 font-sans leading-normal">
 
-    <div class="flex min-h-screen">
+    <div class="flex h-full">
         <!-- Sidebar -->
-        <div class="bg-orange-400 text-white w-72  ">
-            <div class="flex justify-center mb-12">
-                <!-- Optional Logo or App Name here -->
-                <h2 class="text-2xl font-semibold text-white">Your App</h2>
+        <aside id="sidebar" class="w-64 bg-gray-200 text-gray-900 shadow-lg flex flex-col fixed top-0 bottom-0 left-0 transition-all duration-300 overflow-y-auto z-10">
+            <div class="p-4 flex items-center justify-center">
+                <!-- Logo/Brand Name -->
+                <div class="w-40 h-40 rounded-full border-2 border-gray-500 object-contain text-3xl font-bold">
+                    <span class="flex flex-col items-center justify-center h-full">Darta <br> <span class="text-orange-600">App</span></span>
+                </div>
             </div>
+            
+            <nav class="mt-6">
+                <!-- Dashboard Link -->
+                <a href="{{ route('user.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-layout-masonry-fill"></i>
+                    <span class="ml-4 font-bold">Dashboard</span>
+                </a>
 
-            <ul>
-                <li>
-                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block  py-2 rounded-md transition-all duration-300">
-                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-2 rounded-md transition-all duration-300">
-                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Address</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-6 rounded-md transition-all duration-300">
-                        <span class="hover:bg-orange-500 hover:bg-py-5  w-full transition-all duration-300 block">Bank Details</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-2 rounded-md transition-all duration-300">
-                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Share Amount</span>
-                    </a>
-                </li>
-                
+                <!-- Address Link -->
+                <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.address.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-price-tag-fill"></i>
+                    <span class="ml-4 font-bold">Address</span>
+                </a>
 
-                <li>
-                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-2 rounded-md transition-all duration-300">
-                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Notification</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="group text-lg font-medium text-center text-white hover:text-gray-200 mb-4 block py-2 rounded-md transition-all duration-300">
-                        <span class="hover:bg-orange-500  w-full transition-all duration-300 block">Logout</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                <!-- Bank Details Link -->
+                <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.bank.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-image-fill"></i>
+                    <span class="ml-4 font-bold">Bank Details</span>
+                </a>
+
+                <!-- Share Amount Link -->
+                <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.share.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-file-text-line"></i>
+                    <span class="ml-4 font-bold">Share Amount</span>
+                </a>
+
+                <!-- Notification Link -->
+                <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.notifications.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-bank-card-2-fill"></i>
+                    <span class="ml-4 font-bold">Notification</span>
+                </a>
+
+                <!-- Log Out -->
+                <div class="px-6 py-4">
+                    <form action="{{ route('logout') }}" method="POST" class="w-full font-bold">
+                        @csrf
+                        <button type="submit" class="w-full text-left text-red-500 hover:bg-orange-500 hover:text-white px-4 py-2 transition-colors duration-200">
+                            <i class="ri-logout-box-line"></i> Log Out
+                        </button>
+                    </form>
+                </div>
+            </nav>
+        </aside>
 
         <!-- Main Content Area -->
-        <div class="flex-1 p-10">
-            <div class="max-w-7xl mx-auto">
+        <main class="ml-72 px-6 w-full">
+            <div class="pb-6 mt-8">
                 @yield('content')
             </div>
-        </div>
+        </main>
     </div>
 
 </body>
