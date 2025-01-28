@@ -36,7 +36,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="mb-6">
                             <label for="company_name" class="block mb-2 text-sm font-medium text-gray-900">Company Name</label>
-                            <input type="text" name="company_name" id="company_name" value="{{ old('company_name', $company->company_name ?? '') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input  id="company_name" value="{{  $user->companyname  }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" >
                         </div>
                         <div class="mb-6">
                             <label for="registration_no" class="block mb-2 text-sm font-medium text-gray-900">Registration No:</label>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
-                            <input type="text" name="category" id="category" value="{{ old('category', $company->category ?? '') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input   id="category" value="{{  $user->type  }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" >
                         </div>
                         <div class="mb-6">
                             <label for="pan_no" class="block mb-2 text-sm font-medium text-gray-900">PAN No:</label>

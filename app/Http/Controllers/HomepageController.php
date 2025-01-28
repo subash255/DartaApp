@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Userdetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,9 @@ class HomepageController extends Controller
 
     public function companydetail()
     {
-        return view('user.companydetail');
+        $user=Auth::user();
+        $company=Company::where('user_id',$user->id)->first();
+        return view('user.companydetail',compact('company','user'));
     }
 
    
