@@ -35,13 +35,24 @@ class UserdetailController extends Controller
                 // Add the authenticated user's ID to the validated data
                 $validatedData['user_id'] = Auth::id();
             
-                // Create a new Address instance and save the validated data
-                $address = new Userdetails($validatedData);
-                $address->save();
+                // Check if the user already has an address record
+                $userDetail = Userdetails::where('user_id', Auth::id())->first();
             
-                // Redirect back with a success message
-                return redirect()->back()->with('success', 'Your address details have been saved!');
+                if ($userDetail) {
+                    // If the user already has an address, update the existing record
+                    $userDetail->update($validatedData);
+                    $message = 'Your address details have been updated!';
+                } else {
+                    // If no address exists, create a new record
+                    $userDetail = new Userdetails($validatedData);
+                    $userDetail->save();
+                    $message = 'Your address details have been saved!';
+                }
+            
+                // Redirect back with the appropriate success message
+                return redirect()->back()->with('success', $message);
             }
+            
             
         }
   
