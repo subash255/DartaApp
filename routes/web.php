@@ -22,7 +22,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/admin/customers', [AdminController::class, 'CustomerIndex'])->name('admin.customer.index');
-    Route::get('delete/{id}',[AdminController::class,'delete'])->name('admin.delete');
+    Route::post('customer/update-toggle/{customerId}', [AdminController::class, 'updateToggleStatus']);
+    Route::get('delete/{id}',[AdminController::class,'delete'])->name('admin.customer.delete');
+
 });
 
 require __DIR__.'/auth.php';

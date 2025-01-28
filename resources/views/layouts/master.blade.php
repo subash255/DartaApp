@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'User Profile')</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 font-sans leading-normal">
@@ -27,13 +29,13 @@
 
                 <!-- Address Link -->
                 <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.address.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-price-tag-fill"></i>
+                    <i class="ri-user-location-fill"></i>
                     <span class="ml-4 font-bold">Address</span>
                 </a>
 
                 <!-- Bank Details Link -->
                 <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.bank.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-image-fill"></i>
+                    <i class="ri-information-fill"></i>
                     <span class="ml-4 font-bold">Bank Details</span>
                 </a>
 
@@ -45,7 +47,7 @@
 
                 <!-- Notification Link -->
                 <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.notifications.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-bank-card-2-fill"></i>
+                    <i class="ri-notification-2-fill"></i>
                     <span class="ml-4 font-bold">Notification</span>
                 </a>
 

@@ -12,11 +12,11 @@
         <div>
             <h2 class="text-2xl font-semibold text-orange-700">{{$user->firstname}} {{$user->lastname}}</h2>
             <p class="text-gray-600 text-lg">{{$user->email}}</p>
-            <p class="text-gray-500 text-sm mt-2">Member since: January-04, 2025</p>
+            <p class="text-gray-500 text-sm mt-2">Member since: {{$user->created_at}}</p>
         </div>
 
         <!-- Edit Button -->
-        <a href="#" class="inline-block px-6 py-2 bg-orange-400 text-white text-lg font-semibold rounded-md hover:bg-orange-600 transition duration-300 ease-in-out">
+        <a href="#" class="inline-block px-6 py-2 bg-orange-500 text-white text-lg font-semibold rounded-md hover:bg-orange-600 transition duration-300 ease-in-out">
             Edit Profile
         </a>
     </div>
