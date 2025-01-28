@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('panregdate')->nullable();
             $table->string('vat')->nullable();
             $table->string('tole')->nullable();
-            $table->string('municiplaity')->nullable();
+            $table->string('municipality')->nullable();
             $table->string('ward')->nullable();
             $table->string('district')->nullable();
             $table->string('province')->nullable();
