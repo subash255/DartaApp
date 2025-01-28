@@ -20,9 +20,13 @@ class AdminMiddleware
             if ($user->role === 'admin') {
                 return $next($request); // Allow request to proceed
             }
+            elseif($user->role=='user')
+            {
+                return redirect('user/index');
+            }
         }
 
         // If not an admin or not authenticated, redirect to the home page
-        return redirect('user/index');
+        return redirect('welcome');
     }
 }

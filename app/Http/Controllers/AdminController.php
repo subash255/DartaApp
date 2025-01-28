@@ -27,18 +27,21 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function updateToggleStatus(Request $request, $customerId)
+    public function accepted( $id)
     {
-        // Retrieve the food item by ID from the database
-        $customer = User::findOrFail($customerId);
-
-        // Update the status field with the new value
-        $customer->status = $request->state; // 'state' is 1 (checked) or 0 (unchecked)
-
-        // Save the updated food item back to the database
+        $customer=User::findorfail($id);
+        $customer->status = 'approved';
         $customer->save();
-
-        // Return a JSON response indicating success
-        return response()->json(['success' => true]);
+    
+        return redirect()->back()->with('status', 'Customer approved!');
+    }
+    
+    public function rejected( $id)
+    {
+        $customer=User::findorfail($id);
+        $customer->status = 'rejected';
+        $customer->save();
+    
+        return redirect()->back()->with('status', 'Customer rejected!');
     }
 }
