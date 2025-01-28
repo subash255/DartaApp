@@ -12,10 +12,8 @@ class CompanyController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'company_name' => 'required|string|max:255',
             'regno' => 'required|string|max:255',
             'regdate' => 'required|date',
-            'category' => 'required|string|max:255',
             'pan' => 'required|string|max:255',
             'panregdate' => 'required|date',
             'vat' => 'required|string|max:255',

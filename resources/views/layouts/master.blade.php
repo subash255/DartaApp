@@ -7,8 +7,26 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
 </head>
 <body class="bg-gray-50 font-sans leading-normal">
+
+    
+{{-- Flash Message --}}
+@if(session('success'))
+<div id="flash-message" class="bg-green-500 text-white px-6 py-2 rounded-lg fixed top-4 right-4 shadow-lg z-50">
+    {{ session('success') }}
+</div>
+@endif
+
+<script>
+  if (document.getElementById('flash-message')) setTimeout(() => {
+      const msg = document.getElementById('flash-message');
+      msg.style.opacity = 0;
+      msg.style.transition = "opacity 0.5s ease-out";
+      setTimeout(() => msg.remove(), 500);
+  }, 3000);
+</script>
 
     <div class="flex h-full">
         @if(Auth::user()->status=='approved')
