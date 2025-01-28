@@ -110,7 +110,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="ward" class="block mb-2 text-sm font-medium text-gray-900">Ward</label>
-                            <input type="text" name="tward" id="ward" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" 
+                            <input type="number" name="tward" id="ward" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" 
                                    value="{{ old('tward', $userdetail->tward ?? '') }}" required>
                         </div>
                         <div class="mb-6">

@@ -70,15 +70,16 @@
                     <span class="ml-4 font-bold">Notification</span>
                 </a>
 
-                <!-- Log Out -->
-                <div class="px-6 py-4">
-                    <form action="{{ route('logout') }}" method="POST" class="w-full font-bold">
-                        @csrf
-                        <button type="submit" class="w-full text-left text-red-500 hover:bg-orange-500 hover:text-white px-4 py-2 transition-colors duration-200">
-                            <i class="ri-logout-box-line"></i> Log Out
-                        </button>
-                    </form>
-                </div>
+<!-- Log Out -->
+<div class="py-4">
+    <form action="{{ route('logout') }}" method="POST" class="w-full">
+        @csrf
+        <button type="submit" class="sidebar-link flex items-center px-6 py-4 w-full text-left text-red-500 hover:bg-orange-500 hover:text-white transition-colors duration-200">
+            <i class="ri-logout-box-line"></i> <span class="ml-4 font-bold">Log Out</span>
+        </button>
+    </form>
+</div>
+
             </nav>
         </aside>
         @endif
