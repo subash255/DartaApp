@@ -37,11 +37,11 @@
                         </div>
                         <div class="mb-6">
                             <label for="registration_no" class="block mb-2 text-sm font-medium text-gray-900">Registration No:</label>
-                            <input type="text" id="registration_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="regno" id="registration_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="registration_date" class="block mb-2 text-sm font-medium text-gray-900">Registration Date</label>
-                            <input type="date" id="registration_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="date" name="regdate" id="registration_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
@@ -49,15 +49,15 @@
                         </div>
                         <div class="mb-6">
                             <label for="pan_no" class="block mb-2 text-sm font-medium text-gray-900">PAN No:</label>
-                            <input type="text" id="pan_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="pan" id="pan_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="registration_date" class="block mb-2 text-sm font-medium text-gray-900">Registration Date</label>
-                            <input type="date" id="registration_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="date" name="panregdate" id="registration_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="vat_pan" class="block mb-2 text-sm font-medium text-gray-900">VAT/PAN</label>
-                            <input type="text" id="vat_pan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="vat" id="vat_pan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                     </div>
                 </div>
@@ -67,31 +67,31 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="mb-6">
                             <label for="tole" class="block mb-2 text-sm font-medium text-gray-900">Tole</label>
-                            <input type="text" id="tole" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="tole" id="tole" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="municipality" class="block mb-2 text-sm font-medium text-gray-900">Municipality</label>
-                            <input type="text" id="municipality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="municipality" id="municipality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="ward" class="block mb-2 text-sm font-medium text-gray-900">Ward</label>
-                            <input type="number" id="ward" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="number" name="ward" id="ward" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="district" class="block mb-2 text-sm font-medium text-gray-900">District</label>
-                            <input type="text" id="district" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="district" id="district" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="province" class="block mb-2 text-sm font-medium text-gray-900">Province</label>
-                            <input type="text" id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="province" id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Official Phone</label>
-                            <input type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="tel" name="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                            <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="email" name="oemail" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                     </div>
                 </div>
@@ -101,23 +101,23 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="mb-6">
                             <label for="account_number" class="block mb-2 text-sm font-medium text-gray-900">Account Number</label>
-                            <input type="text" id="account_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="accno" id="account_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="bank_name" class="block mb-2 text-sm font-medium text-gray-900">Bank Name</label>
-                            <input type="text" id="bank_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="bankname" id="bank_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="branch" class="block mb-2 text-sm font-medium text-gray-900">Branch</label>
-                            <input type="text" id="branch" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="bankbranch" id="branch" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="signature" class="block mb-2 text-sm font-medium text-gray-900">Signature</label>
-                            <input type="text" id="signature" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="text" name="signature" id="signature" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                         <div class="mb-6">
                             <label for="opened_on" class="block mb-2 text-sm font-medium text-gray-900">Opened on:</label>
-                            <input type="date" id="opened_on" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                            <input type="date" name="created" id="opened_on" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                         </div>
                     </div>
                 </div>

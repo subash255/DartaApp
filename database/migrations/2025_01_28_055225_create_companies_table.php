@@ -25,10 +25,12 @@ return new class extends Migration
             $table->string('district')->nullable();
             $table->string('province')->nullable();
             $table->string('phone')->nullable();
-            $table->string('email')->nullable();
+            $table->string('oemail')->nullable();
             $table->string('accno')->nullable();
             $table->string('bankname')->nullable();
             $table->string('bankbranch')->nullable();
+            $table->string('signature')->nullable();
+            $table->string('created')->nullable();
             $table->timestamps();
         });
     }

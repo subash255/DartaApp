@@ -11,6 +11,7 @@
 <body class="bg-gray-50 font-sans leading-normal">
 
     <div class="flex h-full">
+        @if(Auth::user()->status=='approved')
         <!-- Sidebar -->
         <aside id="sidebar" class="w-64 bg-gray-200 text-gray-900 shadow-lg flex flex-col fixed top-0 bottom-0 left-0 transition-all duration-300 overflow-y-auto z-10">
             <div class="p-4 flex items-center justify-center">
@@ -62,6 +63,7 @@
                 </div>
             </nav>
         </aside>
+        @endif
 
         <!-- Main Content Area -->
         <main class="ml-72 px-6 w-full">

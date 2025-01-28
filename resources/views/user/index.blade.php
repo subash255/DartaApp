@@ -46,40 +46,46 @@
             </div>
         </div>
         @endsection
+
         @elseif($user->status == 'rejected')
-    <!-- No layout for rejected status -->
-    <div class="bg-red-100 p-4 border-l-4 border-red-500 text-red-700 mb-6">
-        <strong class="text-lg">Your account has been rejected.</strong>
-        <p class="mt-2">If you believe this is a mistake, please contact support.</p>
-    </div>
-
-    <!-- Logout Button -->
-    <div class="text-center">
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                Logout
-            </button>
-        </form>
-    </div>
+        <!-- Rejected Status Message in a Centered Box -->
+        <div class="flex justify-center items-center min-h-screen bg-gray-100">
+            <div class="bg-white p-8 w-full max-w-lg border-r-4 border-l-4 border-red-600 text-red-800 shadow-lg rounded-lg">
+                <div class="text-center">
+                    <strong class="text-2xl font-semibold">Your account has been rejected.</strong>
+                    <p class="mt-2 text-sm">If you believe this is a mistake, please contact support for assistance.</p>
+                </div>
+                <div class="mt-10 flex justify-center">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg shadow-md transition-all duration-200 ease-in-out transform hover:scale-105">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     
-@elseif($user->status == 'new')
-    <!-- No layout for new status -->
-    <div class="bg-yellow-100 p-4 border-l-4 border-yellow-500 text-yellow-700 mb-6">
-        <strong class="text-lg">Your account is in review.</strong>
-        <p class="mt-2">Please wait till the confirmation.</p>
-    </div>
-
-    <!-- Logout Button -->
-    <div class="text-center">
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                Logout
-            </button>
-        </form>
-    </div>
-@endif
+    @elseif($user->status == 'new')
+        <!-- New Account Status Message in a Centered Box -->
+        <div class="flex justify-center items-center min-h-screen bg-gray-100">
+            <div class="bg-white p-8 w-full max-w-lg border-r-4 border-l-4 border-yellow-600 text-yellow-800 shadow-lg rounded-lg">
+                <div class="text-center">
+                    <strong class="text-2xl font-semibold">Your account is under review.</strong>
+                    <p class="mt-2 text-sm">Please wait for confirmation from the team.</p>
+                </div>
+                <div class="mt-10 flex justify-center">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg shadow-md transition-all duration-200 ease-in-out transform hover:scale-105">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endif
+    
 
     
 
