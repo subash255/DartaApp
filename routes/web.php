@@ -11,6 +11,8 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('user/index',[HomepageController::class,'index'])->name('user.index');
+Route::get('user/userdetail',[HomepageController::class,'userdetail'])->name('user.userdetail');
+Route::get('user/companydetail',[HomepageController::class,'companydetail'])->name('user.companydetail');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

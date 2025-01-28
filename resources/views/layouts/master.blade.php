@@ -23,31 +23,31 @@
             <nav class="mt-6">
                 <!-- Dashboard Link -->
                 <a href="{{ route('user.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-layout-masonry-fill"></i>
+                    <i class="ri-home-4-line"></i> <!-- Updated icon -->
                     <span class="ml-4 font-bold">Dashboard</span>
                 </a>
 
-                <!-- Address Link -->
-                <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.address.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-user-location-fill"></i>
-                    <span class="ml-4 font-bold">Address</span>
+                <!-- Your Details Link -->
+                <a href="{{route('user.userdetail')}}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.userdetail') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-user-2-line"></i> <!-- Updated icon -->
+                    <span class="ml-4 font-bold">Your Details</span>
                 </a>
 
-                <!-- Bank Details Link -->
-                <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.bank.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-information-fill"></i>
-                    <span class="ml-4 font-bold">Bank Details</span>
+                <!-- Company Details Link -->
+                <a href="{{route('user.companydetail')}}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.companydetail') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-building-line"></i> <!-- Updated icon -->
+                    <span class="ml-4 font-bold">Company Details</span>
                 </a>
 
                 <!-- Share Amount Link -->
                 <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.share.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-file-text-line"></i>
+                    <i class="ri-wallet-2-line"></i> <!-- Updated icon -->
                     <span class="ml-4 font-bold">Share Amount</span>
                 </a>
 
                 <!-- Notification Link -->
                 <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.notifications.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-notification-2-fill"></i>
+                    <i class="ri-notification-3-line"></i> <!-- Updated icon -->
                     <span class="ml-4 font-bold">Notification</span>
                 </a>
 
