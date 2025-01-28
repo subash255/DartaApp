@@ -52,6 +52,6 @@ class RegisteredUserController extends Controller
 
         ]);
 
-        return redirect('login');
+        return redirect('/');
     }
 }
