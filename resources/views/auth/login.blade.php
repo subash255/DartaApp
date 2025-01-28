@@ -15,6 +15,7 @@
                 </div>
                 <div class="mt-6">
                     <form action="#" class="space-y-6" method="POST">
+                        @csrf
                         <div>
                             <label for="email" class="text-base font-medium text-gray-700">Email</label>
                             <input type="email" name="email" id="email" placeholder="Enter email address"
@@ -32,10 +33,10 @@
                             </div>
                         </div>
                         <div>
-                            <button type="submit" id="submit-button" name="submit"
-                                class="flex items-center gap-x-4 justify-center w-full bg-orange-500 text-white hover:bg-orange-600 py-3 rounded-md text-lg">
-                                <span id="button-text">Login</span>
-                            </button>
+                            <button type="submit"
+                            class="w-full py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-colors shadow-md focus:ring-2 focus:ring-red-500">
+                            Login
+                        </button>
                         </div>
                     </form>
                     <div class="flex items-center gap-x-4 mt-8">
