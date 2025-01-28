@@ -51,7 +51,6 @@ class RegisteredUserController extends Controller
             'type' => $request->type,
 
         ]);
-        
 
         return redirect('welcome');
     }
