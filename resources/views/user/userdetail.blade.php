@@ -24,7 +24,8 @@
             </div>
 
             <!-- Form Steps -->
-            <form id="multi-step-form">
+            <form id="multi-step-form" action="{{route('userdetail.store')}}" method="POST">
+                @csrf
                 <!-- Step 1: Address as per Citizenship -->
                 <div id="step-1" class="step">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -127,7 +128,6 @@
     const form = document.getElementById('multi-step-form');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const submitBtn = document.getElementById('submitBtn');
     const progressBar = document.getElementById('progress-bar');
 
     function showStep(step) {
@@ -190,13 +190,8 @@
         showStep(currentStep);
     });
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (validateStep(currentStep)) {
-            alert('Form submitted successfully!');
-            // Here you would typically send the form data to a server
-        }
-    });
+   
+  
 
     showStep(currentStep);
 </script>

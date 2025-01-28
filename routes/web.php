@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserdetailController;
 use Illuminate\Support\Facades\Route;
 
 // In routes/web.php
@@ -13,6 +14,7 @@ Route::get('/', function () {
 Route::get('user/index',[HomepageController::class,'index'])->name('user.index');
 Route::get('user/userdetail',[HomepageController::class,'userdetail'])->name('user.userdetail');
 Route::get('user/companydetail',[HomepageController::class,'companydetail'])->name('user.companydetail');
+ Route::post('store',[UserdetailController::class,'store'])->name('userdetail.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
