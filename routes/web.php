@@ -26,6 +26,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/customers', [AdminController::class, 'CustomerIndex'])->name('admin.customer.index');
     Route::post('customer/update-toggle/{customerId}', [AdminController::class, 'updateToggleStatus']);
     Route::get('delete/{id}',[AdminController::class,'delete'])->name('admin.customer.delete');
+    Route::get('accepted/{id}',[AdminController::class,'accepted'])->name('customer.accepted');
+    Route::get('rejected/{id}',[AdminController::class,'rejected'])->name('customer.rejected');
+
+    
 
 });
 

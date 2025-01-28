@@ -37,7 +37,7 @@
                 </thead>
                 <tbody>
                     @foreach ($customers as $customer)
-                        <tr class="bg-white hover:bg-gray-50">
+                        <tr class="bg-white hover:bg-gray-50 ">
                             <td class="border border-gray-300 px-4 py-2">{{ $loop->iteration }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $customer->firstname }}
                                 {{ $customer->lastname }}</td>
@@ -45,20 +45,22 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $customer->email }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $customer->phone }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $customer->type }}</td>
-                            <td class="border border-gray-300 px-4 py-2">
-                                <label for="status{{ $customer->id }}" class="inline-flex items-center cursor-pointer">
-                                    <input id="status{{ $customer->id }}" type="checkbox" class="hidden toggle-switch"
-                                        data-id="{{ $customer->id }}" {{ $customer->status ? 'checked' : '' }} />
-                                    <div class="w-10 h-6 bg-gray-200 rounded-full relative">
-                                        <div class="dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition">
-                                        </div>
-                                    </div>
-                                </label>
-                            </td>
-                            <td class="px-2 py-2  justify-center  action-buttons border border-gray-300">
-
+                            <td class="border border-gray-300 px-4 py-2">{{ $customer->status }}</td>
+                            @if($customer->status == 'new')
+                            <td class="px-2 py-2 flex justify-center space-x-4 action-buttons border border-gray-300">
+                                <!-- confirm Icon -->
+                                
+                                <a href="{{route('customer.accepted',$customer->id)}}"
+                                    class="bg-green-500 hover:bg-green-700 p-2 w-10 h-10 rounded-full flex items-center justify-center">
+                                    <i class="ri-check-line"></i>
+                                </a>
+                                <a href="{{route('customer.rejected',$customer->id)}}"
+                                    class="bg-red-500 hover:bg-red-700 p-2 w-10 h-10 rounded-full flex items-center justify-center">
+                                    <i class="ri-close-fill"></i>
+                                </a>
+                               
                                 <!-- Delete Icon -->
-                                <form action="{{ route('admin.customer.delete', ' $customer->id') }}" method="post"
+                                <form action="{{ route('admin.customer.delete',  $customer->id) }}" method="post"
                                     onsubmit="return confirm('Are you sure you want to delete this customer?');">
                                     @csrf
                                     @method('delete')
@@ -69,6 +71,23 @@
                                 </form>
 
                             </td>
+                            @else
+                            <td class="px-2 py-2  text-center  action-buttons border border-gray-300">
+
+                             <!-- Delete Icon -->
+                             <form action="{{ route('admin.customer.delete', ' $customer->id') }}" method="post"
+                                    onsubmit="return confirm('Are you sure you want to delete this customer?');">
+                                    @csrf
+                                    @method('delete')
+                                    <button
+                                        class="bg-red-500 hover:bg-red-700 p-2 w-10 h-10 rounded-full flex items-center justify-center">
+                                        <i class="ri-delete-bin-line text-white"></i>
+                                    </button>
+                                </form>
+
+                            </td>
+                            @endif
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -79,66 +98,8 @@
 
     </div>
 
-    <script>
-        document.querySelectorAll('.toggle-switch').forEach(toggle => {
-            const dot = toggle.parentNode.querySelector('.dot'); // The visual dot for the toggle switch
-
-            // Apply the correct initial state (visual toggle)
-            if (toggle.checked) {
-                dot.style.transform = 'translateX(100%)';
-                dot.style.backgroundColor = 'green';
-            } else {
-                dot.style.transform = 'translateX(0)';
-                dot.style.backgroundColor = 'white';
-            }
-
-            // Add event listener to handle checkbox state change
-            toggle.addEventListener('change', function() {
-                const customerId = this.getAttribute(
-                'data-id'); // Get the category ID from the data-id attribute
-                const newState = this.checked ? 1 : 0; // 1 for checked, 0 for unchecked
-
-                // Toggle visual effect of the switch
-                if (this.checked) {
-                    dot.style.transform = 'translateX(100%)';
-                    dot.style.backgroundColor = 'green';
-                } else {
-                    dot.style.transform = 'translateX(0)';
-                    dot.style.backgroundColor = 'white';
-                }
-
-                // Send AJAX request to update the status
-                fetch(`/customer/update-toggle/${customerId}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}', // CSRF token for security
-                        },
-                        body: JSON.stringify({
-                            state: newState, // The new state (1 or 0)
-                            type: 'status', // Indicate we're updating the status
-                        }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (!data.success) {
-                            // If update fails, reset the toggle state
-                            this.checked = !this.checked;
-                            dot.style.transform = this.checked ? 'translateX(100%)' : 'translateX(0)';
-                            dot.style.backgroundColor = this.checked ? 'green' : 'white';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        // Reset the toggle state in case of an error
-                        this.checked = !this.checked;
-                        dot.style.transform = this.checked ? 'translateX(100%)' : 'translateX(0)';
-                        dot.style.backgroundColor = this.checked ? 'green' : 'white';
-                    });
-            });
-        });
-    </script>
-
+    
+   
 
 
 
