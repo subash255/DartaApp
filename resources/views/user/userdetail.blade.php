@@ -46,8 +46,12 @@
                 </div>
 
                 <!-- Form Steps -->
-                <form id="multi-step-form" action="{{ route('userdetail.store') }}" method="POST">
+                <form action="{{ $userdetail->id ? route('userdetail.store', $userdetail->id) : route('userdetail.store') }}" id="userForm" method="POST">
                     @csrf
+                    <!-- If editing, send PUT request for updating -->
+                    @if($userdetail->id)
+                        @method('patch')  <!-- Use PUT for updating an existing record -->
+                    @endif
                     <!-- Step 1: Shareholder's Details -->
                     <div id="step-1" class="step">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -506,4 +510,45 @@
 
         showStep(currentStep);
     </script>
+    <script>
+ $(document).ready(function() {
+    // Handle "Next" button click
+    $('#nextBtn').on('click', function(event) {
+        event.preventDefault();  // Prevent default form submission
+
+        // Send AJAX request to save data
+        saveFormData();
+    });
+
+    // Function to send AJAX request to store data
+    function saveFormData() {
+        var formData = $('#userForm').serialize();  // Serialize form data
+
+        // Send AJAX request to store data
+        $.ajax({
+            url: $('#userForm').attr('action'),  // Form's action URL (POST to store)
+            type: 'POST',  // Ensure POST for creating or updating data
+            data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')  // CSRF token for security
+            },
+            success: function(response) {
+                if (response.success) {
+                    console.log('Data saved successfully!');
+                    // Optionally, move to next section or show a success message
+                } else {
+                    console.log('Error saving data:', response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', error);
+                alert('An error occurred while saving data.');
+            }
+        });
+    }
+});
+
+
+        </script>
+ 
 @endsection

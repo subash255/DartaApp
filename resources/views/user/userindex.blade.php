@@ -26,12 +26,12 @@
         }, 3000);
     </script>
 
-<div class="p-4 bg-white shadow-lg mt-12 rounded-lg">
+<div class="p-4 shadow-lg mt-12 rounded-lg">
     <div class="mb-4 flex justify-end">
-        <button
+        <a href="{{ route('user.userdetail') }}"
             class="text-orange-500 font-medium bg-white border-2 border-orange-500 rounded-lg py-2 px-4 hover:bg-orange-600 hover:text-white transition duration-300">
             Add Details
-        </button>
+        </a>
     </div>
 
     <div class="overflow-x-auto">
@@ -56,9 +56,16 @@
                             {{ $detail->tmunicipality }}-{{ $detail->tward }},{{ $detail->tdistrict }}
                         </td>
                         <td class="px-2 py-2 flex justify-center space-x-4 border border-gray-300">
+                            <!-- View Icon -->
+                            <a href="{{route('user.userdetail', $detail->id)}}" class="flex items-center">
+                                <button
+                                    class="bg-orange-500 hover:bg-orange-700 p-1 w-8 h-8 rounded-full flex items-center justify-center">
+                                    <i class="ri-eye-line text-white"></i>
+                                </button>
+                            </a>
                             <!-- Edit Icon -->
                             <a href="#"
-                                class="bg-blue-500 hover:bg-blue-700 p-2 w-10 h-10 rounded-full flex items-center justify-center">
+                                class="bg-blue-500 hover:bg-blue-700 p-2 w-8 h-8 rounded-full flex items-center justify-center">
                                 <i class="ri-edit-box-line text-white"></i>
                             </a>
                             <!-- Delete Icon -->
@@ -66,7 +73,7 @@
                                 method="post" onsubmit="return confirm('Are you sure you want to delete this food item?');">
                                 @csrf
                                 @method('delete')
-                                <button class="bg-red-500 hover:bg-red-700 p-2 w-10 h-10 rounded-full flex items-center justify-center">
+                                <button class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center">
                                     <i class="ri-delete-bin-line text-white"></i>
                                 </button>
                             </form>

@@ -13,9 +13,9 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('user/index',[HomepageController::class,'index'])->name('user.index');
-Route::get('user/userdetail',[HomepageController::class,'userdetail'])->name('user.userdetail');
+Route::get('user/userdetail/{id?}',[UserdetailController::class,'userdetail'])->name('user.userdetail');
 Route::get('user/companydetail',[HomepageController::class,'companydetail'])->name('user.companydetail');
- Route::post('userdetail/store',[UserdetailController::class,'store'])->name('userdetail.store');
+ Route::match(['post', 'patch'], 'userdetail/store/{id?}',[UserdetailController::class,'store'])->name('userdetail.store');
  Route::post('company/store',[CompanyController::class,'store'])->name('company.store');
 
  Route::get('user/userindex',[HomepageController::class,'viewuser'])->name('user.userindex');

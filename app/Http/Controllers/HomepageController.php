@@ -22,12 +22,7 @@ class HomepageController extends Controller
         return view('user.userindex',compact('userdetail'));
     }
 
-    public function userdetail()
-    {
-        $user=Auth::user();
-        $userdetail=Userdetails::where('user_id',$user->id)->first();
-        return view('user.userdetail',compact('userdetail'));
-    }
+
 
     public function companydetail()
     {
