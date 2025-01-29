@@ -51,12 +51,12 @@
                                 <!-- confirm Icon -->
                                 
                                 <a href="{{route('customer.accepted',$customer->id)}}"
-                                    class="bg-green-500 hover:bg-green-700 p-2 w-10 h-10 rounded-full flex items-center justify-center">
+                                    class="bg-green-500 hover:bg-green-700 p-2 w-8 h-8 rounded-full flex items-center">
                                     <i class="ri-check-line"></i>
                                 </a>
                                 <a href="{{route('customer.rejected',$customer->id)}}"
-                                    class="bg-red-500 hover:bg-red-700 p-2 w-10 h-10 rounded-full flex items-center justify-center">
-                                    <i class="ri-close-fill"></i>
+                                    class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center">
+                                    <i class="ri-close-fill text-white"></i>
                                 </a>
                                
                                 <!-- Delete Icon -->
@@ -65,7 +65,7 @@
                                     @csrf
                                     @method('delete')
                                     <button
-                                        class="bg-red-500 hover:bg-red-700 p-2 w-10 h-10 rounded-full flex items-center justify-center">
+                                        class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center">
                                         <i class="ri-delete-bin-line text-white"></i>
                                     </button>
                                 </form>
@@ -80,7 +80,7 @@
                                     @csrf
                                     @method('delete')
                                     <button
-                                        class="bg-red-500 hover:bg-red-700 p-2 w-10 h-10 rounded-full flex items-center justify-center">
+                                        class="bg-red-500 hover:bg-red-700 p-2 ml-11 w-8 h-8 rounded-full flex items-center">
                                         <i class="ri-delete-bin-line text-white"></i>
                                     </button>
                                 </form>

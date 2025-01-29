@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
+
+    public function index()
+    {
+        $companies = Company::all();
+        return view('admin.company.index', compact('companies'), [
+            'title' => 'Company Details'
+        ]);
+    }
+
     public function store(Request $request)
     {
         // Validate the incoming request data
@@ -57,5 +66,12 @@ class CompanyController extends Controller
 
         // Redirect back with a success message
         return redirect()->back()->with('success', $message);
+    }
+
+    public function delete($id)
+    {
+        $company = Company::find($id);
+        $company->delete();
+        return redirect()->back()->with('success', 'Company deleted successfully!');
     }
 }

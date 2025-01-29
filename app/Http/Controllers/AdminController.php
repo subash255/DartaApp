@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Userdetails;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -44,4 +45,28 @@ class AdminController extends Controller
     
         return redirect()->back()->with('status', 'Customer rejected!');
     }
+
+    public function shareholderindex()
+    {
+        $shareholders=Userdetails::all();
+        return view('admin.shareholder.index',compact('shareholders'), [
+            'title' => 'Shareholder Index'
+        ]);
+    }
+
+    public function shareholderdelete($id)
+    {
+        $shareholder=Userdetails::find($id);
+        $shareholder->delete();
+        return redirect()->back()->with('success', 'Shareholder deleted successfully!');
+    }
+
+    public function viewshareholder($id)
+    {
+        $shareholder=Userdetails::find($id);
+        return view('admin.shareholder.view',compact('shareholder'), [
+            'title' => 'Shareholders'
+        ]);
+    }
+
 }

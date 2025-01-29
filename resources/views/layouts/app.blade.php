@@ -61,8 +61,16 @@
                     <span class="ml-4 font-semibold">Dashboard</span>
                 </a>
                 <a href="{{ route('admin.customer.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.category.index') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-grid-line"></i>
+                    <i class="ri-user-fill"></i>
                     <span class="ml-4 font-semibold">Customer</span>
+                </a>
+                <a href="{{ route('admin.company.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.company.index') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-building-fill"></i>
+                    <span class="ml-4 font-semibold">Companies</span>
+                </a>
+                <a href="{{ route('admin.shareholder.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.shareholder.index') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-wallet-2-fill"></i>
+                    <span class="ml-4 font-semibold">Shareholders</span>
                 </a>
             </nav>
         </aside>
