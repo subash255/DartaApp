@@ -31,6 +31,15 @@ return new class extends Migration
             $table->string('bankbranch')->nullable();
             $table->string('signature')->nullable();
             $table->string('created')->nullable();
+            $table->string('cid')->nullable();
+            $table->string('cpassword')->nullable();
+            $table->string('rid')->nullable();
+            $table->string('rpassword')->nullable();
+            $table->string('remail')->nullable();
+            $table->string('rphone')->nullable();
+            $table->string('rcontactperson')->nullable();
+
+            
             $table->timestamps();
         });
     }

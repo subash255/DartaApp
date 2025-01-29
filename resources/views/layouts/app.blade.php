@@ -49,10 +49,12 @@
         <aside id="sidebar" class="w-64 bg-white text-gray-900 shadow-lg flex flex-col fixed top-0 bottom-0 left-0 transition-all duration-300 overflow-y-auto z-10">
             <div class="p-4 flex items-center justify-center">
                 <!-- Logo/Brand Name -->
-                <div class="w-40 h-40 rounded-full border-2 border-gray-500 object-contain text-3xl font-bold">
-                    <span class="flex flex-col items-center justify-center h-full">Darta <br> <span class="text-orange-600">App</span></span>
+                <div class="w-40 h-40 rounded-full border-2 border-gray-500 flex items-center justify-center overflow-hidden">
+                    <!-- Logo Image -->
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-28 h-28 object-cover">
                 </div>
             </div>
+            
             <nav class="mt-6">
                 <a href="{{ route('admin.dashboard') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.dashboard') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
                     <i class="ri-layout-masonry-fill"></i>

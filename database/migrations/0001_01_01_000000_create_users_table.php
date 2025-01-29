@@ -21,7 +21,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('status')->default('new');
             $table->string('role')->default('user');
-            $table->enum('type',['it','sales','bank'])->nullable();
+            $table->enum('category',['IT','Sales','Bank'])->nullable();
+            $table->enum('type',['Single','Multiple'])->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

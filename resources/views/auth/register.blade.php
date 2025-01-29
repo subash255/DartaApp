@@ -50,14 +50,26 @@
                 <input type="password" id="password" name="password" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
             </div>
             
-            <!-- Type -->
-            <div class="mb-6 sm:col-span-2">
-                <label for="type" class="block text-gray-700 font-semibold mb-2">Category</label>
-                <select id="type" name="type" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
-                    <option value="it">IT Company</option>
-                    <option value="sales">Sales Company</option>
-                    <option value="bank">Bank</option>
-                </select>
+            <!-- Type (Category) and Company Type (Two dropdowns in the same row) -->
+            <div class="flex gap-6 sm:col-span-2">
+                <!-- Category -->
+                <div class="w-full sm:w-1/2 mb-4">
+                    <label for="type" class="block text-gray-700 font-semibold mb-2">Category</label>
+                    <select id="type" name="type" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                        <option value="it">IT Company</option>
+                        <option value="sales">Sales Company</option>
+                        <option value="bank">Bank</option>
+                    </select>
+                </div>
+                
+                <!-- Company Type -->
+                <div class="w-full sm:w-1/2 mb-4">
+                    <label for="company_type" class="block text-gray-700 font-semibold mb-2">Company Type</label>
+                    <select id="company_type" name="company_type" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                        <option value="single">Single Shareholder Company</option>
+                        <option value="multiple">Multi Shareholder Company</option>
+                    </select>
+                </div>
             </div>
             
             <!-- Submit Button -->
