@@ -15,6 +15,13 @@ class HomepageController extends Controller
         return view('user.index',compact('user'));
     }
 
+    public function viewuser()
+    {
+        $user=Auth::user();
+        $userdetail=Userdetails::where('user_id',$user->id)->get();
+        return view('user.userindex',compact('userdetail'));
+    }
+
     public function userdetail()
     {
         $user=Auth::user();

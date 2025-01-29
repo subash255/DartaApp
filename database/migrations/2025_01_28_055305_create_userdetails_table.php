@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('wname')->nullable();
+            $table->string('waddress')->nullable();
 
             $table->string('email')->unique();
             $table->string('ctole')->nullable();
@@ -43,6 +44,7 @@ return new class extends Migration
             $table->string('spousename')->nullable();
             $table->string('grandfathername')->nullable();
             $table->string('phone')->nullable();
+            $table->string('optphone')->nullable();
             $table->string('optemail')->nullable();
             $table->string('pan')->nullable();
             $table->string('nid')->nullable();

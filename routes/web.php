@@ -18,6 +18,9 @@ Route::get('user/companydetail',[HomepageController::class,'companydetail'])->na
  Route::post('userdetail/store',[UserdetailController::class,'store'])->name('userdetail.store');
  Route::post('company/store',[CompanyController::class,'store'])->name('company.store');
 
+ Route::get('user/userindex',[HomepageController::class,'viewuser'])->name('user.userindex');
+
+
 
 
 Route::middleware('auth')->group(function () {

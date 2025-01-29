@@ -29,6 +29,14 @@ class CompanyController extends Controller
             'bankbranch' => 'required|string|max:255',
             'signature' => 'required|string|max:255',
             'created' => 'required|date',
+            'cid' => 'required|string|max:255',
+            'cpassword' => 'required|string|max:255',
+            'rid' => 'required|string|max:255',
+            'rpassword' => 'required|string|max:255',
+            'remail' => 'required|email',
+            'rphone' => 'required|string|max:15',
+            'rcontactperson' => 'required|string|max:255',
+            
         ]);
 
         // Add the user ID to the validated data

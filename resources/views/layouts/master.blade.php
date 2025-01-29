@@ -49,7 +49,7 @@
                 </a>
 
                 <!-- Your Details Link -->
-                <a href="{{route('user.userdetail')}}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.userdetail') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
+                <a href="{{route('user.userindex')}}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.userindex') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
                     <i class="ri-user-2-line"></i> <!-- Updated icon -->
                     <span class="ml-4 font-bold">Your Details</span>
                 </a>
@@ -87,7 +87,7 @@
         @endif
 
         <!-- Main Content Area -->
-        <main class="ml-72 px-6 w-full">
+        <main class="ml-64 px-6 w-full">
             <div class="pb-6 mt-8">
                 @yield('content')
             </div>
