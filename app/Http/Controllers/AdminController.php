@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\User;
 use App\Models\Userdetails;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index()
     {
+        $totalvisits = Visit::sum('number_of_visits');
+        $date = \Carbon\Carbon::today()->subDays(30);
+        $visitdate = Visit::where('visit_date', '>=', $date)->pluck('visit_date');
+        $visits = Visit::where('visit_date', '>=', $date)->pluck('number_of_visits');
+        $totalusers=User::where('role','user')->count();
+        $totalaccepted=User::where('role','user')->where('status','approved')->count();
+        $totalcompanies=Company::count();
+        $totalshareholders=Userdetails::count();
         return view('admin.dashboard', [
-            'title' => 'Dashboard'
-        ]);
+            'title' => 'Dashboard'] , compact('totalvisits','visitdate','visits','totalusers','totalaccepted','totalcompanies','totalshareholders')
+        );
     }
     public function CustomerIndex()
     {

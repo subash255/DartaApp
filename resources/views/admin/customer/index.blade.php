@@ -80,7 +80,7 @@
                                     @csrf
                                     @method('delete')
                                     <button
-                                        class="bg-red-500 hover:bg-red-700 p-2 ml-11 w-8 h-8 rounded-full flex items-center">
+                                        class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center mx-auto">
                                         <i class="ri-delete-bin-line text-white"></i>
                                     </button>
                                 </form>

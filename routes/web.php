@@ -7,11 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserdetailController;
 use Illuminate\Support\Facades\Route;
 
-// In routes/web.php
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
+//Welcome Page
+Route::get('/',[HomepageController::class,'welcome'])->name('welcome');
 
 
 Route::middleware('auth')->group(function () {

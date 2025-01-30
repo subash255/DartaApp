@@ -108,7 +108,7 @@
                         </div>
 
                         <div class="mt-8 text-center">
-                            <p class="text-base">Already have an account? <a href="{{ route('login') }}"
+                            <p class="text-base">Already have an account? <a href="{{ route('welcome') }}"
                                     class="hover:underline font-semibold text-orange-500">Login</a></p>
                         </div>
                     </div>

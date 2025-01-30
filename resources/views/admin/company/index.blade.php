@@ -30,7 +30,7 @@
                         <th class="border border-gray-300 px-4 py-2">Company Email</th>
                         <th class="border border-gray-300 px-4 py-2">Phone Number</th>
                         <th class="border border-gray-300 px-4 py-2">Address</th>
-                        <th class="border border-gray-300 px-4 py-2">Category </th>
+                        <th class="border border-gray-300 px-4 py-2">Category</th>
                         <th class="border border-gray-300 px-4 py-2">Type</th>
                         <th class="border border-gray-300 px-4 py-2">Action</th>
                     </tr>
@@ -45,14 +45,14 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $company->municipality }}-{{ $company->ward }},{{ $company->district }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $company->user->category }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $company->user->type }}</td>
-                            <td class="border border-gray-300 px-4 py-2">
+                            <td class="border border-gray-300 px-4 py-2 ">
                                 
                                  <!-- Delete Icon -->
                             <form action="{{ route('admin.company.delete', $company->id) }}"
                             method="post" onsubmit="return confirm('Are you sure you want to delete this food item?');">
                             @csrf
                             @method('delete')
-                            <button class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center">
+                            <button class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center mx-auto">
                                 <i class="ri-delete-bin-line text-white"></i>
                             </button>
                         </form>
