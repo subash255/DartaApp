@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('wname')->nullable();
             $table->string('waddress')->nullable();
-
             $table->string('email')->unique();
             $table->string('ctole')->nullable();
             $table->string('cmunicipality')->nullable();
@@ -63,10 +62,6 @@ return new class extends Migration
             $table->string('accno')->nullable();
             $table->string('bankname')->nullable();
             $table->string('bankbranch')->nullable();
-
-
-
-
             $table->timestamps();
         });
     }
