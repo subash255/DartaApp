@@ -38,8 +38,6 @@ return new class extends Migration
             $table->string('remail')->nullable();
             $table->string('rphone')->nullable();
             $table->string('rcontactperson')->nullable();
-
-            
             $table->timestamps();
         });
     }

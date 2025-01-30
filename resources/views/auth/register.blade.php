@@ -55,7 +55,7 @@
                 <!-- Category -->
                 <div class="w-full sm:w-1/2 mb-4">
                     <label for="type" class="block text-gray-700 font-semibold mb-2">Category</label>
-                    <select id="type" name="type" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    <select id="type" name="category" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
                         <option value="it">IT Company</option>
                         <option value="sales">Sales Company</option>
                         <option value="bank">Bank</option>
@@ -65,7 +65,7 @@
                 <!-- Company Type -->
                 <div class="w-full sm:w-1/2 mb-4">
                     <label for="company_type" class="block text-gray-700 font-semibold mb-2">Company Type</label>
-                    <select id="company_type" name="company_type" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    <select id="company_type" name="type" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
                         <option value="single">Single Shareholder Company</option>
                         <option value="multiple">Multi Shareholder Company</option>
                     </select>

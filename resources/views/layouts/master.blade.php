@@ -62,12 +62,6 @@
                     <span class="ml-4 font-bold">Company Details</span>
                 </a>
 
-                <!-- Share Amount Link -->
-                <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.share.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-wallet-2-line"></i> <!-- Updated icon -->
-                    <span class="ml-4 font-bold">Share Amount</span>
-                </a>
-
                 <!-- Notification Link -->
                 <a href="#" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.notifications.index') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
                     <i class="ri-notification-3-line"></i> <!-- Updated icon -->

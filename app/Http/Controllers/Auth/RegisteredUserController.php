@@ -36,8 +36,8 @@ class RegisteredUserController extends Controller
             'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required'],
-            'type' => ['required', 'in:it,sales,bank'],
-
+            'category' => ['required', 'in:it,sales,bank'],
+            'type' => ['required', 'in:single,multiple'],
 
         ]);
 
@@ -48,6 +48,7 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'category' => $request->category,
             'type' => $request->type,
 
         ]);
