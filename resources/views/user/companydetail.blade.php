@@ -46,7 +46,7 @@
                                 <label for="company_name" class="block mb-2 text-sm font-medium text-gray-900">Company
                                     Name</label>
                                 <input id="company_name" value="{{ $user->companyname }}"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" readonly>
                             </div>
                             <div class="mb-6">
                                 <label for="registration_no"
@@ -68,7 +68,7 @@
                                 <label for="category"
                                     class="block mb-2 text-sm font-medium text-gray-900">Category</label>
                                 <input id="category" value="{{ $user->type }}"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" readonly>
                             </div>
                             <div class="mb-6">
                                 <label for="pan_no" class="block mb-2 text-sm font-medium text-gray-900">PAN

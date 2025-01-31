@@ -23,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::match(['post', 'patch'], 'userdetail/store/{id?}', [UserdetailController::class, 'store'])->name('userdetail.store');
     Route::post('company/store', [CompanyController::class, 'store'])->name('company.store');
     Route::get('user/userindex', [HomepageController::class, 'viewuser'])->name('user.userindex');
+    Route::get('user/edit', [HomepageController::class, 'edit'])->name('user.edit');
+    Route::patch('user/update', [HomepageController::class, 'update'])->name('user.update');
+
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
