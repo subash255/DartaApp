@@ -90,12 +90,12 @@ class UserdetailController extends Controller
         if ($id = $request->id) {
             // Find the existing userdetails record
             $userDetail = Userdetails::where('user_id', Auth::id())->where('id', $id)->first();
-    
+
             // If no matching record is found, abort with a 403 error
             if (!$userDetail) {
                 return redirect()->back()->with('error', 'Unauthorized action.');
             }
-    
+
             // Update the existing record
             $userDetail->update($validatedData);
             $message = 'Your address details have been updated!';
@@ -108,7 +108,7 @@ class UserdetailController extends Controller
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
-    
+
 
         // Redirect back with the appropriate success message
         return redirect('user/userindex')->with('success', $message);

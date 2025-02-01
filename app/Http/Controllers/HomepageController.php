@@ -21,15 +21,16 @@ class HomepageController extends Controller
 
     public function index()
     {
-        $user=Auth::user();
-        return view('user.index',compact('user'));
+        $user = Auth::user();
+        $totalshareholders = Userdetails::where('user_id', $user->id)->count();
+        return view('user.index', compact('user', 'totalshareholders'));
     }
 
     public function viewuser()
     {
-        $user=Auth::user();
-        $userdetail=Userdetails::where('user_id',$user->id)->get();
-        return view('user.userindex',compact('userdetail'));
+        $user = Auth::user();
+        $userdetail = Userdetails::where('user_id', $user->id)->get();
+        return view('user.userindex', compact('userdetail'));
     }
 
 
@@ -38,39 +39,39 @@ class HomepageController extends Controller
         $user = Auth::user();
         return view('user.edit', compact('user'));
     }
-    
+
     public function update(Request $request)
     {
         $data = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'companyname' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . Auth::id(), 
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
             'phone' => 'required|string|max:15',
             'category' => 'required|string',
             'type' => 'required|string',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
-    
+
         if ($request->filled('password')) {
             $data['password'] = Hash::make($data['password']);
         } else {
             unset($data['password']);
         }
-    
+
         $user = User::find(Auth::id());
         $user->update($data);
-    
-        return redirect()->route('user.index'); 
+
+        return redirect()->route('user.index');
     }
-    
-    
+
+
 
     public function companydetail()
     {
-        $user=Auth::user();
-        $company=Company::where('user_id',$user->id)->first();
-        return view('user.companydetail',compact('company','user'));
+        $user = Auth::user();
+        $company = Company::where('user_id', $user->id)->first();
+        return view('user.companydetail', compact('company', 'user'));
     }
 
     //visited people

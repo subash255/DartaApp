@@ -8,7 +8,7 @@ use App\Http\Controllers\UserdetailController;
 use Illuminate\Support\Facades\Route;
 
 //Welcome Page
-Route::get('/',[HomepageController::class,'welcome'])->name('welcome');
+Route::get('/', [HomepageController::class, 'welcome'])->name('welcome');
 
 
 Route::middleware('auth')->group(function () {
@@ -25,7 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::get('user/userindex', [HomepageController::class, 'viewuser'])->name('user.userindex');
     Route::get('user/edit', [HomepageController::class, 'edit'])->name('user.edit');
     Route::patch('user/update', [HomepageController::class, 'update'])->name('user.update');
-
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

@@ -45,14 +45,14 @@ class CompanyController extends Controller
             'remail' => 'required|email',
             'rphone' => 'required|string|max:15',
             'rcontactperson' => 'required|string|max:255',
-            
+
         ]);
 
         // Add the user ID to the validated data
         $validatedData['user_id'] = Auth::id();
 
         $userDetail = Company::where('user_id', Auth::id())->first();
-            
+
         if ($userDetail) {
             // If the user already has an address, update the existing record
             $userDetail->update($validatedData);

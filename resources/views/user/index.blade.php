@@ -43,6 +43,12 @@
                     <span class="text-gray-600 font-medium">Company Type</span>
                     <span class="text-gray-800">{{$user->type}}</span>
                 </div>
+                @if($user->type == 'multiple')
+                <div class="flex justify-between">
+                    <span class="text-gray-600 font-medium">Total Shareholders</span>
+                    <span class="text-gray-800">{{$totalshareholders}}</span>
+                </div>
+                @endif
             </div>
         </div>
         @endsection
