@@ -28,7 +28,7 @@
                         <th class="border border-gray-300 px-4 py-2">S.N</th>
                         <th class="border border-gray-300 px-4 py-2">Name</th>
                         <th class="border border-gray-300 px-4 py-2">Company Email</th>
-                        <th class="border border-gray-300 px-4 py-2">Phone Number</th>
+                        <th class="border border-gray-300 px-4 py-2">Contact</th>
                         <th class="border border-gray-300 px-4 py-2">Address</th>
                         <th class="border border-gray-300 px-4 py-2">Category</th>
                         <th class="border border-gray-300 px-4 py-2">Type</th>
