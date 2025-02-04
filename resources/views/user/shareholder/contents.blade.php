@@ -1,0 +1,38 @@
+<div class="mb-8">
+    <div class="flex justify-between mb-2">
+        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step1">Shareholder's Details</span>
+        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step2">Address per Citizenship</span>
+        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step3">Current Address</span>
+        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step4">Add. Info</span>
+        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step5">Share Details</span>
+        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step6">Acc. Details</span>
+    </div>
+    <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-orange-200">
+        <div id="progress-bar" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500 w-0 transition-all duration-500 ease-in-out">
+        </div>
+    </div>
+</div>
+
+<script>
+    const currentStep = "{{ $currentStep ?? 'step1' }}";  
+    const steps = ['step1', 'step2', 'step3', 'step4', 'step5', 'step6'];
+    const progressBar = document.getElementById('progress-bar');
+    const stepElements = steps.map(step => document.getElementById(step));
+
+    // Calculate the index of the current step
+    let stepIndex = steps.indexOf(currentStep);
+    
+    // Update progress bar width (each step represents 16.66%)
+    progressBar.style.width = `${(stepIndex + 1) * 16.66}%`; 
+
+    // Update opacity for steps based on the current step
+    for (let i = 0; i <= stepIndex; i++) {
+        stepElements[i].classList.remove('opacity-50');  
+        stepElements[i].classList.add('opacity-100');
+    }
+
+    // Apply opacity-50 for steps that haven't been reached yet
+    for (let i = stepIndex + 1; i < steps.length; i++) {
+        stepElements[i].classList.add('opacity-50');    
+    }
+</script>

@@ -90,7 +90,7 @@
 
                         <!-- Dropdown Menu -->
                         <div class="absolute right-0 w-40 bg-white text-gray-800 rounded-md shadow-lg hidden group-hover:block z-[50]">
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Profile</a>
+                            <a href="{{route('profile.edit')}}" class="block px-4 py-2 text-sm hover:bg-gray-100">Profile</a>
                             <form action="{{ route('logout') }}" method="POST" class="w-full">
                                 @csrf
                                 <button type="submit" class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">

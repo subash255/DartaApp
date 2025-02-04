@@ -68,22 +68,27 @@ class CompanyController extends Controller
         return redirect()->back()->with('success', $message);
     }
     public function step1(){
-
-        return view('user.company.step1');
+        $user = Auth::user();
+        $company = Company::where('user_id', Auth::id())->first();
+        return view('user.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
     }
     public function step2(){
-        return view('user.company.step2');
+        $user = Auth::user();
+        $company = Company::where('user_id', Auth::id())->first();
+        return view('user.company.step2', ['currentStep' => 'step2'], compact('company', 'user'));
     }
     public function step3(){
-        return view('user.company.step3');
+        $user = Auth::user();
+        $company = Company::where('user_id', Auth::id())->first();
+        return view('user.company.step3', ['currentStep' => 'step3'], compact('company', 'user'));
     }
     public function step4(){
-        return view('user.company.step4');
+        $user = Auth::user();
+        $company = Company::where('user_id', Auth::id())->first();
+        return view('user.company.step4', ['currentStep' => 'step4'], compact('company', 'user'));
     }
 
-   
-
-
+ 
     public function stores(Request $request)
     {
         // Ensure the 'step' parameter is present in the request

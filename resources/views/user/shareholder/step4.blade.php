@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('content')
-<div class="container mx-auto p-6">
+
+<div class="bg-white rounded-lg shadow-lg p-6 md:p-10 min-w-full mx-auto">
+    @include('user.shareholder.contents')
+    <div class="container mx-auto p-6">
     <form method="POST" action="{{ route('shareholder.stores') }}">
         @csrf
         <input type="hidden" name="step" value="step4">
@@ -104,7 +107,14 @@
                                     value="{{ old('nid', $userdetail->nid ?? '') }}" required>
                             </div>
                         </div>
-        <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:shadow-outline">Next</button>
+ <!-- Button Section -->
+ <div class="flex justify-between mt-6">
+    <a href="{{ route('user.shareholder.step3') }}"
+        class="px-4 py-2 bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 focus:outline-none focus:shadow-outline">Previous</a>
+    <button type="submit"
+        class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:shadow-outline">Next</button>
+</div>
     </form>
+</div>
 </div>
 @endsection

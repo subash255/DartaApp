@@ -12,10 +12,7 @@ Route::get('/', [HomepageController::class, 'welcome'])->name('welcome');
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    
     // User Routes
     Route::get('user/index', [HomepageController::class, 'index'])->name('user.index');
     Route::get('user/userdetail/{id?}', [UserdetailController::class, 'userdetail'])->name('user.userdetail');
@@ -45,6 +42,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
+
+    //Admin Profile Routes
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //Admin Routes
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');

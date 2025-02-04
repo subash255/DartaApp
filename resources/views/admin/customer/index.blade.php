@@ -47,18 +47,18 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $customer->type }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $customer->status }}</td>
                             @if($customer->status == 'new')
-                            <td class="px-2 py-2 flex justify-center space-x-4 action-buttons border border-gray-300">
-                                <!-- confirm Icon -->
-                                
+                            <td class="border border-gray-300 px-4 py-2">
+                                <div class="flex justify-center gap-2">
+                                <!-- Confirm Icon -->
                                 <a href="{{route('customer.accepted',$customer->id)}}"
                                     class="bg-green-500 hover:bg-green-700 p-2 w-8 h-8 rounded-full flex items-center">
                                     <i class="ri-check-line"></i>
                                 </a>
+                                <!-- Reject Icon -->
                                 <a href="{{route('customer.rejected',$customer->id)}}"
                                     class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center">
                                     <i class="ri-close-fill text-white"></i>
                                 </a>
-                               
                                 <!-- Delete Icon -->
                                 <form action="{{ route('admin.customer.delete',  $customer->id) }}" method="post"
                                     onsubmit="return confirm('Are you sure you want to delete this customer?');">
@@ -69,7 +69,7 @@
                                         <i class="ri-delete-bin-line text-white"></i>
                                     </button>
                                 </form>
-
+                                </div>
                             </td>
                             @else
                             <td class="px-2 py-2  text-center  action-buttons border border-gray-300">
