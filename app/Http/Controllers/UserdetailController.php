@@ -34,11 +34,11 @@ class UserdetailController extends Controller
     {
         // Validate the incoming form data
         $validatedData = $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
+            'firstname' => 'nullable|string|max:255',
+            'lastname' => 'nullable|string|max:255',
             'wname' => 'nullable|string|max:255',
             'waddress' => 'nullable|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'nullable|email|max:255',
             'ctole' => 'nullable|string|max:255',
             'cmunicipality' => 'nullable|string|max:255',
             'cward' => 'nullable|string|max:255',

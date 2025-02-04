@@ -55,7 +55,8 @@
                         <td class="border border-gray-300 px-4 py-2">
                             {{ $detail->tmunicipality }}-{{ $detail->tward }},{{ $detail->tdistrict }}
                         </td>
-                        <td class="px-2 py-2 flex justify-center space-x-4 border border-gray-300">
+                        <td class="border border-gray-300 px-4 py-2">
+                            <div class="flex justify-center gap-2">
                             <!-- View Icon -->
                             <a href="{{route('user.userdetail', $detail->id)}}" class="flex items-center">
                                 <button
