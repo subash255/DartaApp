@@ -60,6 +60,7 @@ class HomepageController extends Controller
         }
 
         $user = User::find(Auth::id());
+        $user->status = 'new';
         $user->update($data);
 
         return redirect()->route('user.index');
