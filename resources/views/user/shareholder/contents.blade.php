@@ -14,6 +14,7 @@
 </div>
 
 <script>
+    // Get the current active step dynamically (this should be passed from your server-side template)
     const currentStep = "{{ $currentStep ?? 'step1' }}";  
     const steps = ['step1', 'step2', 'step3', 'step4', 'step5', 'step6'];
     const progressBar = document.getElementById('progress-bar');
@@ -21,6 +22,9 @@
 
     // Calculate the index of the current step
     let stepIndex = steps.indexOf(currentStep);
+    
+    // Check if the stepIndex is valid, otherwise default to the first step
+    if (stepIndex === -1) stepIndex = 0;
     
     // Update progress bar width (each step represents 16.66%)
     progressBar.style.width = `${(stepIndex + 1) * 16.66}%`; 
@@ -33,6 +37,7 @@
 
     // Apply opacity-50 for steps that haven't been reached yet
     for (let i = stepIndex + 1; i < steps.length; i++) {
-        stepElements[i].classList.add('opacity-50');    
+        stepElements[i].classList.remove('opacity-100');  // Remove full opacity for unfinished steps
+        stepElements[i].classList.add('opacity-50');      // Apply reduced opacity for unfinished steps
     }
 </script>

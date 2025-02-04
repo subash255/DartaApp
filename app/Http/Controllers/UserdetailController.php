@@ -110,30 +110,27 @@ class UserdetailController extends Controller
             return response()->json(['success' => true]);
         }
 
-
         // Redirect back with the appropriate success message
         return redirect('user/userindex')->with('success', $message);
     }
 
     public function step1(){
-
-        return view('user.shareholder.step1');
+        return view('user.shareholder.step1', ['currentStep' => 'step1']);
     }
     public function step2(){
-        return view('user.shareholder.step2');
+        return view('user.shareholder.step2', ['currentStep' => 'step2']);
     }
     public function step3(){
-        return view('user.shareholder.step3');
+        return view('user.shareholder.step3', ['currentStep' => 'step3']);
     }
-  
     public function step4(){
-        return view('user.shareholder.step4');
+        return view('user.shareholder.step4', ['currentStep' => 'step4']);
     }
     public function step5(){
-        return view('user.shareholder.step5');
+        return view('user.shareholder.step5', ['currentStep' => 'step5']);
     }
     public function step6(){
-        return view('user.shareholder.step6');
+        return view('user.shareholder.step6', ['currentStep' => 'step6']);
     }
 
 
