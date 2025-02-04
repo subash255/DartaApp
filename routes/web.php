@@ -28,6 +28,17 @@ Route::middleware('auth')->group(function () {
     Route::get('company/step3', [CompanyController::class, 'step3'])->name('user.company.step3');
     Route::get('company/step4', [CompanyController::class, 'step4'])->name('user.company.step4');
 
+    Route::get('shareholder/step1', [UserdetailController::class, 'step1'])->name('user.shareholder.step1');
+    Route::get('shareholder/step2', [UserdetailController::class, 'step2'])->name('user.shareholder.step2');
+    Route::get('shareholder/step3', [UserdetailController::class, 'step3'])->name('user.shareholder.step3');
+    Route::get('shareholder/step4', [UserdetailController::class, 'step4'])->name('user.shareholder.step4');
+    Route::get('shareholder/step5', [UserdetailController::class, 'step5'])->name('user.shareholder.step5');
+    Route::get('shareholder/step6', [UserdetailController::class, 'step6'])->name('user.shareholder.step6');
+    Route::post('shareholder/stores', [UserdetailController::class, 'stores'])->name('shareholder.stores');
+
+
+
+
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
