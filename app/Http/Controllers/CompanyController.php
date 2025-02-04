@@ -67,6 +67,109 @@ class CompanyController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('success', $message);
     }
+    public function step1(){
+
+        return view('user.company.step1');
+    }
+    public function step2(){
+        return view('user.company.step2');
+    }
+    public function step3(){
+        return view('user.company.step3');
+    }
+    public function step4(){
+        return view('user.company.step4');
+    }
+
+   
+
+
+    public function stores(Request $request)
+    {
+        // Ensure the 'step' parameter is present in the request
+        $step = $request->input('step');
+        
+        // Check if step is missing or invalid and set a default
+        if (empty($step)) {
+            return redirect()->route('user.company.step1');  // Redirect to step1 if no step is provided
+        }
+    
+        // Define validation rules for each step, considering all fields are nullable
+        $validationRules = [
+            'step1' => [
+                'regno' => 'nullable|string', // Nullable string
+                'regdate' => 'nullable|date', // Nullable date
+                'pan' => 'nullable|string', // Nullable string
+                'panregdate' => 'nullable|date', // Nullable date
+                'vat' => 'nullable|string', // Nullable string
+            ],
+            'step2' => [
+                'tole' => 'nullable|string', // Nullable string
+                'municipality' => 'nullable|string', // Nullable string
+                'ward' => 'nullable|string', // Nullable string
+                'district' => 'nullable|string', // Nullable string
+                'province' => 'nullable|string', // Nullable string
+                'phone' => 'nullable|string', // Nullable string
+            ],
+            'step3' => [
+                'accno' => 'nullable|string', // Nullable string
+                'bankname' => 'nullable|string', // Nullable string
+                'bankbranch' => 'nullable|string', // Nullable string
+                'signature' => 'nullable|string', // Nullable string
+                'created' => 'nullable|date', // Nullable date
+            ],
+            'step4' => [
+                'cid' => 'nullable|string', // Nullable string
+                'cpassword' => 'nullable|string', // Nullable string
+                'rid' => 'nullable|string', // Nullable string
+                'rpassword' => 'nullable|string', // Nullable string
+                'remail' => 'nullable|email', // Nullable email
+                'rphone' => 'nullable|string', // Nullable string
+                'rcontactperson' => 'nullable|string', // Nullable string
+            ],
+        ];
+    
+        // Check if the step exists in the validation rules
+        if (!array_key_exists($step, $validationRules)) {
+            return redirect()->route('user.company.step1');  // Redirect to step1 if the step is invalid
+        }
+    
+        // Validate the current step's data
+        $request->validate($validationRules[$step]);
+    
+        // Fetch the authenticated user's ID
+        $userId = Auth::id(); // Get the currently authenticated user's ID
+    
+        // Get the data for the current step
+        $companyData = $request->all();
+        
+        // Add user_id to the data being saved to the database
+        $companyData['user_id'] = $userId;
+    
+        // Remove the 'step' field from the data (if exists, it should not be saved)
+        unset($companyData['step']);
+    
+        // Find the existing company record or create a new one if it doesn't exist
+        $company = Company::firstOrNew(['user_id' => $userId]);
+    
+        // Update or create the company record with the current step's data
+        $company->fill($companyData);
+        $company->save(); // Save the data to the existing company record
+    
+        // Redirect to the next step
+        $nextStep = 'step' . (intval(substr($step, -1)) + 1); // Get the next step dynamically
+        if (in_array($nextStep, array_keys($validationRules))) {
+            return redirect()->route('user.company.' . $nextStep);
+        }
+    
+        // If it's the last step, go to the success page
+        return redirect()->route('user.company.step1')->with('success', 'Company details saved successfully!');
+    }
+    
+
+    
+
+
 
     public function delete($id)
     {

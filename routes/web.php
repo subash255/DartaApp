@@ -20,11 +20,17 @@ Route::middleware('auth')->group(function () {
     Route::get('user/index', [HomepageController::class, 'index'])->name('user.index');
     Route::get('user/userdetail/{id?}', [UserdetailController::class, 'userdetail'])->name('user.userdetail');
     Route::get('user/companydetail', [HomepageController::class, 'companydetail'])->name('user.companydetail');
+
     Route::match(['post', 'patch'], 'userdetail/store/{id?}', [UserdetailController::class, 'store'])->name('userdetail.store');
-    Route::post('company/store', [CompanyController::class, 'store'])->name('company.store');
+    Route::post('company/stores', [CompanyController::class, 'stores'])->name('company.stores');
     Route::get('user/userindex', [HomepageController::class, 'viewuser'])->name('user.userindex');
     Route::get('user/edit', [HomepageController::class, 'edit'])->name('user.edit');
     Route::patch('user/update', [HomepageController::class, 'update'])->name('user.update');
+    Route::get('company/step1', [CompanyController::class, 'step1'])->name('user.company.step1');
+    Route::get('company/step2', [CompanyController::class, 'step2'])->name('user.company.step2');
+    Route::get('company/step3', [CompanyController::class, 'step3'])->name('user.company.step3');
+    Route::get('company/step4', [CompanyController::class, 'step4'])->name('user.company.step4');
+
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

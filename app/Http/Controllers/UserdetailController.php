@@ -83,6 +83,7 @@ class UserdetailController extends Controller
             'bankname' => 'nullable|string|max:255',
             'bankbranch' => 'nullable|string|max:255',
         ]);
+        
 
         // Add the authenticated user's ID to the validated data
         $validatedData['user_id'] = Auth::id();
