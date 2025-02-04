@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('userdetails', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('firstname');
-            $table->string('lastname');
+            $table->string('shareholder_id')->nullable();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
             $table->string('wname')->nullable();
             $table->string('waddress')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('ctole')->nullable();
             $table->string('cmunicipality')->nullable();
             $table->string('cward')->nullable();
