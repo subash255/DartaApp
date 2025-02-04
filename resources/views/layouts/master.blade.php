@@ -64,8 +64,8 @@
                 @endif
 
                 <!-- Company Details Link -->
-                <a href="{{ route('user.companydetail') }}"
-                    class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.companydetail') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
+                <a href="{{ route('user.company.step1') }}"
+                    class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.company.step1') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
                     <i class="ri-building-line"></i>
                     <span class="ml-4 font-bold">Company Details</span>
                 </a>

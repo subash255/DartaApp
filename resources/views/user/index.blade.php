@@ -55,13 +55,13 @@
         <div class="bg-white rounded-lg p-6 shadow-lg border-t-4 border-b-4 border-blue-600">
             <h3 class="text-xl font-semibold text-gray-800 mb-6">Notifications</h3>
             <div class="space-y-4">
-                <div class="bg-white p-2 border-b border-gray-600">
+                <div class="bg-white p-2 border-b border-gray-300">
                     <p class="text-gray-800">Thank you for registering to Darta App.</p>
                 </div>
-                <div class="bg-white p-2 border-b border-gray-600">
+                <div class="bg-white p-2 border-b border-gray-300">
                     <p class="text-gray-800">Your account has been successfully verified.</p>
                 </div>
-                <div class="bg-white p-2 border-b border-gray-600">
+                <div class="bg-white p-2 border-b border-gray-300">
                     <p class="text-gray-800">Reminder: Your account will be held under review after editing your profile.</p>
                 </div>
             </div>
