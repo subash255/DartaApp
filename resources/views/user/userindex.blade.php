@@ -37,13 +37,28 @@
         }, 2000);
     </script>
 
+
+
 <div class="p-4 shadow-lg mt-12 rounded-lg">
-    <div class="mb-4 flex justify-end">
-        <a href="{{ route('user.shareholder.step1') }}"
-            class="text-orange-500 font-medium bg-white border-2 border-orange-500 rounded-lg py-2 px-4 hover:bg-orange-600 hover:text-white transition duration-300">
-            Add Details
-        </a>
-    </div>
+    @if($user->type == 'single' && $userdetail->isEmpty())
+        <div class="mb-4 flex justify-end">
+            <a href="{{ route('user.shareholder.step1') }}"
+                class="text-orange-500 font-medium bg-white border-2 border-orange-500 rounded-lg py-2 px-4 hover:bg-orange-600 hover:text-white transition duration-300">
+                Add Details
+            </a>
+        </div>
+    @elseif($user->type == 'multiple')
+        <!-- For 'multiple' type, show the option to add more userdetails -->
+        <div class="mb-4 flex justify-end">
+            <a href="{{ route('user.shareholder.step1') }}"
+                class="text-orange-500 font-medium bg-white border-2 border-orange-500 rounded-lg py-2 px-4 hover:bg-orange-600 hover:text-white transition duration-300">
+                Add Details
+            </a>
+        </div>
+
+    @endif
+
+
 
     <div class="overflow-x-auto">
         <!-- Table Section -->
@@ -76,7 +91,7 @@
                                     </button>
                                 </a>
                                 <!-- Edit Icon -->
-                                <a href="#"
+                                <a href="{{ route('user.shareholder.step1', $detail->id) }}"
                                     class="bg-blue-500 hover:bg-blue-700 p-2 w-8 h-8 rounded-full flex items-center justify-center">
                                     <i class="ri-edit-box-line text-white"></i>
                                 </a>

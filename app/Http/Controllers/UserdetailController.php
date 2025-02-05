@@ -114,35 +114,97 @@ class UserdetailController extends Controller
         // Redirect back with the appropriate success message
         return redirect('user/userindex')->with('success', $message);
     }
-    public function step1(){
-        // Retrieve the first Userdetails record where shareholder_id is set
-        $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-    
-        // Pass the retrieved user details to the view
-        return view('user.shareholder.step1' , ['currentStep' => 'step1'],  compact('userdetail'));
-    }
-    
-    public function step2(){
-        $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step2',  ['currentStep' => 'step2'], compact('userdetail'));
+    public function getUserDetail()
+{
+    return Userdetails::where('shareholder_id', session('shareholder_id'))->first();
+}
+public function step1($id = null)
+{
+    // Check if an id is passed
+    if ($id) {
+        // If $id is provided, retrieve the userdetails by id (editing an existing user)
+        $userdetail = Userdetails::find($id);
+
+        // Set the session for shareholder_id for editing
+        if ($userdetail) {
+            session()->put('shareholder_id', $userdetail->shareholder_id);
+        }
+    } else {
+        // If no $id is passed, this means we're adding a new user, so clear any previous session data
+        session()->forget('shareholder_id');
         
+        // Create a new, empty user detail object for a new user
+        $userdetail = new Userdetails(); // Empty, fresh model for a new user
     }
-    public function step3(){
-        $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step3', ['currentStep' => 'step3'],  compact('userdetail'));
-    }
-    public function step4(){
-        $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step4', ['currentStep' => 'step4'],  compact('userdetail'));
-    }
-    public function step5(){
-        $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step5', ['currentStep' => 'step5'],  compact('userdetail'));
-    }
-    public function step6(){
-        $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step6', ['currentStep' => 'step6'],  compact('userdetail'));
-    }
+
+    // Pass the retrieved or new userdetails to the view
+    return view('user.shareholder.step1', [
+        'currentStep' => 'step1',
+        'userdetail' => $userdetail
+    ]);
+}
+
+
+public function step2()
+{
+    // Get the shareholder_id from session
+    $shareholderId = session('shareholder_id');
+
+    // Retrieve the user detail based on the shareholder_id from session
+    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
+
+    // Return the view for step2
+    return view('user.shareholder.step2', ['currentStep' => 'step2'], compact('userdetail'));
+}
+
+public function step3()
+{
+    // Get the shareholder_id from session
+    $shareholderId = session('shareholder_id');
+
+    // Retrieve the user detail based on the shareholder_id from session
+    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
+
+    // Return the view for step3
+    return view('user.shareholder.step3', ['currentStep' => 'step3'], compact('userdetail'));
+}
+
+public function step4()
+{
+    // Get the shareholder_id from session
+    $shareholderId = session('shareholder_id');
+
+    // Retrieve the user detail based on the shareholder_id from session
+    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
+
+    // Return the view for step4
+    return view('user.shareholder.step4', ['currentStep' => 'step4'], compact('userdetail'));
+}
+
+public function step5()
+{
+    // Get the shareholder_id from session
+    $shareholderId = session('shareholder_id');
+
+    // Retrieve the user detail based on the shareholder_id from session
+    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
+
+    // Return the view for step5
+    return view('user.shareholder.step5', ['currentStep' => 'step5'], compact('userdetail'));
+}
+
+public function step6()
+{
+    // Get the shareholder_id from session
+    $shareholderId = session('shareholder_id');
+
+    // Retrieve the user detail based on the shareholder_id from session
+    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
+
+    // Return the view for step6
+    return view('user.shareholder.step6', ['currentStep' => 'step6'], compact('userdetail'));
+}
+
 
 
    
@@ -221,7 +283,7 @@ class UserdetailController extends Controller
                 'bankbranch' => 'nullable|string|max:255',
             ],
         ];
-    
+        
         // Check if the step exists in the validation rules
         if (!array_key_exists($step, $validationRules)) {
             return redirect()->route('user.shareholder.step1');  // Redirect to step1 if the step is invalid
@@ -229,19 +291,19 @@ class UserdetailController extends Controller
     
         // Validate the current step's data
         $request->validate($validationRules[$step]);
-    
+        
         // Get the data for the current step
         $shareholderData = $request->all();
         unset($shareholderData['step']);
-    
+        
         // Get the next step dynamically
         $nextStep = 'step' . (intval(substr($step, -1)) + 1); // Get the next step dynamically
     
         // Get the authenticated user ID
-        $userId = Auth::id(); 
+        $userId = Auth::id();
     
-        // Get the current temporary shareholder ID (if available, otherwise create a new one)
-        $shareholderId = session()->get('shareholder_id');
+        // Check if 'id' is passed (for editing) or use session-based `shareholder_id` (for creating new record)
+        $shareholderId = $request->input('id') ?? session()->get('shareholder_id');
     
         // If no temporary shareholder ID exists, it's a new shareholder
         if (!$shareholderId) {
@@ -250,15 +312,18 @@ class UserdetailController extends Controller
             session()->put('shareholder_id', $shareholderId);
         }
     
-        // Now, associate this new data with the correct temporary shareholder
-        $shareholderData['user_id'] = $userId; 
-        $shareholderData['shareholder_id'] = $shareholderId; // Use temporary shareholder ID
-    
-        // Check if a record with the same shareholder_id exists. If it does, update it; otherwise, create a new record
-        $shareholder = Userdetails::updateOrCreate(
-            ['shareholder_id' => $shareholderId],  // Check if this shareholder_id exists
-            $shareholderData  // Update the existing data or create new data
-        );
+        // If we're editing an existing record, retrieve the current record
+        $shareholder = Userdetails::where('shareholder_id', $shareholderId)->first();
+        
+        if (!$shareholder) {
+            // If no existing record, create a new one
+            $shareholderData['user_id'] = $userId;
+            $shareholderData['shareholder_id'] = $shareholderId; // Use temporary shareholder ID
+            $shareholder = Userdetails::create($shareholderData);
+        } else {
+            // If record exists, update it
+            $shareholder->update($shareholderData);
+        }
     
         // Redirect to the next step dynamically
         if (in_array($nextStep, array_keys($validationRules))) {
@@ -269,6 +334,8 @@ class UserdetailController extends Controller
         session()->forget('shareholder_id'); // Clear the temporary shareholder ID after completing the process
         return redirect()->route('user.userindex')->with('success', 'Shareholder details saved successfully!');
     }
+    
+    
     
     public function delete($id)
     {
