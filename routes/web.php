@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('company/step3', [CompanyController::class, 'step3'])->name('user.company.step3');
     Route::get('company/step4', [CompanyController::class, 'step4'])->name('user.company.step4');
 
-    Route::get('shareholder/step1', [UserdetailController::class, 'step1'])->name('user.shareholder.step1');
+    Route::get('shareholder/step1/{id?}', [UserdetailController::class, 'step1'])->name('user.shareholder.step1');
     Route::get('shareholder/step2', [UserdetailController::class, 'step2'])->name('user.shareholder.step2');
     Route::get('shareholder/step3', [UserdetailController::class, 'step3'])->name('user.shareholder.step3');
     Route::get('shareholder/step4', [UserdetailController::class, 'step4'])->name('user.shareholder.step4');

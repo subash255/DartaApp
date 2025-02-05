@@ -54,14 +54,14 @@
                     <span class="ml-4 font-bold">Dashboard</span>
                 </a>
 
-                @if (Auth::user()->type == 'multiple')
+               
                 <!-- Your Details Link -->
                 <a href="{{ route('user.userindex') }}"
                     class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('user.userindex') ? 'bg-orange-600 text-white' : 'hover:bg-orange-500 hover:text-white' }} transition-colors duration-200">
                     <i class="ri-user-2-line"></i>
                     <span class="ml-4 font-bold">ShareHolder's Details</span>
                 </a>
-                @endif
+         
 
                 <!-- Company Details Link -->
                 <a href="{{ route('user.company.step1') }}"

@@ -30,7 +30,7 @@ class HomepageController extends Controller
     {
         $user = Auth::user();
         $userdetail = Userdetails::where('user_id', $user->id)->get();
-        return view('user.userindex', compact('userdetail'));
+        return view('user.userindex', compact('userdetail','user'));
     }
 
 
