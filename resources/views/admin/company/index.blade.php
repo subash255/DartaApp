@@ -58,16 +58,23 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $company->municipality }}-{{ $company->ward }},{{ $company->district }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $company->user->category }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $company->user->type }}</td>
-                            <td class="border border-gray-300 px-4 py-2 ">
-                                
-                                                            <!-- Delete Button -->
-                                                            <button type="button" 
-                                                            class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center"
-                                                            onclick="openDeleteModal({{ $company->id }})">
-                                                            <i class="ri-delete-bin-line text-white"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <div class="flex justify-center gap-2">
+                                    <!-- View Icon -->
+                                    <a href="#" class="flex items-center">
+                                        <button
+                                            class="bg-blue-500 hover:bg-blue-700 p-1 w-8 h-8 rounded-full flex items-center justify-center">
+                                            <i class="ri-eye-line text-white"></i>
+                                        </button>
+                                    </a>
+                                    <!-- Delete Button -->
+                                    <button type="button" 
+                                        class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center"
+                                        onclick="openDeleteModal({{ $company->id }})">
+                                        <i class="ri-delete-bin-line text-white"></i>
+                                    </button>
+                                </div>
+                            </td>
                                             </tr>
                         
                                             <!-- Modal HTML -->

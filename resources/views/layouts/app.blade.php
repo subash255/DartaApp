@@ -46,12 +46,12 @@
 
     <div class="flex h-full">
         <!-- Sidebar -->
-        <aside id="sidebar" class="w-64 bg-white text-gray-900 shadow-lg flex flex-col fixed top-0 bottom-0 left-0 transition-all duration-300 overflow-y-auto z-10">
+        <aside id="sidebar" class="w-64 bg-white text-gray-900 flex flex-col fixed top-0 bottom-0 left-0 transition-all duration-300 overflow-y-auto z-10">
             <div class="p-4 flex items-center justify-center">
                 <!-- Logo/Brand Name -->
-                <div class="w-40 h-40 rounded-full border-2 border-gray-500 flex items-center justify-center overflow-hidden">
+                <div class="w-40 h-40 flex items-center justify-center overflow-hidden">
                     <!-- Logo Image -->
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-28 h-28 object-cover">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-30 h-30 object-cover">
                 </div>
             </div>
             

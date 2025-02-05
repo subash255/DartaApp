@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DartaApp Registration</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Include Nepali Transliteration Script -->
+    <script src="https://cdn.jsdelivr.net/npm/nepali-transliteration@1.0.2/dist/nepali-transliteration.min.js"></script>
 </head>
+
 <body>
     <div class="min-h-screen py-12 xl:px-16 lg:px-12 sm:px-8 px-4 flex items-center justify-center">
         <div class="xl:max-w-6xl w-full mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <!-- Adjusted image width to be smaller and on the left -->
-                <img class="w-full h-[40rem] lg:w-[60rem] hidden lg:block object-cover" src="images/register.svg" alt="Register Image">
+                <img class="w-full h-[40rem] lg:w-[60rem] hidden lg:block object-cover" src="images/register.svg"
+                    alt="Register Image">
 
                 <!-- Form Section - stretched to the left -->
                 <div class="bg-gray-100 py-12 px-8 sm:px-16 rounded-md w-full lg:col-span-2">
                     <div class="mb-8">
                         <h1 class="text-2xl font-bold">
-                            Welcome to Darta App!
+                            Welcome to CompanyDarta App!
                         </h1>
                         <h2 class="mt-2 text-lg">
                             Create a new account
@@ -29,52 +35,87 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <!-- First Name -->
                                 <div>
-                                    <label for="firstname" class="text-base font-medium text-gray-700">First Name</label>
-                                    <input type="text" name="firstname" id="firstname" placeholder="Enter your first name"
-                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" required>
+                                    <label for="firstname" class="text-base font-medium text-gray-700">First
+                                        Name</label>
+                                    <input type="text" name="firstname" id="firstname"
+                                        placeholder="Enter your first name"
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                        required>
                                 </div>
 
                                 <!-- Last Name -->
                                 <div>
                                     <label for="lastname" class="text-base font-medium text-gray-700">Last Name</label>
-                                    <input type="text" name="lastname" id="lastname" placeholder="Enter your last name"
-                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" required>
+                                    <input type="text" name="lastname" id="lastname"
+                                        placeholder="Enter your last name"
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                        required>
                                 </div>
 
-                                <!-- Company Name -->
-                                <div>
-                                    <label for="companyname" class="text-base font-medium text-gray-700">Company Name</label>
-                                    <input type="text" name="companyname" id="companyname" placeholder="Enter your company name"
-                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" required>
+                                <!-- Company Name in English -->
+                                <div class="sm:col-span-2">
+                                    <label for="companyname" class="text-base font-medium text-gray-700">Purposed
+                                        Company Name in English</label>
+                                    <input type="text" name="companyname" id="txtEnglish"
+                                        placeholder="Enter your company name"
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                        required>
+                                </div>
+
+                                <!-- Company Name in Nepali -->
+                                <div class="sm:col-span-2">
+                                    <label for="companyname_np" class="text-base font-medium text-gray-700">Purposed
+                                        Company Name in Nepali</label>
+                                    <input type="text" name="companyname_np" id="txtNepali"
+                                        placeholder="Enter your company name in Nepali"
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                        readonly>
                                 </div>
 
                                 <!-- Email -->
                                 <div>
                                     <label for="email" class="text-base font-medium text-gray-700">Email</label>
-                                    <input type="email" name="email" id="email" placeholder="Enter your email address"
-                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" required>
+                                    <input type="email" name="email" id="email"
+                                        placeholder="Enter your email address"
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                        required>
+                                </div>
+
+                                <!-- Address -->
+                                <div>
+                                    <label for="address" class="text-base font-medium text-gray-700">Address</label>
+                                    <input type="text" name="address" id="address" placeholder="Enter your address"
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                        required>
                                 </div>
 
                                 <!-- Phone -->
                                 <div>
                                     <label for="phone" class="text-base font-medium text-gray-700">Phone</label>
-                                    <input type="tel" name="phone" id="phone" placeholder="Enter your phone number"
-                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" required>
+                                    <input type="tel" name="phone" id="phone"
+                                        placeholder="Enter your phone number"
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                        required>
                                 </div>
 
                                 <!-- Password -->
                                 <div>
                                     <label for="password" class="text-base font-medium text-gray-700">Password</label>
-                                    <input type="password" name="password" id="password" placeholder="Enter your password"
-                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" required>
+                                    <input type="password" name="password" id="password"
+                                        placeholder="Enter your password"
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                        required>
                                 </div>
 
-                                <!-- Category and Company Type (Two dropdowns) -->
+                                <!-- Category and Company Type -->
                                 <div class="w-full sm:col-span-2 flex gap-6">
                                     <!-- Category -->
                                     <div class="w-full sm:w-1/2">
-                                        <label for="type" class="text-base font-medium text-gray-700">Category</label>
-                                        <select id="type" name="category" class="mt-2 w-full px-4 py-4 border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" required>
+                                        <label for="type"
+                                            class="text-base font-medium text-gray-700">Category</label>
+                                        <select id="type" name="category"
+                                            class="mt-2 w-full px-4 py-4 border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                            required>
                                             <option value="it">IT Company</option>
                                             <option value="sales">Sales Company</option>
                                             <option value="bank">Bank</option>
@@ -83,12 +124,23 @@
 
                                     <!-- Company Type -->
                                     <div class="w-full sm:w-1/2">
-                                        <label for="company_type" class="text-base font-medium text-gray-700">Company Type</label>
-                                        <select id="company_type" name="type" class="mt-2 w-full px-4 py-4 border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" required>
+                                        <label for="company_type" class="text-base font-medium text-gray-700">Company
+                                            Type</label>
+                                        <select id="company_type" name="type"
+                                            class="mt-2 w-full px-4 py-4 border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                            required>
                                             <option value="single">Single Shareholder Company</option>
                                             <option value="multiple">Multi Shareholder Company</option>
                                         </select>
                                     </div>
+                                </div>
+
+                                <!-- Remarks -->
+                                <div class="sm:col-span-2">
+                                    <label for="remarks" class="text-base font-medium text-gray-700">Remarks</label>
+                                    <textarea name="remarks" id="remarks" placeholder="Enter your remarks"
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
+                                        required></textarea>
                                 </div>
                             </div>
 
@@ -116,5 +168,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Transliteration logic for the 'txtEnglish' field to 'txtNepali' field
+        document.getElementById("txtEnglish").addEventListener("input", function() {
+            var englishText = this.value; // Get the English text
+            var nepaliText = NepaliTransliterate.toNepali(englishText); // Convert to Nepali
+            document.getElementById("txtNepali").value = nepaliText; // Display in Nepali field
+        });
+    </script>
+
 </body>
 </html>
