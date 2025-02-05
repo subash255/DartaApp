@@ -119,29 +119,29 @@ class UserdetailController extends Controller
         $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
     
         // Pass the retrieved user details to the view
-        return view('user.shareholder.step1', compact('userdetail'));
+        return view('user.shareholder.step1' , ['currentStep' => 'step1'],  compact('userdetail'));
     }
     
     public function step2(){
         $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step2', compact('userdetail'));
+        return view('user.shareholder.step2',  ['currentStep' => 'step2'], compact('userdetail'));
         
     }
     public function step3(){
         $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step3', compact('userdetail'));
+        return view('user.shareholder.step3', ['currentStep' => 'step3'],  compact('userdetail'));
     }
     public function step4(){
         $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step4', compact('userdetail'));
+        return view('user.shareholder.step4', ['currentStep' => 'step4'],  compact('userdetail'));
     }
     public function step5(){
         $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step5', compact('userdetail'));
+        return view('user.shareholder.step5', ['currentStep' => 'step5'],  compact('userdetail'));
     }
     public function step6(){
         $userdetail = Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-        return view('user.shareholder.step6', compact('userdetail'));
+        return view('user.shareholder.step6', ['currentStep' => 'step6'],  compact('userdetail'));
     }
 
 
@@ -267,9 +267,25 @@ class UserdetailController extends Controller
     
         // If it's the last step, redirect to a success page and clear the session
         session()->forget('shareholder_id'); // Clear the temporary shareholder ID after completing the process
-        return redirect()->route('user.shareholder.step1')->with('success', 'Shareholder details saved successfully!');
+        return redirect()->route('user.userindex')->with('success', 'Shareholder details saved successfully!');
     }
     
+    public function delete($id)
+    {
+        // Find the userdetails record
+        $userDetail = Userdetails::where('user_id', Auth::id())->where('id', $id)->first();
+    
+        // If no matching record is found, abort with a 403 error
+        if (!$userDetail) {
+            return redirect()->back()->with('error', 'Unauthorized action.');
+        }
+    
+        // Delete the userdetails record
+        $userDetail->delete();
+    
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Shareholder details deleted successfully!');
+    }
 
 
 }

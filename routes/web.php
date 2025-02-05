@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('shareholder/step6', [UserdetailController::class, 'step6'])->name('user.shareholder.step6');
     Route::post('shareholder/stores', [UserdetailController::class, 'stores'])->name('shareholder.stores');
 
+    Route::delete('user/delete/{id}', [UserdetailController::class, 'delete'])->name('user.delete');
+
 
 
 
