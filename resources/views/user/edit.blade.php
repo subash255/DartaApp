@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@extends('layouts.master')
+@section('content')
+
 <body class="bg-orange-50 mt-5 flex justify-center items-center relative">
 
     <!-- Form container with proper width and padding -->
@@ -91,4 +86,4 @@
     </div>
 
 </body>
-</html>
+@endsection

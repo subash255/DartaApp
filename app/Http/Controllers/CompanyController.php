@@ -172,10 +172,6 @@ class CompanyController extends Controller
     }
     
 
-    
-
-
-
     public function delete($id)
     {
         $company = Company::find($id);

@@ -1,5 +1,18 @@
 @extends('layouts.app')
 @section('content')
+
+<style>
+    /* Hide the modal */
+    .modal-hidden {
+    display: none !important;
+}
+
+/* Show the modal with flex */
+.modal-visible {
+    display: flex !important;
+}
+</style>
+
     {{-- Flash Message --}}
     @if (session('success'))
         <div id="flash-message" class="bg-green-500 text-white px-6 py-2 rounded-lg fixed top-4 right-4 shadow-lg z-50">
@@ -13,7 +26,7 @@
             msg.style.opacity = 0;
             msg.style.transition = "opacity 0.5s ease-out";
             setTimeout(() => msg.remove(), 500);
-        }, 3000);
+        }, 2000);
     </script>
 
 
@@ -47,17 +60,31 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $company->user->type }}</td>
                             <td class="border border-gray-300 px-4 py-2 ">
                                 
-                                 <!-- Delete Icon -->
-                            <form action="{{ route('admin.company.delete', $company->id) }}"
-                            method="post" onsubmit="return confirm('Are you sure you want to delete this food item?');">
-                            @csrf
-                            @method('delete')
-                            <button class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center mx-auto">
-                                <i class="ri-delete-bin-line text-white"></i>
-                            </button>
-                        </form>
-                            </td>
-                        </tr>
+                                                            <!-- Delete Button -->
+                                                            <button type="button" 
+                                                            class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center"
+                                                            onclick="openDeleteModal({{ $company->id }})">
+                                                            <i class="ri-delete-bin-line text-white"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                        
+                                            <!-- Modal HTML -->
+                                            <div id="deleteModal-{{ $company->id }}" class="fixed inset-0 bg-black bg-opacity-70 modal-hidden items-center justify-center z-50 backdrop-blur-[1px] flex">
+                                                <div class="bg-white p-6 rounded-lg w-96">
+                                                    <h2 class="text-xl font-semibold mb-4">Confirm Deletion</h2>
+                                                    <p>Are you sure you want to delete this company?</p>
+                                                    <div class="mt-4 flex justify-end">
+                                                        <button id="cancelBtn" class="bg-gray-400 hover:bg-gray-600 text-white p-2 rounded-md mr-2" onclick="closeDeleteModal({{ $company->id }})">Cancel</button>
+                                                        <form action="{{ route('admin.company.delete', $company->id) }}" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white p-2 rounded-md">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                     @endforeach
                 </tbody>
             </table>
@@ -91,4 +118,22 @@
             });
         });
     </script>
+
+<script>
+    // This will open the modal for the specific user
+    function openDeleteModal(userId) {
+        const deleteModal = document.getElementById(`deleteModal-${userId}`);
+        deleteModal.classList.remove('modal-hidden');
+        deleteModal.classList.add('modal-visible');
+        document.body.classList.add('overflow-hidden'); // Disable scrolling when modal is open
+    }
+
+    // Close the modal
+    function closeDeleteModal(userId) {
+        const deleteModal = document.getElementById(`deleteModal-${userId}`);
+        deleteModal.classList.remove('modal-visible');
+        deleteModal.classList.add('modal-hidden');
+        document.body.classList.remove('overflow-hidden'); // Re-enable scrolling
+    }
+</script>
 @endsection
