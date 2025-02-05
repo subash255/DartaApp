@@ -22,9 +22,15 @@
                 <input type="text" id="last-name" name="lastname" value="{{ old('lastname', $user->lastname) }}" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
             </div>
             
-            <!-- Company Name -->
+            <!-- Company Name in English -->
             <div class="mb-4">
-                <label for="companyname" class="block text-gray-700 font-semibold mb-2">Company Name</label>
+                <label for="companyname" class="block text-gray-700 font-semibold mb-2">Company Name in English</label>
+                <input type="text" id="company-name" name="companyname" value="{{ old('companyname', $user->companyname) }}" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+            </div>
+
+            <!-- Company Name in Nepali -->
+            <div class="mb-4">
+                <label for="companyname" class="block text-gray-700 font-semibold mb-2">Company Name in Nepali</label>
                 <input type="text" id="company-name" name="companyname" value="{{ old('companyname', $user->companyname) }}" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
             </div>
             
@@ -32,6 +38,12 @@
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
                 <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+            </div>
+
+            <!-- Address -->
+            <div class="mb-4">
+                <label for="address" class="block text-gray-700 font-semibold mb-2">Address</label>
+                <input type="text" id="address" name="address" value="{{ old('address', $user->address) }}" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
             </div>
             
             <!-- Phone -->
@@ -47,7 +59,7 @@
                 <small class="text-gray-600">Leave blank if you don't want to change your password</small>
             </div>
             
-            <!-- Type (Category) and Company Type (Two dropdowns in the same row) -->
+            <!-- Type (Category) and Company Type -->
             <div class="flex gap-6 sm:col-span-2">
                 <!-- Category -->
                 <div class="w-full sm:w-1/2 mb-4">

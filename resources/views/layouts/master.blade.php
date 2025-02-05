@@ -40,9 +40,9 @@
             <div class="p-4 flex items-center justify-center">
                 <!-- Logo/Brand Name -->
                 <div
-                    class="w-40 h-40 rounded-full border-2 border-gray-500 flex items-center justify-center overflow-hidden">
+                    class="w-40 h-40 flex items-center justify-center overflow-hidden">
                     <!-- Logo Image -->
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-28 h-28 object-cover">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-30 h-30 object-cover">
                 </div>
             </div>
 
@@ -103,8 +103,8 @@
             <div class="p-4 flex items-center justify-between">
                 <!-- Logo/Brand Name -->
                 <div
-                    class="w-36 h-36 rounded-full border-2 border-gray-500 flex ml-8 items-center justify-center overflow-hidden">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-24 h-24  object-cover">
+                    class="w-36 h-36 flex ml-8 items-center justify-center overflow-hidden">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-30 h-30  object-cover">
                 </div>
 
             </div>

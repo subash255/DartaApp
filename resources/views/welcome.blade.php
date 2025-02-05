@@ -17,7 +17,7 @@
                 <div class="bg-gray-100 py-12 px-8 sm:px-16 rounded-md w-full">
                     <div class="mb-8">
                         <h1 class="text-2xl font-bold">
-                            Welcome To Darta App!
+                            Welcome To Company Darta App!
                         </h1>
                         <h2 class="mt-2 text-lg">
                             Login to your account
