@@ -55,6 +55,13 @@
         <div class="bg-white rounded-lg p-6 shadow-lg border-t-4 border-b-4 border-blue-600">
             <h3 class="text-xl font-semibold text-gray-800 mb-6">Todo Lists</h3>
             <div class="space-y-4">
+                @if($todolist->isEmpty())
+                <div class="bg-white p-2 border-b border-gray-300">
+                    <h4 class="text-gray-800 font-semibold">No Todo List</h4>
+                    <p class="text-gray-800">You have no pending tasks.</p>
+                </div>
+                    
+                @endif
                 @foreach($todolist as $todo)
                 <div class="bg-white p-2 border-b border-gray-300">
                     <h4 class="text-gray-800 font-semibold">{{$todo->title}}</h4>
