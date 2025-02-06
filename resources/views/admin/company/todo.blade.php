@@ -46,6 +46,7 @@
                 <form action="{{ route('admin.todo.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="user_id" value="{{ $company->user->id }}">
+                    
                     <!-- todo title -->
                     <div class="mb-6">
                         <label for="title" class="block text-sm font-medium text-gray-700">Title</label>

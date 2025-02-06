@@ -22,7 +22,6 @@ class TodolistController extends Controller
             'description' => 'required',
             'user_id' => 'required',
         ]);
-        $user_id = Company::get(user_id);
 
         Todolist::create([
             'title' => $request->title,
@@ -38,7 +37,5 @@ class TodolistController extends Controller
         Todolist::find($id)->delete();
         return back()->with('success', 'Todolist deleted successfully');
     }
-
-
 
 }
