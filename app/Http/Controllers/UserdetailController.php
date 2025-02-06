@@ -130,12 +130,17 @@ public function step1($id = null)
             session()->put('shareholder_id', $userdetail->shareholder_id);
         }
     } else {
-        // If no $id is passed, this means we're adding a new user, so clear any previous session data
-        session()->forget('shareholder_id');
+        // If no $id is passed, this means we're adding a new user
+        
+        // Only forget the session if there's no existing shareholder_id
+        if (!session()->has('shareholder_id')) {
+            session()->forget('shareholder_id');
+        }
         
         // Create a new, empty user detail object for a new user
         $userdetail = new Userdetails(); // Empty, fresh model for a new user
     }
+
 
     // Pass the retrieved or new userdetails to the view
     return view('user.shareholder.step1', [
@@ -147,6 +152,7 @@ public function step1($id = null)
 
 public function step2()
 {
+    
     // Get the shareholder_id from session
     $shareholderId = session('shareholder_id');
 
@@ -210,132 +216,149 @@ public function step6()
    
 
 
-    public function stores(Request $request)
-    {
-        // Ensure the 'step' parameter is present in the request
-        $step = $request->input('step');
-        
-        // Check if step is missing or invalid and set a default
-        if (empty($step)) {
-            return redirect()->route('user.shareholder.step1');  // Redirect to step1 if no step is provided
-        }
+public function stores(Request $request)
+{
+    // Ensure the 'step' parameter is present in the request
+    $step = $request->input('step');
     
-        // Define validation rules for each step, considering all fields are nullable
-        $validationRules = [
-            'step1' => [
-                'firstname' => 'required|string|max:255',
-                'lastname' => 'required|string|max:255',
-                'wname' => 'nullable|string|max:255',
-                'waddress' => 'nullable|string|max:255',
-            ],
-            'step2' => [
-                'ctole' => 'nullable|string|max:255',
-                'cmunicipality' => 'nullable|string|max:255',
-                'cward' => 'nullable|string|max:255',
-                'cdistrict' => 'nullable|string|max:255',
-                'cprovince' => 'nullable|string|max:255',
-                'cimage' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-                'cctole' => 'nullable|string|max:255',
-                'ccmunicipality' => 'nullable|string|max:255',
-                'ccward' => 'nullable|string|max:255',
-                'ccdistrict' => 'nullable|string|max:255',
-                'ccprovince' => 'nullable|string|max:255',
-                'ccimage' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-            ],
-            'step3' => [
-                'ttole' => 'nullable|string|max:255',
-                'tmunicipality' => 'nullable|string|max:255',
-                'tward' => 'nullable|string|max:255',
-                'tdistrict' => 'nullable|string|max:255',
-                'tprovince' => 'nullable|string|max:255',
-            ],
-            'step4' => [
-                'citizennumber' => 'nullable|string|max:255',
-                'issuedate' => 'nullable|string|max:255',
-                'issuedplace' => 'nullable|string|max:255',
-                'notarized' => 'nullable|in:yes,no',
-                'fathername' => 'nullable|string|max:255',
-                'mothername' => 'nullable|string|max:255',
-                'spousename' => 'nullable|string|max:255',
-                'grandfathername' => 'nullable|string|max:255',
-                'phone' => 'nullable|string|max:255',
-                'optphone' => 'nullable|string|max:255',
-                'email' => 'nullable|email|max:255',
-                'optemail' => 'nullable|string|max:255',
-                'pan' => 'nullable|string|max:255',
-                'nid' => 'nullable|string|max:255',
-            ],
-            'step5' => [
-                'shareamt' => 'nullable|string|max:255',
-                'shareno' => 'nullable|string|max:255',
-                'sharefrom' => 'nullable|string|max:255',
-                'shareto' => 'nullable|string|max:255',
-                'sharedate' => 'nullable|string|max:255',
-                'totalshare' => 'nullable|string|max:255',
-                'addshare' => 'nullable|string|max:255',
-                'salesofshare' => 'nullable|string|max:255',
-                'lawyername' => 'nullable|string|max:255',
-                'lawyerphone' => 'nullable|string|max:255',
-                'lawyerid' => 'nullable|string|max:255',
-                'lawyeridvalid' => 'nullable|string|max:255',
-            ],
-            'step6' => [
-                'accno' => 'nullable|string|max:255',
-                'bankname' => 'nullable|string|max:255',
-                'bankbranch' => 'nullable|string|max:255',
-            ],
-        ];
-        
-        // Check if the step exists in the validation rules
-        if (!array_key_exists($step, $validationRules)) {
-            return redirect()->route('user.shareholder.step1');  // Redirect to step1 if the step is invalid
-        }
-    
-        // Validate the current step's data
-        $request->validate($validationRules[$step]);
-        
-        // Get the data for the current step
-        $shareholderData = $request->all();
-        unset($shareholderData['step']);
-        
-        // Get the next step dynamically
-        $nextStep = 'step' . (intval(substr($step, -1)) + 1); // Get the next step dynamically
-    
-        // Get the authenticated user ID
-        $userId = Auth::id();
-    
-        // Check if 'id' is passed (for editing) or use session-based `shareholder_id` (for creating new record)
-        $shareholderId = $request->input('id') ?? session()->get('shareholder_id');
-    
-        // If no temporary shareholder ID exists, it's a new shareholder
-        if (!$shareholderId) {
-            // Create a new shareholder ID for this process
-            $shareholderId = uniqid('shareholder_', true);
-            session()->put('shareholder_id', $shareholderId);
-        }
-    
-        // If we're editing an existing record, retrieve the current record
-        $shareholder = Userdetails::where('shareholder_id', $shareholderId)->first();
-        
-        if (!$shareholder) {
-            // If no existing record, create a new one
-            $shareholderData['user_id'] = $userId;
-            $shareholderData['shareholder_id'] = $shareholderId; // Use temporary shareholder ID
-            $shareholder = Userdetails::create($shareholderData);
-        } else {
-            // If record exists, update it
-            $shareholder->update($shareholderData);
-        }
-    
-        // Redirect to the next step dynamically
-        if (in_array($nextStep, array_keys($validationRules))) {
-            return redirect()->route('user.shareholder.' . $nextStep);
-        }
-    
-        // If it's the last step, redirect to a success page and clear the session
-        session()->forget('shareholder_id'); // Clear the temporary shareholder ID after completing the process
-        return redirect()->route('user.userindex')->with('success', 'Shareholder details saved successfully!');
+    // Check if step is missing or invalid and set a default
+    if (empty($step)) {
+        return redirect()->route('user.shareholder.step1');  // Redirect to step1 if no step is provided
     }
+    
+    // Define validation rules for each step, considering all fields are nullable
+    $validationRules = [
+        'step1' => [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'wname' => 'nullable|string|max:255',
+            'waddress' => 'nullable|string|max:255',
+        ],
+        'step2' => [
+            'ctole' => 'nullable|string|max:255',
+            'cmunicipality' => 'nullable|string|max:255',
+            'cward' => 'nullable|string|max:255',
+            'cdistrict' => 'nullable|string|max:255',
+            'cprovince' => 'nullable|string|max:255',
+            'cimage' => 'nullable|image|', // Image validation
+            'cctole' => 'nullable|string|max:255',
+            'ccmunicipality' => 'nullable|string|max:255',
+            'ccward' => 'nullable|string|max:255',
+            'ccdistrict' => 'nullable|string|max:255',
+            'ccprovince' => 'nullable|string|max:255',
+            'ccimage' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        ],
+        'step3' => [
+            'ttole' => 'nullable|string|max:255',
+            'tmunicipality' => 'nullable|string|max:255',
+            'tward' => 'nullable|string|max:255',
+            'tdistrict' => 'nullable|string|max:255',
+            'tprovince' => 'nullable|string|max:255',
+        ],
+        'step4' => [
+            'citizennumber' => 'nullable|string|max:255',
+            'issuedate' => 'nullable|string|max:255',
+            'issuedplace' => 'nullable|string|max:255',
+            'notarized' => 'nullable|in:yes,no',
+            'fathername' => 'nullable|string|max:255',
+            'mothername' => 'nullable|string|max:255',
+            'spousename' => 'nullable|string|max:255',
+            'grandfathername' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'optphone' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'optemail' => 'nullable|string|max:255',
+            'pan' => 'nullable|string|max:255',
+            'nid' => 'nullable|string|max:255',
+        ],
+        'step5' => [
+            'shareamt' => 'nullable|string|max:255',
+            'shareno' => 'nullable|string|max:255',
+            'sharefrom' => 'nullable|string|max:255',
+            'shareto' => 'nullable|string|max:255',
+            'sharedate' => 'nullable|string|max:255',
+            'totalshare' => 'nullable|string|max:255',
+            'addshare' => 'nullable|string|max:255',
+            'salesofshare' => 'nullable|string|max:255',
+            'lawyername' => 'nullable|string|max:255',
+            'lawyerphone' => 'nullable|string|max:255',
+            'lawyerid' => 'nullable|string|max:255',
+            'lawyeridvalid' => 'nullable|string|max:255',
+        ],
+        'step6' => [
+            'accno' => 'nullable|string|max:255',
+            'bankname' => 'nullable|string|max:255',
+            'bankbranch' => 'nullable|string|max:255',
+        ],
+    ];
+    
+    // Check if the step exists in the validation rules
+    if (!array_key_exists($step, $validationRules)) {
+        return redirect()->route('user.shareholder.step1');  // Redirect to step1 if the step is invalid
+    }
+    
+    // Validate the current step's data
+    $request->validate($validationRules[$step]);
+    
+    // Handle the image upload (if any)
+    $shareholderData = $request->all();
+    unset($shareholderData['step']);
+    
+    // Handle image upload for 'cimage' or 'ccimage' if they exist
+    if ($request->hasFile('cimage')) {
+        $cimage = $request->file('cimage');
+        $cimageName = time() . '.' . $cimage->getClientOriginalExtension(); // Set the file name with current timestamp
+        $cimage->move(public_path('citizenship'), $cimageName); // Move image to 'public/citizenship'
+        $shareholderData['cimage'] =  $cimageName; // Store the path in the database
+    }
+   
+    
+    if ($request->hasFile('ccimage')) {
+        $ccimage = $request->file('ccimage');
+        $ccimageName = time() . '.' . $ccimage->getClientOriginalExtension(); // Set the file name with current timestamp
+        $ccimage->move(public_path('citizenship'), $ccimageName); // Move image to 'public/images/citizenship'
+        $shareholderData['ccimage'] =   $ccimageName; // Store the path in the database
+    }
+    
+    // Get the next step dynamically
+    $nextStep = 'step' . (intval(substr($step, -1)) + 1); // Get the next step dynamically
+    
+    // Get the authenticated user ID
+    $userId = Auth::id();
+    
+    // Check if 'id' is passed (for editing) or use session-based `shareholder_id` (for creating new record)
+    $shareholderId = $request->input('id') ?? session()->get('shareholder_id');
+    
+    // If no temporary shareholder ID exists, it's a new shareholder
+    if (!$shareholderId) {
+        // Create a new shareholder ID for this process
+        $shareholderId = uniqid('shareholder_', true);
+        session()->put('shareholder_id', $shareholderId);
+    }
+    
+    // If we're editing an existing record, retrieve the current record
+    $shareholder = Userdetails::where('shareholder_id', $shareholderId)->first();
+    
+    if (!$shareholder) {
+        // If no existing record, create a new one
+        $shareholderData['user_id'] = $userId;
+        $shareholderData['shareholder_id'] = $shareholderId; // Use temporary shareholder ID
+        $shareholder = Userdetails::create($shareholderData);
+    } else {
+        // If record exists, update it
+        $shareholder->update($shareholderData);
+    }
+    
+    // Redirect to the next step dynamically
+    if (in_array($nextStep, array_keys($validationRules))) {
+        return redirect()->route('user.shareholder.' . $nextStep);
+    }
+    
+    // If it's the last step, redirect to a success page and clear the session
+    session()->forget('shareholder_id'); // Clear the temporary shareholder ID after completing the process
+    return redirect()->route('user.userindex')->with('success', 'Shareholder details saved successfully!');
+}
+
     
     
     
