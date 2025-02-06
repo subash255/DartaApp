@@ -67,4 +67,19 @@
             </form>
         </div>
     </div>
+
+    <script>
+    function saveDataAndProceed() {
+        // Save data in localStorage when "Next" button is clicked
+        localStorage.setItem('tole', document.getElementById('tole').value);
+        localStorage.setItem('district', document.getElementById('district').value);
+        localStorage.setItem('municipality', document.getElementById('municipality').value);
+        localStorage.setItem('province', document.getElementById('province').value);
+        localStorage.setItem('ward', document.getElementById('ward').value);
+
+
+        // Proceed to Step 2 (Page 2)
+        window.location.href = 'step3.blade.php';
+    }
+</script>
 @endsection

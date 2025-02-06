@@ -5,6 +5,9 @@
         <div class="container mx-auto p-6">
             <form method="POST" action="{{ route('company.stores') }}">
                 @csrf
+                <label for="autoFillCheckbox">Auto-fill from Step 1:</label>
+                <input type="checkbox" id="autoFillCheckbox" onchange="enableAutoFill()"> 
+
                 <input type="hidden" name="step" value="step3">
                 <!-- Step 3: Company Address -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -73,4 +76,37 @@
             </form>
         </div>
     </div>
+
+    <script>
+    // Enable auto-fill if checkbox is checked
+    function enableAutoFill() {
+        const autoFillChecked = document.getElementById('autoFillCheckbox').checked;
+        
+        if (autoFillChecked) {
+            // Fill fields with data from Step 1 if checkbox is checked
+            document.getElementById('hotole').value = localStorage.getItem('tole');
+            document.getElementById('hodistrict').value = localStorage.getItem('district');
+            document.getElementById('homunicipality').value = localStorage.getItem('municipality');
+            document.getElementById('howard').value = localStorage.getItem('ward');
+            document.getElementById('hoprovince').value = localStorage.getItem('province');
+        } else {
+            // Clear the fields if checkbox is unchecked
+            document.getElementById('hotole').value = '';
+            document.getElementById('hodistrict').value = '';
+            document.getElementById('homunicipality').value = '';
+            document.getElementById('howard').value = '';
+            document.getElementById('hoprovince').value = '';
+        }s
+    }
+
+    window.onload = function() {
+        // Optionally, you can check if the checkbox was already checked in Step 1.
+        // This is just to handle if you want to auto-fill on load.
+        const autoFillChecked = localStorage.getItem("autoFillChecked") === 'true';
+        if (autoFillChecked) {
+            document.getElementById('autoFillCheckbox').checked = true;
+            enableAutoFill();  // Trigger auto-fill if checkbox was checked
+        }
+    }
+</script>
 @endsection
