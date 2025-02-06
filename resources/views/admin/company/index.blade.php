@@ -32,10 +32,23 @@
 
 
     <div class="p-4 bg-white shadow-lg -mt-12 mx-4 z-20 rounded-lg">
-
+        <div class="flex justify-end gap-2 mb-4">
+            <a href="{{ route('admin.company.index', ['status' => 'pending', 'entries' => request('entries')]) }}"
+                class="border-2 {{ request('status') == 'pending' ? 'bg-yellow-500 text-white' : 'border-yellow-500 text-yellow-500' }} font-bold px-6 py-1 rounded-lg hover:bg-yellow-500 hover:text-white">
+                Pending
+            </a>
+            <a href="{{ route('admin.company.index', ['status' => 'approved', 'entries' => request('entries')]) }}"
+                class="border-2 {{ request('status') == 'approved' ? 'bg-green-500 text-white' : 'border-green-500 text-green-500' }} font-bold px-6 py-1 rounded-lg hover:bg-green-500 hover:text-white">
+                Approved
+            </a>
+            <a href="{{ route('admin.company.index', ['status' => 'rejected', 'entries' => request('entries')]) }}"
+                class="border-2 {{ request('status') == 'rejected' ? 'bg-red-500 text-white' : 'border-red-500 text-red-500' }} font-bold px-6 py-1 rounded-lg hover:bg-red-500 hover:text-white">
+                Rejected
+            </a>
+        </div>
         <!-- Table Section -->
-        <div class="overflow-x-auto">
-            <table id="companyTable" class="min-w-full border-separate border-spacing-0 border border-gray-300">
+        <div class="overflow-x-auto w-full">
+            <table id="companyTable" class="min-w-full border-separate border-spacing-0 border border-gray-300">        
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="border border-gray-300 px-4 py-2">S.N</th>
@@ -45,6 +58,7 @@
                         <th class="border border-gray-300 px-4 py-2">Address</th>
                         <th class="border border-gray-300 px-4 py-2">Category</th>
                         <th class="border border-gray-300 px-4 py-2">Type</th>
+                        <th class="border border-gray-300 px-4 py-2">Status</th>
                         <th class="border border-gray-300 px-4 py-2">Action</th>
                     </tr>
                 </thead>
@@ -56,8 +70,17 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $company->oemail }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $company->phone }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $company->municipality }}-{{ $company->ward }},{{ $company->district }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $company->user->category }}</td>
+                            <td class="border border-gray-300 px-4 py-2"> {{ $company->user->category->name }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $company->user->type }}</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                @if($company->status == 'pending')
+                                    <span class="bg-yellow-500 text-white px-2 py-1 rounded-full">{{ $company->status }}</span>
+                                @elseif($company->status == 'approved')
+                                    <span class="bg-green-500 text-white px-2 py-1 rounded-full">{{ $company->status }}</span>
+                                @else
+                                    <span class="bg-red-500 text-white px-2 py-1 rounded-full">{{ $company->status }}</span>
+                                @endif
+                            </td>
                             <td class="border border-gray-300 px-4 py-2">
                                 <div class="flex justify-center gap-2">
                                     <!-- View Icon -->
@@ -67,6 +90,26 @@
                                             <i class="ri-eye-line text-white"></i>
                                         </button>
                                     </a>
+                                    <!-- Notification Icon -->
+                                    <a href="{{route('admin.company.todo',$company->id)}}" class="flex items-center">
+                                        <button
+                                            class="bg-yellow-500 hover:bg-yellow-700 p-1 w-8 h-8 rounded-full flex items-center justify-center">
+                                            <i class="ri-notification-3-fill text-white"></i>
+                                        </button>
+                                    </a>
+                                    @if($company->status == 'pending')
+
+                                    <!-- Confirm Icon -->
+                                <a href="{{ route('company.approved', $company->id) }}"
+                                    class="bg-green-500 hover:bg-green-700 p-2 w-8 h-8 rounded-full flex items-center">
+                                    <i class="ri-check-line"></i>
+                                </a>
+                                <!-- Reject Icon -->
+                                <a href="{{ route('company.rejected', $company->id) }}"
+                                    class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center">
+                                    <i class="ri-close-fill text-white"></i>
+                                </a>
+                                @endif
                                     <!-- Delete Button -->
                                     <button type="button" 
                                         class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center"
@@ -126,13 +169,21 @@
         });
     </script>
 
+
 <script>
+        function filterByStatus(status) {
+        // Update the URL with the selected status
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('status', status);
+        window.location.href = currentUrl.toString(); 
+    }
+
     // This will open the modal for the specific user
     function openDeleteModal(userId) {
         const deleteModal = document.getElementById(`deleteModal-${userId}`);
         deleteModal.classList.remove('modal-hidden');
         deleteModal.classList.add('modal-visible');
-        document.body.classList.add('overflow-hidden'); // Disable scrolling when modal is open
+        document.body.classList.add('overflow-hidden');
     }
 
     // Close the modal
@@ -140,7 +191,7 @@
         const deleteModal = document.getElementById(`deleteModal-${userId}`);
         deleteModal.classList.remove('modal-visible');
         deleteModal.classList.add('modal-hidden');
-        document.body.classList.remove('overflow-hidden'); // Re-enable scrolling
+        document.body.classList.remove('overflow-hidden'); 
     }
 </script>
 @endsection

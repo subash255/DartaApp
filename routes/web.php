@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TodolistController;
 use App\Http\Controllers\UserdetailController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('company/step3', [CompanyController::class, 'step3'])->name('user.company.step3');
     Route::get('company/step4', [CompanyController::class, 'step4'])->name('user.company.step4');
     Route::get('company/step5', [CompanyController::class, 'step5'])->name('user.company.step5');
+
 
     Route::get('shareholder/step1/{id?}', [UserdetailController::class, 'step1'])->name('user.shareholder.step1');
     Route::get('shareholder/step2', [UserdetailController::class, 'step2'])->name('user.shareholder.step2');
@@ -70,12 +72,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //Company Routes
     Route::get('admin/companies', [CompanyController::class, 'index'])->name('admin.company.index');
     Route::delete('company/delete/{id}', [CompanyController::class, 'delete'])->name('admin.company.delete');
+    Route::get('approved/{id}', [CompanyController::class, 'approved'])->name('company.approved');
+    Route::get('rejected/{id}', [CompanyController::class, 'rejected'])->name('company.rejected');
 
     //category Routes
     Route::get('admin/category',[CategoryController::class,'index'])->name('admin.category.index');
     Route::post('admin/category/store',[CategoryController::class,'store'])->name('admin.category.store');
     Route::delete('admin/category/{id}',[CategoryController::class,'delete'])->name('admin.category.delete');
     Route::patch('admin/update/{id}',[CategoryController::class,'update'])->name('admin.category.update');
+
+    //TodoList Routes
+    Route::get('admin/company/todo/{id}',[TodolistController::class,'index'])->name('admin.company.todo');
+    Route::post('admin/todo/store',[TodolistController::class,'store'])->name('admin.todo.store');
+    Route::delete('admin/todo/{id}',[TodolistController::class,'delete'])->name('admin.todo.delete');
+
 });
 
 require __DIR__ . '/auth.php';
