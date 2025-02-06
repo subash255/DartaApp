@@ -9,13 +9,23 @@ use Illuminate\Support\Facades\Auth;
 class CompanyController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $companies = Company::all();
+        $status = $request->get('status');
+        $companies = Company::query();
+    
+        if ($status) {
+            $companies->where('status', $status);
+        }
+    
+        $companies = $companies->with('user')->get();
+    
         return view('admin.company.index', compact('companies'), [
             'title' => 'Company Details'
         ]);
     }
+    
+    
 
     public function store(Request $request)
     {
@@ -196,4 +206,20 @@ class CompanyController extends Controller
         $company->delete();
         return redirect()->back()->with('success', 'Company deleted successfully!');
     }
+
+    public function approved($id)
+    {
+        $company = Company::find($id);
+        $company->status = 'approved';
+        $company->save();
+        return redirect()->back()->with('success', 'Company approved successfully!');
+    }   
+
+    public function rejected($id)
+    {
+        $company = Company::find($id);
+        $company->status = 'rejected';
+        $company->save();
+        return redirect()->back()->with('success', 'Company rejected successfully!');
+    }   
 }

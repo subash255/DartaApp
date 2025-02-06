@@ -30,9 +30,6 @@
 </script>
 
 
-
-
-
 <div class="p-4 bg-white shadow-lg -mt-12 mx-4 z-20 rounded-lg">
     <div class="mb-4 flex justify-end">
 
@@ -41,13 +38,10 @@
         </button>
     </div>
 
-
-
-
     <!-- Modal Structure for Create Banner -->
     <div id="bannerModal" class="fixed inset-0 bg-black bg-opacity-70 modal-hidden items-center justify-center z-50 backdrop-blur-[1px]">
         <div class="bg-white rounded-lg p-6 w-full max-w-lg relative">
-            <h2 class="text-xl font-semibold text-center">Create New Banner</h2>
+            <h2 class="text-xl font-semibold text-center">Create New Category</h2>
             <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
@@ -99,9 +93,9 @@
                         <div class="flex justify-center gap-2">
 
                             <button type="button"
-                                class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center"
+                                class="bg-blue-500 hover:bg-blue-700 p-2 w-8 h-8 rounded-full flex items-center justify-center"
                                 onclick="openEditModal({{ $category->id }})">
-                                <i class="ri-delete-bin-line text-white"></i>
+                                <i class="ri-edit-box-line text-white"></i>
                             </button>
                             <!-- Delete Button -->
                             <button type="button"
@@ -114,12 +108,11 @@
 
 
 
-
                 </tr>
                 <!--  editModal HTML -->
                 <div id="editModal-{{ $category->id }}" class="fixed inset-0 bg-black bg-opacity-70 modal-hidden items-center justify-center z-50 backdrop-blur-[1px]">
         <div class="bg-white rounded-lg p-6 w-full max-w-lg relative">
-            <h2 class="text-xl font-semibold text-center">Create New Banner</h2>
+            <h2 class="text-xl font-semibold text-center">Update Category</h2>
             <form action="{{ route('admin.category.update',$category->id) }}" method="POST" >
                 @csrf
                 @method('patch')

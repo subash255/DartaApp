@@ -44,6 +44,7 @@
 
 <body class="bg-gray-100 text-gray-900 h-screen flex flex-col font-[Jost]">
 
+
     <div class="flex h-full">
         <!-- Sidebar -->
         <aside id="sidebar" class="w-64 bg-white text-gray-900 flex flex-col fixed top-0 bottom-0 left-0 transition-all duration-300 overflow-y-auto z-10">
@@ -60,7 +61,7 @@
                     <i class="ri-layout-masonry-fill"></i>
                     <span class="ml-4 font-semibold">Dashboard</span>
                 </a>
-                <a href="{{ route('admin.customer.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.category.index') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
+                <a href="{{ route('admin.customer.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.customer.index') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
                     <i class="ri-user-fill"></i>
                     <span class="ml-4 font-semibold">Customer</span>
                 </a>
@@ -68,19 +69,20 @@
                     <i class="ri-building-fill"></i>
                     <span class="ml-4 font-semibold">Companies</span>
                 </a>
-                <a href="{{ route('admin.shareholder.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.shareholder.index') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
+                <a href="{{ route('admin.shareholder.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.shareholder.index','admin.shareholder.view') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
                     <i class="ri-wallet-2-fill"></i>
                     <span class="ml-4 font-semibold">Shareholders</span>
                 </a>
-                <a href="{{ route('admin.category.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.shareholder.index') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
-                    <i class="ri-wallet-2-fill"></i>
-                    <span class="ml-4 font-semibold">category</span>
+                <a href="{{ route('admin.category.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.category.index') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-apps-2-fill"></i>
+                    <span class="ml-4 font-semibold">Categories</span>
                 </a>
             </nav>
         </aside>
 
         <!-- Main Content -->
-        <main class="ml-64 w-full">
+        <div class="flex flex-1 overflow-hidden">
+            <main class="ml-64 w-full overflow-x-hidden">
             <!-- Header Section -->
             <div class="w-full bg-red-600 text-white flex items-center justify-between px-4 py-14 shadow-lg">
                 <h1 class="text-xl font-semibold">{{ $title ?? 'Default Title' }}</h1>
@@ -115,7 +117,9 @@
                 @yield('content')
             </div>
         </main>
+        </div>
     </div>
+
 </body>
 
 </html>

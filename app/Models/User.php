@@ -19,6 +19,11 @@ class User extends Authenticatable
      */
     protected $guarded = [];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
