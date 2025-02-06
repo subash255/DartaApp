@@ -1,6 +1,6 @@
 <div class="mb-8">
     <div class="flex justify-between mb-2">
-        <a href="{{route('user.shareholder.step1', $userdetail->id)}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step1">Shareholder's Details</a>
+    <a href="{{ route('user.shareholder.step1', $userdetail->id ?? $userdetail->shareholder_id ?? '') }}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step1">Shareholder's Details</a>
         <a href="{{route('user.shareholder.step2')}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step2">Address per Citizenship</a>
         <a href="{{route('user.shareholder.step3')}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step3">Current Address</a>
         <a href="{{route('user.shareholder.step4')}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step4">Add. Info</a>

@@ -4,7 +4,7 @@
 <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 min-w-full mx-auto">
     @include('user.shareholder.contents')
     <div class="container mx-auto p-6">
-    <form method="POST" action="{{ route('shareholder.stores') }}">
+    <form method="POST" action="{{ route('shareholder.stores') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="step" value="step2">
         <!-- Step 1: Company Info -->
@@ -43,7 +43,7 @@
                             <div class="mb-6">
                                 <label for="CitizenshipPhoto" class="block mb-2 text-sm font-medium text-gray-900">Citizenship Photo</label>
                                 <input type="file" name="cimage" id="CitizenshipPhoto"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" accept="image/*">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" >
                             </div>
                         </div>
 
