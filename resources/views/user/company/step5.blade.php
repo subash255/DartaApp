@@ -70,7 +70,7 @@
             </div>
             <!-- Button Section -->
             <div class="flex justify-between mt-6">
-                <a href="{{route('user.company.step3')}}" class="px-4 py-2 bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 focus:outline-none focus:shadow-outline">Previous</a>
+                <a href="{{route('user.company.step4')}}" class="px-4 py-2 bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 focus:outline-none focus:shadow-outline">Previous</a>
                 <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:shadow-outline">Submit</button>
             </div>
         </form>

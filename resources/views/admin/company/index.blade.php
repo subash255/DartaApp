@@ -90,6 +90,13 @@
                                             <i class="ri-eye-line text-white"></i>
                                         </button>
                                     </a>
+                                    <!-- Notification Icon -->
+                                    <a href="{{route('admin.company.todo',$company->id)}}" class="flex items-center">
+                                        <button
+                                            class="bg-yellow-500 hover:bg-yellow-700 p-1 w-8 h-8 rounded-full flex items-center justify-center">
+                                            <i class="ri-notification-3-fill text-white"></i>
+                                        </button>
+                                    </a>
                                     @if($company->status == 'pending')
 
                                     <!-- Confirm Icon -->

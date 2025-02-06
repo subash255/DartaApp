@@ -109,56 +109,54 @@ class CompanyController extends Controller
         // Ensure the 'step' parameter is present in the request
         $step = $request->input('step');
         
-        // Check if step is missing or invalid and set a default
         if (empty($step)) {
-            return redirect()->route('user.company.step1');  // Redirect to step1 if no step is provided
+            return redirect()->route('user.company.step1');  
         }
     
-        // Define validation rules for each step, considering all fields are nullable
         $validationRules = [
             'step1' => [
-                'regno' => 'nullable|string', // Nullable string
-                'regdate' => 'nullable|date', // Nullable date
-                'pan' => 'nullable|string', // Nullable string
-                'panregdate' => 'nullable|date', // Nullable date
-                'vat_pan' => 'required|in:vat,pan', // Nullable string
+                'regno' => 'nullable|string', 
+                'regdate' => 'nullable|date', 
+                'pan' => 'nullable|string', 
+                'panregdate' => 'nullable|date', 
+                'vat_pan' => 'required|in:vat,pan', 
             ],
             'step2' => [
-                'tole' => 'nullable|string', // Nullable string
-                'municipality' => 'nullable|string', // Nullable string
-                'ward' => 'nullable|string', // Nullable string
-                'district' => 'nullable|string', // Nullable string
-                'province' => 'nullable|string', // Nullable string
-                'phone' => 'nullable|string', // Nullable string
+                'tole' => 'nullable|string', 
+                'municipality' => 'nullable|string', 
+                'ward' => 'nullable|string', 
+                'district' => 'nullable|string', 
+                'province' => 'nullable|string', 
+                'phone' => 'nullable|string', 
             ],
             'step3' => [
-                'houseownername' => 'nullable|string', // Nullable string
-                'hophone' => 'nullable|string', // Nullable string
-                'hopan' => 'nullable|string', // Nullable string
-                'hotole' => 'nullable|string', // Nullable string
-                'homunicipality' => 'nullable|string', // Nullable string
-                'howard' => 'nullable|string', // Nullable string
-                'hodistrict' => 'nullable|string', // Nullable string
-                'hoprovince' => 'nullable|string', // Nullable string
+                'houseownername' => 'nullable|string', 
+                'hophone' => 'nullable|string', 
+                'hopan' => 'nullable|string', 
+                'hotole' => 'nullable|string', 
+                'homunicipality' => 'nullable|string', 
+                'howard' => 'nullable|string', 
+                'hodistrict' => 'nullable|string', 
+                'hoprovince' => 'nullable|string', 
             ],
             'step4' => [
-                'accno' => 'nullable|string', // Nullable string
-                'bankname' => 'nullable|string', // Nullable string
-                'bankbranch' => 'nullable|string', // Nullable string
-                'signature' => 'nullable|string', // Nullable string
-                'created' => 'nullable|date', // Nullable date
+                'accno' => 'nullable|string', 
+                'bankname' => 'nullable|string', 
+                'bankbranch' => 'nullable|string', 
+                'signature' => 'nullable|string', 
+                'created' => 'nullable|date', 
             ],
             'step5' => [
-                'cid' => 'nullable|string', // Nullable string
-                'location' => 'nullable|in:kathmandu,butwal,itahari', // Nullable string
-                'cpassword' => 'nullable|string', // Nullable string
-                'rid' => 'nullable|string', // Nullable string
-                'rpassword' => 'nullable|string', // Nullable string
-                'remail' => 'nullable|email', // Nullable email
-                'rphone' => 'nullable|string', // Nullable string
-                'rcontactperson' => 'nullable|string', // Nullable string
-                'pid' => 'nullable|string', // Nullable string
-                'ppassword' => 'nullable|string', // Nullable string
+                'cid' => 'nullable|string', 
+                'location' => 'nullable|in:kathmandu,butwal,itahari', 
+                'cpassword' => 'nullable|string', 
+                'rid' => 'nullable|string', 
+                'rpassword' => 'nullable|string', 
+                'remail' => 'nullable|email', 
+                'rphone' => 'nullable|string', 
+                'rcontactperson' => 'nullable|string', 
+                'pid' => 'nullable|string', 
+                'ppassword' => 'nullable|string', 
             ],
         ];
     

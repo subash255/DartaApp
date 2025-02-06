@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TodolistController;
 use App\Http\Controllers\UserdetailController;
 use Illuminate\Support\Facades\Route;
 
@@ -79,6 +80,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('admin/category/store',[CategoryController::class,'store'])->name('admin.category.store');
     Route::delete('admin/category/{id}',[CategoryController::class,'delete'])->name('admin.category.delete');
     Route::patch('admin/update/{id}',[CategoryController::class,'update'])->name('admin.category.update');
+
+    //TodoList Routes
+    Route::get('admin/company/todo/{id}',[TodolistController::class,'index'])->name('admin.company.todo');
+    Route::post('admin/todo/store',[TodolistController::class,'store'])->name('admin.todo.store');
+    Route::delete('admin/todo/{id}',[TodolistController::class,'delete'])->name('admin.todo.delete');
+
 });
 
 require __DIR__ . '/auth.php';

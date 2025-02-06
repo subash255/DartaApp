@@ -36,7 +36,7 @@
                 </div>
                 <div class="flex justify-between">
                     <span class="text-gray-600 font-medium">Company Category:</span>
-                    <span class="text-gray-800">{{$user->category}}</span>
+                    <span class="text-gray-800">{{$user->category->name}}</span>
                 </div>
                 <div class="flex justify-between">
                     <span class="text-gray-600 font-medium">Company Type:</span>
