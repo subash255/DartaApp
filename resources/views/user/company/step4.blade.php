@@ -6,7 +6,7 @@
 <div class="container mx-auto p-6">
     <form method="POST" action="{{ route('company.stores') }}">
         @csrf
-        <input type="hidden" name="step" value="step3">
+        <input type="hidden" name="step" value="step4">
         <!-- Step 4: Company Bank Details -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 

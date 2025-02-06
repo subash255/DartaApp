@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
+    <div class="bg-white rounded-lg shadow-lg md:p-6 max-w-3xl mx-auto">
         @include('user.company.contents')
         <div class="container mx-auto p-6">
             <form method="POST" action="{{ route('company.stores') }}">

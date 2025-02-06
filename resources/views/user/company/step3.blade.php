@@ -5,12 +5,12 @@
         <div class="container mx-auto p-6">
             <form method="POST" action="{{ route('company.stores') }}">
                 @csrf
-                <input type="hidden" name="step" value="step2">
+                <input type="hidden" name="step" value="step3">
                 <!-- Step 3: Company Address -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="mb-6">
                         <label for="houseownername" class="block mb-2 text-sm font-medium text-gray-900">House Owner Name</label>
-                        <input type="text" name="houseownername" id="houseownername" value="{{ old('houseownername', $company->honame ?? '') }}"
+                        <input type="text" name="houseownername" id="houseownername" value="{{ old('houseownername', $company->houseownername ?? '') }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                             required>
                     </div>

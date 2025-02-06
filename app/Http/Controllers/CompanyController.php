@@ -111,7 +111,7 @@ class CompanyController extends Controller
                 'regdate' => 'nullable|date', // Nullable date
                 'pan' => 'nullable|string', // Nullable string
                 'panregdate' => 'nullable|date', // Nullable date
-                'vat' => 'nullable|string', // Nullable string
+                'vat_pan' => 'required|in:vat,pan', // Nullable string
             ],
             'step2' => [
                 'tole' => 'nullable|string', // Nullable string
@@ -120,6 +120,16 @@ class CompanyController extends Controller
                 'district' => 'nullable|string', // Nullable string
                 'province' => 'nullable|string', // Nullable string
                 'phone' => 'nullable|string', // Nullable string
+            ],
+            'step3' => [
+                'houseownername' => 'nullable|string', // Nullable string
+                'hophone' => 'nullable|string', // Nullable string
+                'hopan' => 'nullable|string', // Nullable string
+                'hotole' => 'nullable|string', // Nullable string
+                'homunicipality' => 'nullable|string', // Nullable string
+                'howard' => 'nullable|string', // Nullable string
+                'hodistrict' => 'nullable|string', // Nullable string
+                'hoprovince' => 'nullable|string', // Nullable string
             ],
             'step4' => [
                 'accno' => 'nullable|string', // Nullable string
@@ -130,12 +140,15 @@ class CompanyController extends Controller
             ],
             'step5' => [
                 'cid' => 'nullable|string', // Nullable string
+                'location' => 'nullable|in:kathmandu,butwal,itahari', // Nullable string
                 'cpassword' => 'nullable|string', // Nullable string
                 'rid' => 'nullable|string', // Nullable string
                 'rpassword' => 'nullable|string', // Nullable string
                 'remail' => 'nullable|email', // Nullable email
                 'rphone' => 'nullable|string', // Nullable string
                 'rcontactperson' => 'nullable|string', // Nullable string
+                'pid' => 'nullable|string', // Nullable string
+                'ppassword' => 'nullable|string', // Nullable string
             ],
         ];
     

@@ -6,7 +6,7 @@
     <div class="container mx-auto p-6">
         <form method="POST" action="{{ route('company.stores') }}">
             @csrf
-            <input type="hidden" name="step" value="step4">
+            <input type="hidden" name="step" value="step5">
             <!-- Step 5: OCR/IRD Login Details -->
             <h3 class="text-lg font-medium text-gray-900 mb-4">OCR Login Details:</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
