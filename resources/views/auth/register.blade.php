@@ -56,17 +56,17 @@
                                 <div class="sm:col-span-2">
                                     <label for="companyname" class="text-base font-medium text-gray-700">Purposed
                                         Company Name in English</label>
-                                    <input type="text" name="companyname" id="txtEnglish"
+                                    <input type="text" name="companyname" id="english"
                                         placeholder="Enter your company name"
                                         class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
-                                        required>
+                                        oninput="transliterateText()"  required>
                                 </div>
 
                                 <!-- Company Name in Nepali -->
                                 <div class="sm:col-span-2">
                                     <label for="companyname_np" class="text-base font-medium text-gray-700">Purposed
                                         Company Name in Nepali</label>
-                                    <input type="text" name="companyname_np" id="txtNepali"
+                                    <input type="text" name="companyname_np" id="nepali"
                                         placeholder="Enter your company name in Nepali"
                                         class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
                                         readonly>
@@ -170,12 +170,22 @@
     </div>
 
     <script>
-        // Transliteration logic for the 'txtEnglish' field to 'txtNepali' field
-        document.getElementById("txtEnglish").addEventListener("input", function() {
-            var englishText = this.value; // Get the English text
-            var nepaliText = NepaliTransliterate.toNepali(englishText); // Convert to Nepali
-            document.getElementById("txtNepali").value = nepaliText; // Display in Nepali field
-        });
+        async function transliterateText() {
+            let text = document.getElementById("english").value;
+            if (!text) {
+                document.getElementById("nepali").value = "";
+                return;
+            }
+
+            let response = await fetch(`https://inputtools.google.com/request?text=${encodeURIComponent(text)}&itc=ne-t-i0-und&num=1`);
+            let result = await response.json();
+            
+            if (result[0] === "SUCCESS") {
+                document.getElementById("nepali").value = result[1][0][1][0]; 
+            } else {
+                document.getElementById("nepali").value = "Transliteration failed!";
+            }
+        }
     </script>
 
 </body>

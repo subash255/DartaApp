@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProfileController;
@@ -68,6 +69,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //Company Routes
     Route::get('admin/companies', [CompanyController::class, 'index'])->name('admin.company.index');
     Route::delete('company/delete/{id}', [CompanyController::class, 'delete'])->name('admin.company.delete');
+
+    //category Routes
+    Route::get('admin/category',[CategoryController::class,'index'])->name('admin.category.index');
+    Route::post('admin/category/store',[CategoryController::class,'store'])->name('admin.category.store');
+    Route::delete('admin/category/{id}',[CategoryController::class,'delete'])->name('admin.category.delete');
+    Route::patch('admin/update/{id}',[CategoryController::class,'update'])->name('admin.category.update');
 });
 
 require __DIR__ . '/auth.php';
