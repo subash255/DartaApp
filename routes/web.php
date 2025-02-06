@@ -73,7 +73,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/companies', [CompanyController::class, 'index'])->name('admin.company.index');
     Route::delete('company/delete/{id}', [CompanyController::class, 'delete'])->name('admin.company.delete');
     Route::get('approved/{id}', [CompanyController::class, 'approved'])->name('company.approved');
-    Route::get('rejected/{id}', [CompanyController::class, 'rejected'])->name('company.rejected');
+    Route::get('company/rejected/{id}', [CompanyController::class, 'rejected'])->name('company.rejected');
 
     //category Routes
     Route::get('admin/category',[CategoryController::class,'index'])->name('admin.category.index');
@@ -83,7 +83,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     //TodoList Routes
     Route::get('admin/company/todo/{id}',[TodolistController::class,'index'])->name('admin.company.todo');
-    Route::post('admin/todo/store',[TodolistController::class,'store'])->name('admin.todo.store');
+    Route::post('admin/todo/store/{id}',[TodolistController::class,'store'])->name('admin.todo.store');
     Route::delete('admin/todo/{id}',[TodolistController::class,'delete'])->name('admin.todo.delete');
 
 });
