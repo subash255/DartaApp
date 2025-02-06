@@ -59,11 +59,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="mb-6">
                     <label for="panid" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
-                    <input type="text" name="cid" id="cid" value="{{ old('panid', $company->panid ?? '')  }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                    <input type="text" name="pid" id="pid" value="{{ old('pid', $company->pid ?? '')  }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                 </div>
                 <div class="mb-6">
                     <label for="panpassword" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                    <input type="text" name="cpassword" id="cpassword" value="{{ old('panpassword', $company->panpassword ?? '')  }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                    <input type="text" name="ppassword" id="ppassword" value="{{ old('ppassword', $company->ppassword ?? '')  }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
                 </div>
                
                 

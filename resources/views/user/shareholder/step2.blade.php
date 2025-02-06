@@ -42,7 +42,7 @@
                             </div>
                             <div class="mb-6">
                                 <label for="CitizenshipPhoto" class="block mb-2 text-sm font-medium text-gray-900">Citizenship Photo</label>
-                                <input type="file" name="CitizenshipPhoto" id="CitizenshipPhoto"
+                                <input type="file" name="cimage" id="CitizenshipPhoto"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" accept="image/*">
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="mb-6">
                                     <label for="newCitizenshipPhoto" class="block mb-2 text-sm font-medium text-gray-900">New Citizenship Photo</label>
-                                    <input type="file" name="newCitizenshipPhoto" id="newCitizenshipPhoto"
+                                    <input type="file" name="ccimage" id="newCitizenshipPhoto"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" accept="image/*">
                                 </div>
                             </div>
