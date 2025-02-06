@@ -85,7 +85,7 @@
 
                              <!-- Delete Button -->
                              <button type="button" 
-                             class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center"
+                             class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex  items-center justify-center"
                              onclick="openDeleteModal({{ $customer->id }})">
                              <i class="ri-delete-bin-line text-white"></i>
                          </button>
@@ -160,4 +160,11 @@
         document.body.classList.remove('overflow-hidden'); // Re-enable scrolling
     }
 </script>
+
+
+
+
+
 @endsection
+
+

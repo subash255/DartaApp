@@ -72,6 +72,10 @@
                     <i class="ri-wallet-2-fill"></i>
                     <span class="ml-4 font-semibold">Shareholders</span>
                 </a>
+                <a href="{{ route('admin.category.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.shareholder.index') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
+                    <i class="ri-wallet-2-fill"></i>
+                    <span class="ml-4 font-semibold">category</span>
+                </a>
             </nav>
         </aside>
 
