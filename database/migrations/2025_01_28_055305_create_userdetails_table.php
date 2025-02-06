@@ -25,11 +25,13 @@ return new class extends Migration
             $table->string('cward')->nullable();
             $table->string('cdistrict')->nullable();
             $table->string('cprovince')->nullable();
+            $table->string('cimage')->nullable();
             $table->string('cctole')->nullable();
             $table->string('ccmunicipality')->nullable();
             $table->string('ccward')->nullable();
             $table->string('ccdistrict')->nullable();
             $table->string('ccprovince')->nullable();
+            $table->string('ccimage')->nullable();
             $table->string('ttole')->nullable();
             $table->string('tmunicipality')->nullable();
             $table->string('tward')->nullable();
@@ -38,7 +40,7 @@ return new class extends Migration
             $table->string('citizennumber')->nullable();
             $table->string('issuedate')->nullable();
             $table->string('issuedplace')->nullable();
-            $table->string('notarized')->nullable();
+            $table->enum('notarized', ['yes', 'no'])->nullable();
             $table->string('fathername')->nullable();
             $table->string('mothername')->nullable();
             $table->string('spousename')->nullable();

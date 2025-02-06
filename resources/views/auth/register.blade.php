@@ -113,12 +113,13 @@
                                     <div class="w-full sm:w-1/2">
                                         <label for="type"
                                             class="text-base font-medium text-gray-700">Category</label>
-                                        <select id="type" name="category"
+
+                                        <select id="type" name="category_id"
                                             class="mt-2 w-full px-4 py-4 border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
                                             required>
-                                            <option value="it">IT Company</option>
-                                            <option value="sales">Sales Company</option>
-                                            <option value="bank">Bank</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -140,7 +141,7 @@
                                     <label for="remarks" class="text-base font-medium text-gray-700">Remarks</label>
                                     <textarea name="remarks" id="remarks" placeholder="Enter your remarks"
                                         class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
-                                        required></textarea>
+                                        ></textarea>
                                 </div>
                             </div>
 
