@@ -16,14 +16,16 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('companyname')->nullable();
+            $table->string('companyname_np')->nullable();
+            $table->string('address')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('status')->default('new');
             $table->string('role')->default('user');
-            $table->enum('category',['it','sales','bank'])->nullable();
-            $table->enum('type',['single','multiple'])->nullable();
+            $table->enum('type', ['single', 'multiple'])->nullable();
             $table->string('password');
+            $table->string('remarks')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

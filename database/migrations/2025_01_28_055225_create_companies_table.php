@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('regdate')->nullable();
             $table->string('pan')->nullable();
             $table->string('panregdate')->nullable();
-            $table->string('vat')->nullable();
+            $table->enum('vat_pan', ['vat', 'pan'])->nullable();
             $table->string('tole')->nullable();
             $table->string('municipality')->nullable();
             $table->string('ward')->nullable();
@@ -37,7 +37,17 @@ return new class extends Migration
             $table->string('rpassword')->nullable();
             $table->string('remail')->nullable();
             $table->string('rphone')->nullable();
+            $table->string('pid')->nullable();
+            $table->string('ppassword')->nullable();
             $table->string('rcontactperson')->nullable();
+            $table->string('houseownername')->nullable();
+            $table->string('hophone')->nullable();
+            $table->string('hopan')->nullable();
+            $table->string('hotole')->nullable();
+            $table->string('homunicipality')->nullable();
+            $table->string('howard')->nullable();
+            $table->string('hodistrict')->nullable();
+            $table->string('hoprovince')->nullable();
             $table->timestamps();
         });
     }
