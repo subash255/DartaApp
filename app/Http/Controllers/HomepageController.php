@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Todolist;
 use App\Models\User;
 use App\Models\Userdetails;
 use App\Models\Visit;
@@ -22,13 +23,18 @@ class HomepageController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $todolist = Todolist::where('user_id', $user->id)
+        ->orderBy('created_at', 'desc') 
+        ->get();
+        
         $totalshareholders = Userdetails::where('user_id', $user->id)->count();
-        return view('user.index', compact('user', 'totalshareholders'));
+        return view('user.index', compact('user', 'totalshareholders', 'todolist'));
     }
 
     public function viewuser()
     {
         $user = Auth::user();
+       
         $userdetail = Userdetails::where('user_id', $user->id)->get();
         return view('user.userindex', compact('userdetail','user'));
     }

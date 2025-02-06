@@ -53,17 +53,15 @@
 
         <!-- Notifications Card -->
         <div class="bg-white rounded-lg p-6 shadow-lg border-t-4 border-b-4 border-blue-600">
-            <h3 class="text-xl font-semibold text-gray-800 mb-6">Notifications</h3>
+            <h3 class="text-xl font-semibold text-gray-800 mb-6">Todo Lists</h3>
             <div class="space-y-4">
+                @foreach($todolist as $todo)
                 <div class="bg-white p-2 border-b border-gray-300">
-                    <p class="text-gray-800">Thank you for registering to Darta App.</p>
+                    <h4 class="text-gray-800 font-semibold">{{$todo->title}}</h4>
+                    <p class="text-gray-800">{{$todo->description}}</p>
+                    
                 </div>
-                <div class="bg-white p-2 border-b border-gray-300">
-                    <p class="text-gray-800">Your account has been successfully verified.</p>
-                </div>
-                <div class="bg-white p-2 border-b border-gray-300">
-                    <p class="text-gray-800">Reminder: Your account will be held under review after editing your profile.</p>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

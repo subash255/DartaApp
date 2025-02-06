@@ -43,10 +43,8 @@
         <div id="todoModal" class="fixed inset-0 bg-black bg-opacity-70 modal-hidden items-center justify-center z-50 backdrop-blur-[1px]">
             <div class="bg-white rounded-lg p-6 w-full max-w-lg relative">
                 <h2 class="text-xl font-semibold text-center">Create New Todolist</h2>
-                <form action="{{ route('admin.todo.store') }}" method="POST">
+                <form action="{{ route('admin.todo.store',$company->id) }}" method="POST">
                     @csrf
-                    <input type="hidden" name="user_id" value="{{ $company->user->id }}">
-                    
                     <!-- todo title -->
                     <div class="mb-6">
                         <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
@@ -124,7 +122,7 @@
                                                     <p>Are you sure you want to delete this todolist?</p>
                                                     <div class="mt-4 flex justify-end">
                                                         <button id="cancelBtn" class="bg-gray-400 hover:bg-gray-600 text-white p-2 rounded-md mr-2" onclick="closeDeleteModal({{ $todo->id }})">Cancel</button>
-                                                        <form action="#" method="post">
+                                                        <form action="{{route('admin.todo.delete',$todo->id)}}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <button type="submit" class="bg-red-500 hover:bg-red-700 text-white p-2 rounded-md">Delete</button>
