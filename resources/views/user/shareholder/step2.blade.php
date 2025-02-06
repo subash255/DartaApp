@@ -24,7 +24,7 @@
                             </div>
                             <div class="mb-6">
                                 <label for="ward" class="block mb-2 text-sm font-medium text-gray-900">Ward</label>
-                                <input type="number" name="cward" id="ward"
+                                <input type="text" name="cward" id="ward"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                     value="{{ old('cward', $userdetail->cward ?? '') }}" required>
                             </div>
@@ -39,6 +39,11 @@
                                 <input type="text" name="cprovince" id="province"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                     value="{{ old('cprovince', $userdetail->cprovince ?? '') }}" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="CitizenshipPhoto" class="block mb-2 text-sm font-medium text-gray-900">Citizenship Photo</label>
+                                <input type="file" name="CitizenshipPhoto" id="CitizenshipPhoto"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" accept="image/*">
                             </div>
                         </div>
 
@@ -71,7 +76,7 @@
                                 <div class="mb-6">
                                     <label for="newWard"
                                         class="block mb-2 text-sm font-medium text-gray-900">Ward</label>
-                                    <input type="number" name="ccward" id="newWard"
+                                    <input type="text" name="ccward" id="newWard"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                         value="{{ old('ccward', $userdetail->ccward ?? '') }}">
                                 </div>
@@ -89,7 +94,11 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                         value="{{ old('ccprovince', $userdetail->ccprovince ?? '') }}">
                                 </div>
-                          
+                                <div class="mb-6">
+                                    <label for="newCitizenshipPhoto" class="block mb-2 text-sm font-medium text-gray-900">New Citizenship Photo</label>
+                                    <input type="file" name="newCitizenshipPhoto" id="newCitizenshipPhoto"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" accept="image/*">
+                                </div>
                             </div>
                         </div>
                          <!-- Button Section -->

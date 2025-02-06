@@ -87,6 +87,11 @@ class CompanyController extends Controller
         $company = Company::where('user_id', Auth::id())->first();
         return view('user.company.step4', ['currentStep' => 'step4'], compact('company', 'user'));
     }
+    public function step5(){
+        $user = Auth::user();
+        $company = Company::where('user_id', Auth::id())->first();
+        return view('user.company.step5', ['currentStep' => 'step5'], compact('company', 'user'));
+    }
 
  
     public function stores(Request $request)
@@ -116,14 +121,14 @@ class CompanyController extends Controller
                 'province' => 'nullable|string', // Nullable string
                 'phone' => 'nullable|string', // Nullable string
             ],
-            'step3' => [
+            'step4' => [
                 'accno' => 'nullable|string', // Nullable string
                 'bankname' => 'nullable|string', // Nullable string
                 'bankbranch' => 'nullable|string', // Nullable string
                 'signature' => 'nullable|string', // Nullable string
                 'created' => 'nullable|date', // Nullable date
             ],
-            'step4' => [
+            'step5' => [
                 'cid' => 'nullable|string', // Nullable string
                 'cpassword' => 'nullable|string', // Nullable string
                 'rid' => 'nullable|string', // Nullable string

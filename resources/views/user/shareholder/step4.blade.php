@@ -12,7 +12,7 @@
                             <div class="mb-6">
                                 <label for="citizennumber"
                                     class="block mb-2 text-sm font-medium text-gray-900">Citizenship No:</label>
-                                <input type="number" name="citizennumber" id="citizennumber"
+                                <input type="text" name="citizennumber" id="citizennumber"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                     value="{{ old('citizennumber', $userdetail->citizennumber ?? '') }}" required>
                             </div>
@@ -31,12 +31,14 @@
                                     value="{{ old('issuedplace', $userdetail->issuedplace ?? '') }}" required>
                             </div>
                             <div class="mb-6">
-                                <label for="notarized"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Notarized</label>
-                                <input type="text" name="notarized" id="notarized"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
-                                    value="{{ old('notarized', $userdetail->notarized ?? '') }}" required>
+                                <label for="notarized" class="block mb-2 text-sm font-medium text-gray-900">Notarized</label>
+                                <select name="notarized" id="notarized"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                                    <option value="yes" {{ old('notarized', $userdetail->notarized ?? '') == 'yes' ? 'selected' : '' }}>Yes</option>
+                                    <option value="no" {{ old('notarized', $userdetail->notarized ?? '') == 'no' ? 'selected' : '' }}>No</option>
+                                </select>
                             </div>
+                            
                             <div class="mb-6">
                                 <label for="fathername" class="block mb-2 text-sm font-medium text-gray-900">Father
                                     Name</label>
@@ -95,14 +97,14 @@
                             <div class="mb-6">
                                 <label for="pan" class="block mb-2 text-sm font-medium text-gray-900">Personal
                                     PAN</label>
-                                <input type="number" name="pan" id="pan"
+                                <input type="text" name="pan" id="pan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                     value="{{ old('pan', $userdetail->pan ?? '') }}" required>
                             </div>
                             <div class="mb-6">
                                 <label for="nid" class="block mb-2 text-sm font-medium text-gray-900">National
                                     ID</label>
-                                <input type="number" name="nid" id="nid"
+                                <input type="text" name="nid" id="nid"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                     value="{{ old('nid', $userdetail->nid ?? '') }}" required>
                             </div>

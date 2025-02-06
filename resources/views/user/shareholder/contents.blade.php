@@ -1,11 +1,11 @@
 <div class="mb-8">
     <div class="flex justify-between mb-2">
-        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step1">Shareholder's Details</span>
-        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step2">Address per Citizenship</span>
-        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step3">Current Address</span>
-        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step4">Add. Info</span>
-        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step5">Share Details</span>
-        <span class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step6">Acc. Details</span>
+        <a href="{{route('user.shareholder.step1', $userdetail->id)}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step1">Shareholder's Details</a>
+        <a href="{{route('user.shareholder.step2')}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step2">Address per Citizenship</a>
+        <a href="{{route('user.shareholder.step3')}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step3">Current Address</a>
+        <a href="{{route('user.shareholder.step4')}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step4">Add. Info</a>
+        <a href="{{route('user.shareholder.step5')}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step5">Share Details</a>
+        <a href="{{route('user.shareholder.step6')}}"class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step6">Acc. Details</a>
     </div>
     <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-orange-200">
         <div id="progress-bar" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500 w-0 transition-all duration-500 ease-in-out">
