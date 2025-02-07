@@ -3,8 +3,9 @@
     <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
         @include('user.company.contents')
         <div class="container mx-auto p-6">
-            <form method="POST" action="{{ route('company.stores') }}">
+            <form method="POST" action="{{ route('user.company.step2.update',$company->id) }}">
                 @csrf
+                @method('PUT')
                 <input type="hidden" name="step" value="step2">
                 <!-- Step 2: Company Address -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

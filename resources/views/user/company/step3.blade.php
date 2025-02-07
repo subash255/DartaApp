@@ -3,15 +3,20 @@
     <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
         @include('user.company.contents')
         <div class="container mx-auto p-6">
-            <form method="POST" action="{{ route('company.stores') }}">
+            <form method="POST" action="{{ route('user.company.step3.update',$company->id) }}">
                 @csrf
+                @method('PUT')
                 <input type="hidden" name="step" value="step3">
                 <!-- Step 3: Company Address -->
                 <!-- Checkbox to auto-fill Step 2 details -->
                 <div class="mb-6 flex items-center justify-start">
-                 <input type="checkbox" name="copystep2data" id="copyStep2Data" class="w-4 h-4 text-gray-800 bg-gray-100 border-gray-300 focus:ring-orange-500 focus:ring-2">
-                 <label for="copyStep2Data" class="ml-2 text-sm font-medium text-gray-900">Same address as office?</label>
-             </div>
+                    <input type="hidden" id="copystep2data_hidden" name="copystep2data" value="{{ old('copystep2data', $userDetail->copystep2data ?? 0) }}">
+                
+                    <input type="checkbox" id="copyStep2Data"
+                        {{ old('copystep2data', $userDetail->copystep2data ?? 0) == 1 ? 'checked' : '' }}
+                        class="w-4 h-4 text-gray-800 bg-gray-100 border-gray-300 focus:ring-orange-500 focus:ring-2">
+                    <label for="copyStep2Data" class="ml-2 text-sm font-medium text-gray-900">Same address as citizenship?</label>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="mb-6">
                         <label for="houseownername" class="block mb-2 text-sm font-medium text-gray-900">House Owner Name</label>
@@ -97,30 +102,48 @@
         </div>
     </div>
 
-    <script>
-        const copyStep2Checkbox = document.getElementById('copyStep2Data');
-        const toleField = document.getElementById('hotole');
-        const municipalityField = document.getElementById('homunicipality');
-        const wardField = document.getElementById('howard');
-        const provinceField = document.getElementById('hoprovince');
-        const districtField = document.getElementById('hodistrict');
+   
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const copyStep2Checkbox = document.getElementById('copyStep2Data');
+            const hiddenField = document.getElementById('copystep2data_hidden');
     
-        copyStep2Checkbox.addEventListener('change', function () {
-            if (copyStep2Checkbox.checked) {
-                // Copy data from Step 2 to Step 3
-                toleField.value = "{{ old('tole', $company->tole ?? '') }}";
+            const toleField = document.getElementById('hoole');
+            const municipalityField = document.getElementById('homunicipality');
+            const wardField = document.getElementById('howard');
+            const provinceField = document.getElementById('hoprovince');
+            const districtField = document.getElementById('hodistrict');
+    
+            function updateFields() {
+                if (copyStep2Checkbox.checked) {
+                    // Set hidden input to 1
+                    hiddenField.value = "1";
+    
+                    // Copy data from citizenship address fields
+                    toleField.value = "{{ old('tole', $company->tole ?? '') }}";
                 municipalityField.value = "{{ old('municipality', $company->municipality ?? '') }}";
                 wardField.value = "{{ old('ward', $company->ward ?? '') }}";
                 provinceField.value = "{{ old('province', $company->province ?? '') }}";
                 districtField.value = "{{ old('district', $company->district ?? '') }}";
-            } else {
-                // Clear the fields if unchecked
-                toleField.value = '';
-                municipalityField.value = '';
-                wardField.value = '';
-                provinceField.value = '';
-                districtField.value = '';
+                } else {
+                    // Set hidden input to 0
+                    hiddenField.value = "0";
+    
+                    // Clear fields
+                    toleField.value = '';
+                    municipalityField.value = '';
+                    wardField.value = '';
+                    provinceField.value = '';
+                    districtField.value = '';
+                }
             }
+    
+            // Run on page load in case the checkbox is already checked
+            updateFields();
+    
+            // Run when checkbox is toggled
+            copyStep2Checkbox.addEventListener('change', updateFields);
         });
     </script>
 

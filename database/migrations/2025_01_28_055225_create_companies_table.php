@@ -37,7 +37,6 @@ return new class extends Migration
             $table->string('rpassword')->nullable();
             $table->string('remail')->nullable();
             $table->string('rphone')->nullable();
-            $table->enum('location', ['kathmandu', 'butwal','itahari'])->nullable();
             $table->string('pid')->nullable();
             $table->string('ppassword')->nullable();
             $table->string('rcontactperson')->nullable();
@@ -50,12 +49,6 @@ return new class extends Migration
             $table->string('howard')->nullable();
             $table->string('hodistrict')->nullable();
             $table->string('hoprovince')->nullable();
-            $table->string('holalpurja')->nullable();
-            $table->string('hotiro')->nullable();
-            $table->decimal('lat', 10, 8)->nullable();
-            $table->decimal('lng', 11, 8)->nullable();
-            $table->string('status')->default('pending');
-
             $table->timestamps();
         });
     }

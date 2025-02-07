@@ -4,8 +4,9 @@
 <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
     @include('user.company.contents')
     <div class="container mx-auto p-6">
-        <form method="POST" action="{{ route('company.stores') }}">
+        <form method="POST" action="{{ route('user.company.step5.update',$company->id) }}">
             @csrf
+            @method('PUT')
             <input type="hidden" name="step" value="step5">
             <!-- Step 5: OCR/IRD Login Details -->
             <h3 class="text-lg font-medium text-gray-900 mb-4">OCR Login Details:</h3>
