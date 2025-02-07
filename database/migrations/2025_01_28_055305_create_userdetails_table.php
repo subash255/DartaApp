@@ -14,18 +14,19 @@ return new class extends Migration
         Schema::create('userdetails', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('shareholder_id')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('wname')->nullable();
             $table->string('waddress')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('ctole')->nullable();
+            $table->boolean('cchanged')->default(false);
             $table->string('cmunicipality')->nullable();
             $table->string('cward')->nullable();
             $table->string('cdistrict')->nullable();
             $table->string('cprovince')->nullable();
             $table->string('cimage')->nullable();
+            $table->boolean('copystep2data')->default(false);
             $table->string('cctole')->nullable();
             $table->string('ccmunicipality')->nullable();
             $table->string('ccward')->nullable();

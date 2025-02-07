@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('pid')->nullable();
             $table->string('ppassword')->nullable();
             $table->string('rcontactperson')->nullable();
+            $table->boolean('copystep2data')->default(false);
             $table->string('houseownername')->nullable();
             $table->string('hophone')->nullable();
             $table->string('hopan')->nullable();
@@ -49,6 +50,10 @@ return new class extends Migration
             $table->string('howard')->nullable();
             $table->string('hodistrict')->nullable();
             $table->string('hoprovince')->nullable();
+            $table->string('holalpurja')->nullable();
+            $table->string('hotiro')->nullable();
+            $table->decimal('lat', 10, 8)->nullable();
+            $table->decimal('lng', 11, 8)->nullable();
             $table->string('status')->default('pending');
 
             $table->timestamps();

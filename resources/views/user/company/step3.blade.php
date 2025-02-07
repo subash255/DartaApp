@@ -9,7 +9,7 @@
                 <!-- Step 3: Company Address -->
                 <!-- Checkbox to auto-fill Step 2 details -->
                 <div class="mb-6 flex items-center justify-start">
-                 <input type="checkbox" id="copyStep2Data" class="w-4 h-4 text-gray-800 bg-gray-100 border-gray-300 focus:ring-orange-500 focus:ring-2">
+                 <input type="checkbox" name="copystep2data" id="copyStep2Data" class="w-4 h-4 text-gray-800 bg-gray-100 border-gray-300 focus:ring-orange-500 focus:ring-2">
                  <label for="copyStep2Data" class="ml-2 text-sm font-medium text-gray-900">Same address as office?</label>
              </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

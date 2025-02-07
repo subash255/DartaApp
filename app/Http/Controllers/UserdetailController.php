@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Userdetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class UserdetailController extends Controller
 {
@@ -83,7 +84,7 @@ class UserdetailController extends Controller
             'bankname' => 'nullable|string|max:255',
             'bankbranch' => 'nullable|string|max:255',
         ]);
-        
+
 
         // Add the authenticated user's ID to the validated data
         $validatedData['user_id'] = Auth::id();
@@ -115,126 +116,58 @@ class UserdetailController extends Controller
         return redirect('user/userindex')->with('success', $message);
     }
     public function getUserDetail()
-{
-    return Userdetails::where('shareholder_id', session('shareholder_id'))->first();
-}
-public function step1($id = null)
-{
-    // Check if an id is passed
-    if ($id) {
-        // If $id is provided, retrieve the userdetails by id (editing an existing user)
-        $userdetail = Userdetails::find($id);
-
-        // Set the session for shareholder_id for editing
-        if ($userdetail) {
-            session()->put('shareholder_id', $userdetail->shareholder_id);
-        }
-    } else {
-        // If no $id is passed, this means we're adding a new user
-        
-        // Only forget the session if there's no existing shareholder_id
-        if (!session()->has('shareholder_id')) {
-            session()->forget('shareholder_id');
-        }
-        
-        // Create a new, empty user detail object for a new user
-        $userdetail = new Userdetails(); // Empty, fresh model for a new user
+    {
+        return Userdetails::where('shareholder_id', session('shareholder_id'))->first();
+    }
+    public function step1($id = null)
+    {
+        $userId = Auth::id();
+        $userDetail = $id ? Userdetails::where([['user_id', $userId], ['id', $id]])->first() : '';
+        return view('user.shareholder.step1', ['currentStep' => 'step1'], compact('userDetail'));
     }
 
-
-    // Pass the retrieved or new userdetails to the view
-    return view('user.shareholder.step1', [
-        'currentStep' => 'step1',
-        'userdetail' => $userdetail
-    ]);
-}
-
-
-public function step2()
-{
-    
-    // Get the shareholder_id from session
-    $shareholderId = session('shareholder_id');
-
-    // Retrieve the user detail based on the shareholder_id from session
-    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
-
-    // Return the view for step2
-    return view('user.shareholder.step2', ['currentStep' => 'step2'], compact('userdetail'));
-}
-
-public function step3()
-{
-    // Get the shareholder_id from session
-    $shareholderId = session('shareholder_id');
-
-    // Retrieve the user detail based on the shareholder_id from session
-    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
-
-    // Return the view for step3
-    return view('user.shareholder.step3', ['currentStep' => 'step3'], compact('userdetail'));
-}
-
-public function step4()
-{
-    // Get the shareholder_id from session
-    $shareholderId = session('shareholder_id');
-
-    // Retrieve the user detail based on the shareholder_id from session
-    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
-
-    // Return the view for step4
-    return view('user.shareholder.step4', ['currentStep' => 'step4'], compact('userdetail'));
-}
-
-public function step5()
-{
-    // Get the shareholder_id from session
-    $shareholderId = session('shareholder_id');
-
-    // Retrieve the user detail based on the shareholder_id from session
-    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
-
-    // Return the view for step5
-    return view('user.shareholder.step5', ['currentStep' => 'step5'], compact('userdetail'));
-}
-
-public function step6()
-{
-    // Get the shareholder_id from session
-    $shareholderId = session('shareholder_id');
-
-    // Retrieve the user detail based on the shareholder_id from session
-    $userdetail = Userdetails::where('shareholder_id', $shareholderId)->first();
-
-    // Return the view for step6
-    return view('user.shareholder.step6', ['currentStep' => 'step6'], compact('userdetail'));
-}
-
-
-
-   
-
-
-public function stores(Request $request)
-{
-    // Ensure the 'step' parameter is present in the request
-    $step = $request->input('step');
-    
-    // Check if step is missing or invalid and set a default
-    if (empty($step)) {
-        return redirect()->route('user.shareholder.step1');  // Redirect to step1 if no step is provided
-    }
-    
-    // Define validation rules for each step, considering all fields are nullable
-    $validationRules = [
-        'step1' => [
+    public function step1Store(Request $request)
+    {
+        $data  = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'wname' => 'nullable|string|max:255',
             'waddress' => 'nullable|string|max:255',
-        ],
-        'step2' => [
+        ]);
+
+        $data['user_id'] = Auth::id();
+
+        $userDetail =  Userdetails::create($data);
+
+        return redirect()->route('user.shareholder.step2',$userDetail->id);
+    }
+
+
+    public function step1Update(Request $request, $id)
+    {
+        $data  = $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'wname' => 'nullable|string|max:255',
+            'waddress' => 'nullable|string|max:255',
+        ]);
+
+        $userDetail = Userdetails::find($id);
+        $userDetail->update($data);
+        return redirect()->route('user.shareholder.step2', $userDetail->id);
+    }
+
+
+    public function step2($id)
+    {
+        $userDetail = Userdetails::find($id);
+        return view('user.shareholder.step2',['currentStep' => 'step2'],  compact('userDetail'));
+    }
+
+    public function step2Update(Request $request,$id)
+    {
+
+        $data = $request->validate([
             'ctole' => 'nullable|string|max:255',
             'cmunicipality' => 'nullable|string|max:255',
             'cward' => 'nullable|string|max:255',
@@ -247,15 +180,51 @@ public function stores(Request $request)
             'ccdistrict' => 'nullable|string|max:255',
             'ccprovince' => 'nullable|string|max:255',
             'ccimage' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-        ],
-        'step3' => [
+            'cchanged' => 'nullable|boolean',
+        ]);
+
+
+        $userDetail = Userdetails::find($id);
+
+        $userDetail->update($data);
+
+        return redirect()->route('user.shareholder.step3', $userDetail->id);
+    }
+
+    public function step3($id)
+    {
+        $userDetail = Userdetails::find($id);
+        return view('user.shareholder.step3',['currentStep' => 'step3'],  compact('userDetail'));
+    }
+
+    public function step3Update(Request $request,$id)
+    {
+        $data = $request->validate([
             'ttole' => 'nullable|string|max:255',
             'tmunicipality' => 'nullable|string|max:255',
             'tward' => 'nullable|string|max:255',
             'tdistrict' => 'nullable|string|max:255',
             'tprovince' => 'nullable|string|max:255',
-        ],
-        'step4' => [
+            'copystep2data' => 'nullable|boolean',
+        ]);
+
+        $userDetail = Userdetails::find($id);
+
+        $userDetail->update($data);
+
+        return redirect()->route('user.shareholder.step4', $userDetail->id);
+    }
+
+
+    public function step4($id)
+    {
+        $userDetail = Userdetails::find($id);
+        return view('user.shareholder.step4',['currentStep' => 'step4'],  compact('userDetail'));
+    }
+
+    public function step4Update(Request $request,$id)
+    {
+        $data = $request->validate([
             'citizennumber' => 'nullable|string|max:255',
             'issuedate' => 'nullable|string|max:255',
             'issuedplace' => 'nullable|string|max:255',
@@ -270,8 +239,26 @@ public function stores(Request $request)
             'optemail' => 'nullable|string|max:255',
             'pan' => 'nullable|string|max:255',
             'nid' => 'nullable|string|max:255',
-        ],
-        'step5' => [
+        ]);
+
+        $userDetail = Userdetails::find($id);
+
+        $userDetail->update($data);
+
+        return redirect()->route('user.shareholder.step5', $userDetail->id);
+    }
+   
+
+    public function step5($id)
+    {
+        $userDetail = Userdetails::find($id);
+        return view('user.shareholder.step5',['currentStep' => 'step5'],  compact('userDetail'));
+    }
+   
+
+    public function step5Update(Request $request,$id)
+    {
+        $data = $request->validate([
             'shareamt' => 'nullable|string|max:255',
             'shareno' => 'nullable|string|max:255',
             'sharefrom' => 'nullable|string|max:255',
@@ -284,100 +271,51 @@ public function stores(Request $request)
             'lawyerphone' => 'nullable|string|max:255',
             'lawyerid' => 'nullable|string|max:255',
             'lawyeridvalid' => 'nullable|string|max:255',
-        ],
-        'step6' => [
+        ]);
+
+        $userDetail = Userdetails::find($id);
+
+        $userDetail->update($data);
+
+        return redirect()->route('user.shareholder.step6', $userDetail->id);
+    }
+
+    public function step6($id)
+    {
+        $userDetail = Userdetails::find($id);
+        return view('user.shareholder.step6',['currentStep' => 'step6'],  compact('userDetail'));
+    }
+
+    public function step6Update(Request $request,$id)
+    {
+        $data = $request->validate([
             'accno' => 'nullable|string|max:255',
             'bankname' => 'nullable|string|max:255',
             'bankbranch' => 'nullable|string|max:255',
-        ],
-    ];
-    
-    // Check if the step exists in the validation rules
-    if (!array_key_exists($step, $validationRules)) {
-        return redirect()->route('user.shareholder.step1');  // Redirect to step1 if the step is invalid
-    }
-    
-    // Validate the current step's data
-    $request->validate($validationRules[$step]);
-    
-    // Handle the image upload (if any)
-    $shareholderData = $request->all();
-    unset($shareholderData['step']);
-    
-    // Handle image upload for 'cimage' or 'ccimage' if they exist
-    if ($request->hasFile('cimage')) {
-        $cimage = $request->file('cimage');
-        $cimageName = time() . '.' . $cimage->getClientOriginalExtension(); // Set the file name with current timestamp
-        $cimage->move(public_path('citizenship'), $cimageName); // Move image to 'public/citizenship'
-        $shareholderData['cimage'] =  $cimageName; // Store the path in the database
-    }
-   
-    
-    if ($request->hasFile('ccimage')) {
-        $ccimage = $request->file('ccimage');
-        $ccimageName = time() . '.' . $ccimage->getClientOriginalExtension(); // Set the file name with current timestamp
-        $ccimage->move(public_path('citizenship'), $ccimageName); // Move image to 'public/images/citizenship'
-        $shareholderData['ccimage'] =   $ccimageName; // Store the path in the database
-    }
-    
-    // Get the next step dynamically
-    $nextStep = 'step' . (intval(substr($step, -1)) + 1); // Get the next step dynamically
-    
-    // Get the authenticated user ID
-    $userId = Auth::id();
-    
-    // Check if 'id' is passed (for editing) or use session-based `shareholder_id` (for creating new record)
-    $shareholderId = $request->input('id') ?? session()->get('shareholder_id');
-    
-    // If no temporary shareholder ID exists, it's a new shareholder
-    if (!$shareholderId) {
-        // Create a new shareholder ID for this process
-        $shareholderId = uniqid('shareholder_', true);
-        session()->put('shareholder_id', $shareholderId);
-    }
-    
-    // If we're editing an existing record, retrieve the current record
-    $shareholder = Userdetails::where('shareholder_id', $shareholderId)->first();
-    
-    if (!$shareholder) {
-        // If no existing record, create a new one
-        $shareholderData['user_id'] = $userId;
-        $shareholderData['shareholder_id'] = $shareholderId; // Use temporary shareholder ID
-        $shareholder = Userdetails::create($shareholderData);
-    } else {
-        // If record exists, update it
-        $shareholder->update($shareholderData);
-    }
-    
-    // Redirect to the next step dynamically
-    if (in_array($nextStep, array_keys($validationRules))) {
-        return redirect()->route('user.shareholder.' . $nextStep);
-    }
-    
-    // If it's the last step, redirect to a success page and clear the session
-    session()->forget('shareholder_id'); // Clear the temporary shareholder ID after completing the process
-    return redirect()->route('user.userindex')->with('success', 'Shareholder details saved successfully!');
-}
+        ]);
 
-    
-    
-    
+        $userDetail = Userdetails::find($id);
+
+        $userDetail->update($data);
+
+        return redirect()->route('user.userindex')->with('success', 'Shareholder details saved successfully!');
+    }
+
+
     public function delete($id)
     {
         // Find the userdetails record
         $userDetail = Userdetails::where('user_id', Auth::id())->where('id', $id)->first();
-    
+
         // If no matching record is found, abort with a 403 error
         if (!$userDetail) {
             return redirect()->back()->with('error', 'Unauthorized action.');
         }
-    
+
         // Delete the userdetails record
         $userDetail->delete();
-    
+
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Shareholder details deleted successfully!');
     }
-
-
 }

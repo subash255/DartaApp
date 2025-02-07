@@ -4,8 +4,12 @@
 
         @include('user.shareholder.contents')
         <div class="container mx-auto p-6">
-            <form method="POST" action="{{ route('shareholder.stores') }}">
+            <form method="POST" action="{{$userDetail ? route('user.shareholder.step1.update', $userDetail->id) : route('user.shareholder.step1.store')}}">
                 @csrf
+                @if($userDetail)
+                    @method('PUT')
+
+                @endif
                 <input type="hidden" name="step" value="step1">
                 <!-- Step 1: Company Info -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -14,27 +18,27 @@
                         <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900">Firstname</label>
                         <input type="text" name="firstname" id="firstname"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
-                            value="{{ old('firstname', $userdetail->firstname ?? '') }}" required>
+                            value="{{ old('firstname', $userDetail->firstname ?? '') }}" required>
                     </div>
                     <div class="mb-6">
                         <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900">Lastname</label>
                         <input type="text" name="lastname" id="lastname"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
-                            value="{{ old('lastname', $userdetail->lastname ?? '') }}" required>
+                            value="{{ old('lastname', $userDetail->lastname ?? '') }}" required>
                     </div>
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Witness
                             Name</label>
                         <input type="text" name="wname" id="wname"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
-                            value="{{ old('wname', $userdetail->wname ?? '') }}" required>
+                            value="{{ old('wname', $userDetail->wname ?? '') }}" required>
                     </div>
                     <div class="mb-6">
                         <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Witness
                             Address</label>
                         <input type="text" name="waddress" id="waddress"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
-                            value="{{ old('waddress', $userdetail->waddress ?? '') }}" required>
+                            value="{{ old('waddress', $userDetail->waddress ?? '') }}" required>
                     </div>
 
                 </div>
