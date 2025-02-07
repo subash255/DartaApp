@@ -96,6 +96,20 @@ class UserdetailController extends Controller
             'cchanged' => 'nullable|boolean',
         ]);
 
+        if ($request->hasFile('cimage')) {
+            $cimage = $request->file('cimage');
+            $cimageName = time() . '.' . $cimage->getClientOriginalExtension(); // Set the file name with current timestamp
+            $cimage->move(public_path('citizenship'), $cimageName); // Move image to 'public/citizenship'
+            $data['cimage'] =  $cimageName; // Store the path in the database
+        }
+       
+        
+        if ($request->hasFile('ccimage')) {
+            $ccimage = $request->file('ccimage');
+            $ccimageName = time() . '.' . $ccimage->getClientOriginalExtension(); // Set the file name with current timestamp
+            $ccimage->move(public_path('citizenship'), $ccimageName); // Move image to 'public/images/citizenship'
+            $data['ccimage'] =   $ccimageName; // Store the path in the database
+        }
 
         $userDetail = Userdetails::find($id);
 
