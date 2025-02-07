@@ -59,7 +59,7 @@
 
                     
                 </div>
-                <a href="{{ route('user.company.step2') }}"
+                <a href="{{ route('user.company.step2',$user->id) }}"
                     class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:shadow-outline">Next</a>
             </form>
         </div>
