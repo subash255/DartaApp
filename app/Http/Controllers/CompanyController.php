@@ -29,56 +29,47 @@ class CompanyController extends Controller
 
     public function step1($id = null){
         $user = Auth::user();
-        $company = Company::where('user_id', Auth::id())->where('id',$id)->first();
+        $company = Company::where('user_id', $user->id)->where('id',$id)->first();
         return view('user.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
     }
 
-    public function step1store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'regno' => 'nullable|string|max:255',
-            'regdate' => 'nullable|date',
-            'pan' => 'nullable|string|max:255',
-            'panregdate' => 'nullable|date',
-            'vat' => 'nullable|string|max:255',
-        ]);
-
-        $validatedData['user_id'] = Auth::id();
-       $company = new Company($validatedData);
-            $company->save();
-
-            return redirect()->route('user.company.step2',$company->id);
-
     
+    public function step2($id= null){
+        $user = Auth::user();
+        $company = Company::where('user_id',$user->id)->where('id',$id)->first();
+        return view('user.company.step2', ['currentStep' => 'step2'], compact('company', 'user'));
     }
-    public function step1Update(Request $request, $id)
+
+    public function step2Store(Request $request)
     {
         $validatedData = $request->validate([
-            'regno' => 'nullable|string|max:255',
-            'regdate' => 'nullable|date',
-            'pan' => 'nullable|string|max:255',
-            'panregdate' => 'nullable|date',
-            'vat' => 'nullable|string|max:255',
+            'tole' => 'nullable|string|max:255',
+            'municipality' => 'nullable|string|max:255',
+            'ward' => 'nullable|string|max:255',
+            'district' => 'nullable|string|max:255',
+            'province' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:15',
+            'oemail' => 'nullable|string|max:255',
+
         ]);
+        $validatedData['user_id'] = Auth::id();
 
-        $company = Company::find($id);
-        $company->update($validatedData);
 
-        return redirect()->route('user.company.step2',$company->id);
+        $company =  Company::create($validatedData);
+
+        return redirect()->route('user.company.step3',$company->id);
     }
-    public function step2($id){
-       $company=Company::find($id);
-        return view('user.company.step2',$company->id, ['currentStep' => 'step2'], compact('company', 'user'));
-    }
+
     public function step2Update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'tole' => 'nullable|string|max:255',
             'municipality' => 'nullable|string|max:255',
-            'ward' => 'nullable|numeric',
+            'ward' => 'nullable|string|max:255',
             'district' => 'nullable|string|max:255',
             'province' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:15',
+            'oemail' => 'nullable|string|max:255',
         ]);
 
         $company = Company::find($id);
@@ -86,11 +77,19 @@ class CompanyController extends Controller
 
         return redirect()->route('user.company.step3',$company->id);
     }
-    public function step3($id){
-        $company=Company::find($id);
+    public function step3($id)
+    {
+        $company = Company::find($id);
         $user = Auth::user();
-        return view('user.company.step3',$company->id, ['currentStep' => 'step3'], compact('company', 'user'));
+    
+        // Pass the company and user data as part of the array
+        return view('user.company.step3', [
+            'company' => $company,
+            'user' => $user,
+            'currentStep' => 'step3',
+        ]);
     }
+    
     public function step3Update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -106,7 +105,7 @@ class CompanyController extends Controller
             'hotiro'=> 'nullable|string|max:255',
             'lat'=> 'nullable|string|max:255',
             'lng'=> 'nullable|string|max:255',
-            'copystep2data'=> 'nullable|string|max:255',
+            'copystep2data'=> 'nullable|boolean|max:255',
         ]);
 
         $company = Company::find($id);
@@ -117,8 +116,12 @@ class CompanyController extends Controller
     public function step4($id){
         $company=Company::find($id);
         $user = Auth::user();
-        return view('user.company.step4',$company->id, ['currentStep' => 'step4'], compact('company', 'user'));
-    }
+        return view('user.company.step4', [
+            'company' => $company,
+            'user' => $user,
+            'currentStep' => 'step4',
+        ]);    }
+
     public function step4Update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -137,8 +140,12 @@ class CompanyController extends Controller
     public function step5($id){
         $company=Company::find($id);
         $user = Auth::user();
-        return view('user.company.step5',$company->id, ['currentStep' => 'step5'], compact('company', 'user'));
-    }
+ return view('user.company.step5', [
+            'company' => $company,
+            'user' => $user,
+            'currentStep' => 'step5',
+        ]);    }
+
     public function step5Update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -157,7 +164,7 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $company->update($validatedData);
 
-        return redirect()->route('user.company.step1',$company->id);
+        return redirect()->route('user.company.step1',$company->id)->with('success', 'Company details created successfully!');
     }
     
     

@@ -98,6 +98,7 @@
                         </div>
                     </div>
                 </div>
+              
                 <!-- Button Section -->
                 <div class="flex justify-between mt-6">
                     <a href="{{ route('user.shareholder.step1', $userDetail->id) }}"

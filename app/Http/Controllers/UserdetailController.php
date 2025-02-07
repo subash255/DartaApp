@@ -40,6 +40,7 @@ class UserdetailController extends Controller
 
     public function step1Store(Request $request)
     {
+        
         $data  = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',

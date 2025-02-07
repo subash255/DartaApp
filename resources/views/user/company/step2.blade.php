@@ -3,10 +3,13 @@
     <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
         @include('user.company.contents')
         <div class="container mx-auto p-6">
-            <form method="POST" action="{{ route('user.company.step2.update',$company->id) }}">
+            <form method="POST" action="{{$company ? route('user.company.step2.update', $company->id) : route('user.company.step2.store')}}">
                 @csrf
-                @method('PUT')
-                <input type="hidden" name="step" value="step2">
+                @if($company)
+                    @method('PUT')
+                    
+                @endif
+                <input type="hidden"  value="step2">
                 <!-- Step 2: Company Address -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="mb-6">
@@ -57,7 +60,7 @@
                             required>
                     </div>
                 </div>
-
+               
                 <!-- Button Section -->
                 <div class="flex justify-between mt-6">
                     <a href="{{ route('user.company.step1') }}"
@@ -66,6 +69,7 @@
                         class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:shadow-outline">Next</button>
                 </div>
             </form>
+            
         </div>
     </div>
 

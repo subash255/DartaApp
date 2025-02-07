@@ -1,5 +1,9 @@
 @extends('layouts.master')
 @section('content')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+
     <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
         @include('user.company.contents')
         <div class="container mx-auto p-6">
@@ -10,10 +14,10 @@
                 <!-- Step 3: Company Address -->
                 <!-- Checkbox to auto-fill Step 2 details -->
                 <div class="mb-6 flex items-center justify-start">
-                    <input type="hidden" id="copystep2data_hidden" name="copystep2data" value="{{ old('copystep2data', $userDetail->copystep2data ?? 0) }}">
+                    <input type="hidden" id="copystep2data_hidden" name="copystep2data" value="{{ old('copystep2data', $company->copystep2data ?? 0) }}">
                 
                     <input type="checkbox" id="copyStep2Data"
-                        {{ old('copystep2data', $userDetail->copystep2data ?? 0) == 1 ? 'checked' : '' }}
+                        {{ old('copystep2data', $company->copystep2data ?? 0) == 1 ? 'checked' : '' }}
                         class="w-4 h-4 text-gray-800 bg-gray-100 border-gray-300 focus:ring-orange-500 focus:ring-2">
                     <label for="copyStep2Data" class="ml-2 text-sm font-medium text-gray-900">Same address as citizenship?</label>
                 </div>
@@ -93,7 +97,7 @@
 
                 <!-- Button Section -->
                 <div class="flex justify-between mt-6">
-                    <a href="{{ route('user.company.step2') }}"
+                    <a href="{{ route('user.company.step2',$company->id) }}"
                         class="px-4 py-2 bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 focus:outline-none focus:shadow-outline">Previous</a>
                     <button type="submit"
                         class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:shadow-outline">Next</button>
@@ -109,7 +113,7 @@
             const copyStep2Checkbox = document.getElementById('copyStep2Data');
             const hiddenField = document.getElementById('copystep2data_hidden');
     
-            const toleField = document.getElementById('hoole');
+            const toleField = document.getElementById('hotole');
             const municipalityField = document.getElementById('homunicipality');
             const wardField = document.getElementById('howard');
             const provinceField = document.getElementById('hoprovince');
@@ -147,31 +151,27 @@
         });
     </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
 <script>
-    let map, marker;
-
-    function initMap() {
-        // Default location (Example: Gaindakot, Chitwan)
-        let defaultLocation = { lat: 27.692, lng: 84.428 };
-
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: defaultLocation,
-            zoom: 15,
-        });
-
-        marker = new google.maps.Marker({
-            position: defaultLocation,
-            map: map,
-            draggable: true,
-        });
-
-        // Update input fields when marker is moved
-        google.maps.event.addListener(marker, 'dragend', function (event) {
-            document.getElementById("latitude").value = event.latLng.lat();
-            document.getElementById("longitude").value = event.latLng.lng();
-        });
-    }
-</script>
+    var map = L.map('map').setView([27.692, 84.428], 15); // Default location: Gaindakot, Chitwan
+  
+    // Set OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+  
+    // Add a draggable marker
+    var marker = L.marker([27.692, 84.428], { draggable: true }).addTo(map);
+  
+    // Update latitude and longitude when marker is dragged
+    marker.on('dragend', function () {
+      var lat = marker.getLatLng().lat;
+      var lng = marker.getLatLng().lng;
+  
+      // Update input fields
+      document.getElementById("latitude").value = lat;
+      document.getElementById("longitude").value = lng;
+    });
+  </script>
+  
 
 @endsection
