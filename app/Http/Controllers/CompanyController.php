@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
+    
 
     public function index(Request $request)
     {
