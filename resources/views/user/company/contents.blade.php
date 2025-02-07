@@ -35,19 +35,19 @@
 
 <div class="mb-8">
     <div class="flex justify-between mb-2">
-        <a href="{{route('user.company.step1', $company->id ??$user->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200" id="step1">
+        <a href="{{route('user.company.step1')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200" id="step1">
             Company Details
         </a>
-        <a href="{{route('user.company.step2', $company->id ??$user->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step2">
+        <a href="{{route('user.company.step2', $company->id  ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step2">
             Office Address
         </a>
-        <a href="{{route('user.company.step3', $company->id ??$user->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step3">
+        <a href="{{route('user.company.step3', $company->id  ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step3">
            House Owner Details
         </a>
-        <a href="{{route('user.company.step4', $company->id ??$user->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step4">
+        <a href="{{route('user.company.step4', $company->id  ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step4">
             Company Bank Details
         </a>
-        <a href="{{route('user.company.step5', $company->id ??$user->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step5">
+        <a href="{{route('user.company.step5', $company->id  ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step5">
             OCR/IRD Details
         </a>
 

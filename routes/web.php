@@ -29,11 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('company/step2/{id?}', [CompanyController::class, 'step2'])->name('user.company.step2');
     Route::post('company/step2/store', [CompanyController::class, 'step2Store'])->name('user.company.step2.store');
     Route::put('company/step2/update/{id}', [CompanyController::class, 'step2Update'])->name('user.company.step2.update');
-    Route::get('company/step3/{id}', [CompanyController::class, 'step3'])->name('user.company.step3');
+    Route::get('company/step3/{id?}', [CompanyController::class, 'step3'])->name('user.company.step3');
     Route::put('company/step3/update/{id}', [CompanyController::class, 'step3Update'])->name('user.company.step3.update');
-    Route::get('company/step4/{id}', [CompanyController::class, 'step4'])->name('user.company.step4');
+    Route::get('company/step4/{id?}', [CompanyController::class, 'step4'])->name('user.company.step4');
     Route::put('company/step4/update/{id}', [CompanyController::class, 'step4Update'])->name('user.company.step4.update');
-    Route::get('company/step5/{id}', [CompanyController::class, 'step5'])->name('user.company.step5');
+    Route::get('company/step5/{id?}', [CompanyController::class, 'step5'])->name('user.company.step5');
     Route::put('company/step5/update/{id}', [CompanyController::class, 'step5Update'])->name('user.company.step5.update');
 
 

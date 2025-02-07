@@ -34,11 +34,18 @@ class CompanyController extends Controller
     }
 
     
-    public function step2($id= null){
+    public function step2($id = null)
+    {
         $user = Auth::user();
-        $company = Company::where('user_id',$user->id)->where('id',$id)->first();
+        
+        // If no ID is provided, fetch the first company of the user
+        $company = Company::where('user_id', $user->id)
+                          ->when($id, fn($query) => $query->where('id', $id))
+                          ->first();
+    
         return view('user.company.step2', ['currentStep' => 'step2'], compact('company', 'user'));
     }
+    
 
     public function step2Store(Request $request)
     {
@@ -77,10 +84,14 @@ class CompanyController extends Controller
 
         return redirect()->route('user.company.step3',$company->id);
     }
-    public function step3($id)
+    public function step3($id=null)
     {
-        $company = Company::find($id);
         $user = Auth::user();
+        
+        // If no ID is provided, fetch the first company of the user
+        $company = Company::where('user_id', $user->id)
+                          ->when($id, fn($query) => $query->where('id', $id))
+                          ->first();
     
         // Pass the company and user data as part of the array
         return view('user.company.step3', [
@@ -113,9 +124,13 @@ class CompanyController extends Controller
 
         return redirect()->route('user.company.step4',$company->id);
     }
-    public function step4($id){
-        $company=Company::find($id);
+    public function step4($id=null){
         $user = Auth::user();
+        
+        // If no ID is provided, fetch the first company of the user
+        $company = Company::where('user_id', $user->id)
+                          ->when($id, fn($query) => $query->where('id', $id))
+                          ->first();
         return view('user.company.step4', [
             'company' => $company,
             'user' => $user,
@@ -137,9 +152,13 @@ class CompanyController extends Controller
 
         return redirect()->route('user.company.step5',$company->id);
     }
-    public function step5($id){
-        $company=Company::find($id);
+    public function step5($id=null){
         $user = Auth::user();
+        
+        // If no ID is provided, fetch the first company of the user
+        $company = Company::where('user_id', $user->id)
+                          ->when($id, fn($query) => $query->where('id', $id))
+                          ->first();
  return view('user.company.step5', [
             'company' => $company,
             'user' => $user,
