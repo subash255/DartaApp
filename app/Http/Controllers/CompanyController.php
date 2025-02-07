@@ -118,21 +118,6 @@ class CompanyController extends Controller
             'lng'=> 'nullable|string|max:255',
             'copystep2data'=> 'nullable|boolean|max:255',
         ]);
-        if ($request->hasFile('holalpurja')) {
-            $holalpurja = $request->file('holalpurja');
-            $holalpurjaName = time() . '.' . $holalpurja->getClientOriginalExtension(); // Set the file name with current timestamp
-            $holalpurja->move(public_path('documents'), $holalpurjaName); // Move image to 'public/documents'
-            $validatedData['holalpurja'] =  $holalpurjaName; // Store the path in the validatedDatabase
-        }
-       
-        
-        if ($request->hasFile('hotiro')) {
-            $hotiro = $request->file('hotiro');
-            $hotiroName = time() . '.' . $hotiro->getClientOriginalExtension(); // Set the file name with current timestamp
-            $hotiro->move(public_path('documents'), $hotiroName); // Move image to 'public/images/citizenship'
-            $validatedData['hotiro'] =   $hotiroName; // Store the path in the database
-        }
-
         $company = Company::find($id);
         $company->update($validatedData);
 
