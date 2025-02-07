@@ -66,6 +66,24 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                             required>
                     </div>
+                    <!--Lalpurja image -->
+                    <div class="mb-6">
+                        <label for="lalpurja" class="block mb-2 text-sm font-medium text-gray-900">Lalpurja</label>
+                        <input type="file" name="holalpurja" id="lalpurja"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                            required>
+                    </div>
+                    <!--Tiro image -->
+                    <div class="mb-6">
+                        <label for="tiro" class="block mb-2 text-sm font-medium text-gray-900">Tiro</label>
+                        <input type="file" name="hotiro" id="tiro"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                            required>
+                    </div>
+                    <div id="map" style="width:100%;height:400px;"></div>
+                    <input type="hidden" id="latitude" name="lat">
+                    <input type="hidden" id="longitude" name="lng">
+
                 </div>
 
                 <!-- Button Section -->
@@ -105,5 +123,32 @@
             }
         });
     </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+<script>
+    let map, marker;
+
+    function initMap() {
+        // Default location (Example: Gaindakot, Chitwan)
+        let defaultLocation = { lat: 27.692, lng: 84.428 };
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: defaultLocation,
+            zoom: 15,
+        });
+
+        marker = new google.maps.Marker({
+            position: defaultLocation,
+            map: map,
+            draggable: true,
+        });
+
+        // Update input fields when marker is moved
+        google.maps.event.addListener(marker, 'dragend', function (event) {
+            document.getElementById("latitude").value = event.latLng.lat();
+            document.getElementById("longitude").value = event.latLng.lng();
+        });
+    }
+</script>
 
 @endsection
