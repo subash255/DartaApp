@@ -82,27 +82,115 @@ class CompanyController extends Controller
         $company = Company::where('user_id', Auth::id())->first();
         return view('user.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
     }
-    public function step2(){
-        $user = Auth::user();
-        $company = Company::where('user_id', Auth::id())->first();
-        return view('user.company.step2', ['currentStep' => 'step2'], compact('company', 'user'));
-    }
-    public function step3(){
-        $user = Auth::user();
-        $company = Company::where('user_id', Auth::id())->first();
-        return view('user.company.step3', ['currentStep' => 'step3'], compact('company', 'user'));
-    }
-    public function step4(){
-        $user = Auth::user();
-        $company = Company::where('user_id', Auth::id())->first();
-        return view('user.company.step4', ['currentStep' => 'step4'], compact('company', 'user'));
-    }
-    public function step5(){
-        $user = Auth::user();
-        $company = Company::where('user_id', Auth::id())->first();
-        return view('user.company.step5', ['currentStep' => 'step5'], compact('company', 'user'));
-    }
 
+    public function step1store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'regno' => 'required|string|max:255',
+            'regdate' => 'required|date',
+            'pan' => 'required|string|max:255',
+            'panregdate' => 'required|date',
+            'vat' => 'required|string|max:255',
+        ]);
+
+        $validatedData['user_id'] = Auth::id();
+       $company = new Company($validatedData);
+            $company->save();
+
+            return redirect()->route('user.company.step2',$company->id);
+
+    
+    }
+    public function step2($id){
+       $company=Company::find($id);
+        return view('user.company.step2',$company->id, ['currentStep' => 'step2'], compact('company', 'user'));
+    }
+    public function step2Update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'tole' => 'required|string|max:255',
+            'municipality' => 'required|string|max:255',
+            'ward' => 'required|numeric',
+            'district' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
+        ]);
+
+        $company = Company::find($id);
+        $company->update($validatedData);
+
+        return redirect()->route('user.company.step3',$company->id);
+    }
+    public function step3($id){
+        $company=Company::find($id);
+        $user = Auth::user();
+        return view('user.company.step3',$company->id, ['currentStep' => 'step3'], compact('company', 'user'));
+    }
+    public function step3Update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'houseownername' => 'required|string|max:255',
+            'hophone' => 'required|string|max:15',
+            'hopan' => 'required|string|max:255',
+            'hotole' => 'required|string|max:255',
+            'homunicipality' => 'required|string|max:255',
+            'howard' => 'required|string|max:255',
+            'hodistrict' => 'required|string|max:255',
+            'hoprovince' => 'required|string|max:255',
+        ]);
+
+        $company = Company::find($id);
+        $company->update($validatedData);
+
+        return redirect()->route('user.company.step4',$company->id);
+    }
+    public function step4($id){
+        $company=Company::find($id);
+        $user = Auth::user();
+        return view('user.company.step4',$company->id, ['currentStep' => 'step4'], compact('company', 'user'));
+    }
+    public function step4Update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'accno' => 'required|string|max:255',
+            'bankname' => 'required|string|max:255',
+            'bankbranch' => 'required|string|max:255',
+            'signature' => 'required|string|max:255',
+            'created' => 'required|date',
+        ]);
+
+        $company = Company::find($id);
+        $company->update($validatedData);
+
+        return redirect()->route('user.company.step5',$company->id);
+    }
+    public function step5($id){
+        $company=Company::find($id);
+        $user = Auth::user();
+        return view('user.company.step5',$company->id, ['currentStep' => 'step5'], compact('company', 'user'));
+    }
+    public function step5Update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'cid' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'cpassword' => 'required|string|max:255',
+            'rid' => 'required|string|max:255',
+            'rpassword' => 'required|string|max:255',
+            'remail' => 'required|email',
+            'rphone' => 'required|string|max:15',
+            'rcontactperson' => 'required|string|max:255',
+            'pid' => 'required|string|max:255',
+            'ppassword' => 'required|string|max:255',
+        ]);
+
+        $company = Company::find($id);
+        $company->update($validatedData);
+
+        return redirect()->route('user.company.step1',$company->id);
+    }
+    
+    
  
     public function stores(Request $request)
     {
@@ -196,16 +284,16 @@ class CompanyController extends Controller
         // If it's the last step, go to the success page
         return redirect()->route('user.company.step1')->with('success', 'Company details saved successfully!');
     }
-    
 
-    public function delete($id)
+    
+      public function delete($id)
     {
         $company = Company::find($id);
         $company->delete();
         return redirect()->back()->with('success', 'Company deleted successfully!');
     }
 
-    public function approved($id)
+  public function approved($id)
     {
         $company = Company::find($id);
         $company->status = 'approved';
