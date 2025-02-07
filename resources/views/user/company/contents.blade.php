@@ -5,7 +5,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
         <div>
-            <p class="font-semibold text-lg">Pending</p>
+            <p class="font-semibold text-lg">Under Registeration</p>
             <p class="text-sm">Your company registration is pending. Please complete all steps to submit for approval.</p>
         </div>
     </div>
@@ -15,7 +15,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
         </svg>
         <div>
-            <p class="font-semibold text-lg">Approved</p>
+            <p class="font-semibold text-lg">Registered</p>
             <p class="text-sm">Your company registration has been approved successfully.</p>
         </div>
     </div>
@@ -35,19 +35,19 @@
 
 <div class="mb-8">
     <div class="flex justify-between mb-2">
-        <a href="{{route('user.company.step1')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200" id="step1">
+        <a href="{{route('user.company.step1', $company->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200" id="step1">
             Company Details
         </a>
-        <a href="{{route('user.company.step2')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step2">
+        <a href="{{route('user.company.step2', $company->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step2">
             Office Address
         </a>
-        <a href="{{route('user.company.step3')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step3">
+        <a href="{{route('user.company.step3', $company->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step3">
            House Owner Details
         </a>
-        <a href="{{route('user.company.step4')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step4">
+        <a href="{{route('user.company.step4', $company->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step4">
             Company Bank Details
         </a>
-        <a href="{{route('user.company.step5')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step5">
+        <a href="{{route('user.company.step5', $company->id ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step5">
             OCR/IRD Details
         </a>
 

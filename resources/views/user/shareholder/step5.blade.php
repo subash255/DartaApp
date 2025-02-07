@@ -40,7 +40,7 @@
                             <div class="mb-6">
                                 <label for="totalshare"
                                     class="block mb-2 text-sm font-medium text-gray-900">Total:</label>
-                                <input type="number" name="totalshare" id="totalshare"
+                                <input type="text" name="totalshare" id="totalshare"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                     value="{{ old('totalshare', $userDetail->totalshare ?? '') }}" required>
                             </div>
@@ -68,7 +68,7 @@
                             <div class="w-full mb-6">
                                 <label for="lawyerid" class="block mb-2 text-sm font-medium text-gray-900">Lawyer
                                     Id:</label>
-                                <input type="number" name="lawyerid" id="lawyerid"
+                                <input type="text" name="lawyerid" id="lawyerid"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                     value="{{ old('lawyerid', $userDetail->lawyerid ?? '') }}" required>
                             </div>
