@@ -311,6 +311,7 @@ public function stores(Request $request)
         $cimage->move(public_path('citizenship'), $cimageName); // Move image to 'public/citizenship'
         $shareholderData['cimage'] =  $cimageName; // Store the path in the database
     }
+
    
     
     if ($request->hasFile('ccimage')) {
@@ -319,7 +320,11 @@ public function stores(Request $request)
         $ccimage->move(public_path('citizenship'), $ccimageName); // Move image to 'public/images/citizenship'
         $shareholderData['ccimage'] =   $ccimageName; // Store the path in the database
     }
+  
     
+
+
+ 
     // Get the next step dynamically
     $nextStep = 'step' . (intval(substr($step, -1)) + 1); // Get the next step dynamically
     
