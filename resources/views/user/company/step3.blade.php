@@ -5,11 +5,13 @@
         <div class="container mx-auto p-6">
             <form method="POST" action="{{ route('company.stores') }}">
                 @csrf
-                <label for="autoFillCheckbox">Auto-fill from Step 1:</label>
-                <input type="checkbox" id="autoFillCheckbox" onchange="enableAutoFill()"> 
-
                 <input type="hidden" name="step" value="step3">
                 <!-- Step 3: Company Address -->
+                <!-- Checkbox to auto-fill Step 2 details -->
+                <div class="mb-6 flex items-center justify-start">
+                 <input type="checkbox" id="copyStep2Data" class="w-4 h-4 text-gray-800 bg-gray-100 border-gray-300 focus:ring-orange-500 focus:ring-2">
+                 <label for="copyStep2Data" class="ml-2 text-sm font-medium text-gray-900">Same address as office?</label>
+             </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="mb-6">
                         <label for="houseownername" class="block mb-2 text-sm font-medium text-gray-900">House Owner Name</label>
@@ -78,35 +80,30 @@
     </div>
 
     <script>
-    // Enable auto-fill if checkbox is checked
-    function enableAutoFill() {
-        const autoFillChecked = document.getElementById('autoFillCheckbox').checked;
-        
-        if (autoFillChecked) {
-            // Fill fields with data from Step 1 if checkbox is checked
-            document.getElementById('hotole').value = localStorage.getItem('tole');
-            document.getElementById('hodistrict').value = localStorage.getItem('district');
-            document.getElementById('homunicipality').value = localStorage.getItem('municipality');
-            document.getElementById('howard').value = localStorage.getItem('ward');
-            document.getElementById('hoprovince').value = localStorage.getItem('province');
-        } else {
-            // Clear the fields if checkbox is unchecked
-            document.getElementById('hotole').value = '';
-            document.getElementById('hodistrict').value = '';
-            document.getElementById('homunicipality').value = '';
-            document.getElementById('howard').value = '';
-            document.getElementById('hoprovince').value = '';
-        }s
-    }
+        const copyStep2Checkbox = document.getElementById('copyStep2Data');
+        const toleField = document.getElementById('hotole');
+        const municipalityField = document.getElementById('homunicipality');
+        const wardField = document.getElementById('howard');
+        const provinceField = document.getElementById('hoprovince');
+        const districtField = document.getElementById('hodistrict');
+    
+        copyStep2Checkbox.addEventListener('change', function () {
+            if (copyStep2Checkbox.checked) {
+                // Copy data from Step 2 to Step 3
+                toleField.value = "{{ old('tole', $company->tole ?? '') }}";
+                municipalityField.value = "{{ old('municipality', $company->municipality ?? '') }}";
+                wardField.value = "{{ old('ward', $company->ward ?? '') }}";
+                provinceField.value = "{{ old('province', $company->province ?? '') }}";
+                districtField.value = "{{ old('district', $company->district ?? '') }}";
+            } else {
+                // Clear the fields if unchecked
+                toleField.value = '';
+                municipalityField.value = '';
+                wardField.value = '';
+                provinceField.value = '';
+                districtField.value = '';
+            }
+        });
+    </script>
 
-    window.onload = function() {
-        // Optionally, you can check if the checkbox was already checked in Step 1.
-        // This is just to handle if you want to auto-fill on load.
-        const autoFillChecked = localStorage.getItem("autoFillChecked") === 'true';
-        if (autoFillChecked) {
-            document.getElementById('autoFillCheckbox').checked = true;
-            enableAutoFill();  // Trigger auto-fill if checkbox was checked
-        }
-    }
-</script>
 @endsection

@@ -40,6 +40,4 @@ class TodolistController extends Controller
         return back()->with('success', 'Todolist deleted successfully');
     }
 
-
-
 }
