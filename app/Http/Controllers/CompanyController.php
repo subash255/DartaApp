@@ -35,8 +35,8 @@ class CompanyController extends Controller
 
     
     public function step2($id= null){
-        $user = Auth::user();
-        $company = Company::where('user_id',$user->id)->where('id',$id)->first();
+        
+        $company = Company::where('user_id',$id)->where('id',$id)->first();
         return view('user.company.step2', ['currentStep' => 'step2'], compact('company', 'user'));
     }
 
