@@ -35,6 +35,31 @@ class CompanyController extends Controller
         ->first();
         return view('user.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
     }
+    public function step1store(Request $request){
+
+        $user = Auth::user();
+
+
+        $company =  Company::create([
+            'user_id' => $user->id,
+        ]);
+       
+        
+        return redirect()->route('user.company.step2',$company->id);
+
+
+    }
+    public function step1update(Request $request, $id)
+    {
+        $company = Company::findOrFail($id); 
+    
+        $company->update([
+            'user_id' => auth::id(),
+                ]);
+    
+        return redirect()->route('user.company.step2', $company->id);
+    }
+
 
     
     public function step2($id = null)
@@ -50,25 +75,7 @@ class CompanyController extends Controller
     }
     
 
-    public function step2Store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'tole' => 'nullable|string|max:255',
-            'municipality' => 'nullable|string|max:255',
-            'ward' => 'nullable|string|max:255',
-            'district' => 'nullable|string|max:255',
-            'province' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:15',
-            'oemail' => 'nullable|string|max:255',
-
-        ]);
-        $validatedData['user_id'] = Auth::id();
-
-
-        $company =  Company::create($validatedData);
-
-        return redirect()->route('user.company.step3',$company->id);
-    }
+    
 
     public function step2Update(Request $request, $id)
     {

@@ -3,12 +3,12 @@
     <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
         @include('user.company.contents')
         <div class="container mx-auto p-6">
-            <form method="POST" action="{{$company ? route('user.company.step2.update', $company->id) : route('user.company.step2.store')}}">
+        <form method="POST" action="{{ route('user.company.step2.update',$company->id) }}">
                 @csrf
-                @if($company)
+               
                     @method('PUT')
                     
-                @endif
+              
                 <input type="hidden"  value="step2">
                 <!-- Step 2: Company Address -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

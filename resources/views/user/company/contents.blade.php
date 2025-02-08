@@ -35,7 +35,7 @@
 
 <div class="mb-8">
     <div class="flex justify-between mb-2">
-        <a href="{{route('user.company.step1')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200" id="step1">
+        <a href="{{route('user.company.step1',$company->id  ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200" id="step1">
             Company Details
         </a>
         <a href="{{route('user.company.step2', $company->id  ?? '')}}" class="text-xs font-bold inline-block py-1 px-2 rounded-full text-gray-800 bg-orange-200 opacity-50" id="step2">
