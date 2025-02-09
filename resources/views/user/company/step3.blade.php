@@ -7,7 +7,7 @@
 <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
     @include('user.company.contents')
     <div class="container mx-auto p-6">
-        <form method="POST" action="{{ route('user.company.step3.update',$company->id) }}">
+        <form method="POST" action="{{ route('user.company.step3.update',$company->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <input type="hidden" name="step" value="step3">
@@ -75,30 +75,29 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                         required>
                 </div>
-                <!--Lalpurja image -->
                 <!-- Lalpurja Image -->
-                <div class="mb-6">
-                    <label for="lalpurja" class="block mb-2 text-sm font-medium text-gray-900">Lalpurja</label>
-                    <input type="file" name="holalpurja" id="lalpurja"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
+<div class="mb-6">
+    <label for="lalpurja" class="block mb-2 text-sm font-medium text-gray-900">Lalpurja</label>
+    <input type="file" name="holalpurja" id="lalpurja"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
 
-                    <!-- Show old image if available -->
-                    @if (!empty($company->holalpurja))
-                    <img src="{{ asset('uploads/' . $company->holalpurja) }}" alt="Lalpurja Image" class="mt-2 w-32 h-32 object-cover rounded-lg">
-                    @endif
-                </div>
+    <!-- Show old image if available -->
+    @if (!empty($company->holalpurja))
+    <img src="{{ asset('document/' . $company->holalpurja) }}" alt="Lalpurja Image" class="mt-2 max-w-xs h-auto rounded-lg">
+    @endif
+</div>
 
-                <!-- Tiro Image -->
-                <div class="mb-6">
-                    <label for="tiro" class="block mb-2 text-sm font-medium text-gray-900">Tiro</label>
-                    <input type="file" name="hotiro" id="tiro"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
+<!-- Tiro Image -->
+<div class="mb-6">
+    <label for="tiro" class="block mb-2 text-sm font-medium text-gray-900">Tiro</label>
+    <input type="file" name="hotiro" id="tiro"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
 
-                    <!-- Show old image if available -->
-                    @if (!empty($company->hotiro))
-                    <img src="{{ asset('uploads/' . $company->hotiro) }}" alt="Tiro Image" class="mt-2 w-32 h-32 object-cover rounded-lg">
-                    @endif
-                </div>
+    <!-- Show old image if available -->
+    @if (!empty($company->hotiro))
+    <img src="{{ asset('document/' . $company->hotiro) }}" alt="Tiro Image" class="mt-2 max-w-xs h-auto rounded-lg">
+    @endif
+</div>
 
                 <div id="map" style="width:650px;height:250px;"></div>
 

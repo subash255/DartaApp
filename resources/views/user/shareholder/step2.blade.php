@@ -43,9 +43,13 @@
                     </div>
                     <div class="mb-6">
                         <label for="CitizenshipPhoto" class="block mb-2 text-sm font-medium text-gray-900">Citizenship
-                            Photo</label>
+                            Photo(Both front&back)</label>
                         <input type="file" name="cimage" id="CitizenshipPhoto"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
+                             <!-- Show old image if available -->
+    @if (!empty($userDetail->cimage))
+    <img src="{{ asset('citizenship/' . $userDetail->cimage) }}" alt="Citizenship Image" class="mt-2 max-w-xs h-auto rounded-lg">
+    @endif
                     </div>
                 </div>
                 <div class="mb-6 flex items-center justify-start">
@@ -91,10 +95,14 @@
                                 value="{{ old('ccprovince', $userDetail->ccprovince ?? '') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="newCitizenshipPhoto" class="block mb-2 text-sm font-medium text-gray-900">New Citizenship Photo</label>
+                            <label for="newCitizenshipPhoto" class="block mb-2 text-sm font-medium text-gray-900">New Citizenship Photo(Both front&back)</label>
                             <input type="file" name="ccimage" id="newCitizenshipPhoto"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                 accept="image/*">
+                                                             <!-- Show old image if available -->
+    @if (!empty($userDetail->ccimage))
+    <img src="{{ asset('citizenship/' . $userDetail->ccimage) }}" alt="Citizenship Image" class="mt-2 max-w-xs h-auto rounded-lg">
+    @endif
                         </div>
                     </div>
                 </div>

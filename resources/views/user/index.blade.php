@@ -57,7 +57,6 @@
             <div class="space-y-4">
                 @if($todolist->isEmpty())
                 <div class="bg-white p-2 border-b border-gray-300">
-                    <h4 class="text-gray-800 font-semibold">No Todo List</h4>
                     <p class="text-gray-800">You have no pending tasks.</p>
                 </div>
                     

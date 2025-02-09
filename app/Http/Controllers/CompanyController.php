@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
-    
+
 
     public function index(Request $request)
     {
@@ -115,8 +115,8 @@ class CompanyController extends Controller
             'howard' => 'nullable|string|max:255',
             'hodistrict' => 'nullable|string|max:255',
             'hoprovince' => 'nullable|string|max:255',
-            'holalpurja' => 'nullable|string|max:255',
-            'hotiro'=> 'nullable|string|max:255',
+            'holalpurja' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'hotiro'=> 'nullable|image|mimes:jpeg,png,jpg,gif',
             'lat'=> 'nullable|string|max:255',
             'lng'=> 'nullable|string|max:255',
             'copystep2data'=> 'nullable|boolean|max:255',
@@ -124,17 +124,17 @@ class CompanyController extends Controller
 
         if ($request->hasFile('holalpurja')) {
             $holalpurja = $request->file('holalpurja');
-            $holalpurjaName = time() . '.' . $holalpurja->getClientOriginalExtension(); // Set the file name with current timestamp
-            $holalpurja->move(public_path('documents'), $holalpurjaName); // Move image to 'public/documents'
-            $validatedData['holalpurja'] =  $holalpurjaName; // Store the path in the validatedDatabase
+            $holalpurjaName = time() . '.' . $holalpurja->getClientOriginalExtension(); 
+            $holalpurja->move(public_path('document'), $holalpurjaName); 
+            $validatedData['holalpurja'] =  $holalpurjaName; 
         }
        
         
         if ($request->hasFile('hotiro')) {
             $hotiro = $request->file('hotiro');
-            $hotiroName = time() . '.' . $hotiro->getClientOriginalExtension(); // Set the file name with current timestamp
-            $hotiro->move(public_path('documents'), $hotiroName); // Move image to 'public/images/citizenship'
-            $validatedData['hotiro'] =   $hotiroName; // Store the path in the database
+            $hotiroName = time() . '.' . $hotiro->getClientOriginalExtension(); 
+            $hotiro->move(public_path('document'), $hotiroName); 
+            $validatedData['hotiro'] =   $hotiroName; 
         }
 
         $company = Company::find($id);

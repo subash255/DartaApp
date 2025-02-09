@@ -8,6 +8,7 @@
 
     <title>@yield('title', 'User Profile')</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet"> --}}
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
