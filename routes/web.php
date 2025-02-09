@@ -87,6 +87,19 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('approved/{id}', [CompanyController::class, 'approved'])->name('company.approved');
     Route::get('company/rejected/{id}', [CompanyController::class, 'rejected'])->name('company.rejected');
 
+    //company register route
+    Route::get('company/step1/{id?}', [CompanyController::class, 'step1'])->name('admin.company.step1');
+    Route::post('company/step1/store', [CompanyController::class, 'step1Store'])->name('admin.company.step1.store');
+    Route::put('company/step1/update/{id}', [CompanyController::class, 'step1Update'])->name('admin.company.step1.update');
+    Route::get('company/step2/{id?}', [CompanyController::class, 'step2'])->name('admin.company.step2');
+    Route::put('company/step2/update/{id}', [CompanyController::class, 'step2Update'])->name('admin.company.step2.update');
+    Route::get('company/step3/{id?}', [CompanyController::class, 'step3'])->name('admin.company.step3');
+    Route::put('company/step3/update/{id}', [CompanyController::class, 'step3Update'])->name('admin.company.step3.update');
+    Route::get('company/step4/{id?}', [CompanyController::class, 'step4'])->name('admin.company.step4');
+    Route::put('company/step4/update/{id}', [CompanyController::class, 'step4Update'])->name('admin.company.step4.update');
+    Route::get('company/step5/{id?}', [CompanyController::class, 'step5'])->name('admin.company.step5');
+    Route::put('company/step5/update/{id}', [CompanyController::class, 'step5Update'])->name('admin.company.step5.update');
+
     //category Routes
     Route::get('admin/category',[CategoryController::class,'index'])->name('admin.category.index');
     Route::post('admin/category/store',[CategoryController::class,'store'])->name('admin.category.store');

@@ -33,7 +33,12 @@ class CompanyController extends Controller
         $company = Company::where('user_id', $user->id)
         ->when($id, fn($query) => $query->where('id', $id))
         ->first();
+        if($user->role=='admin'){
+            return view('admin.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
+        }
+        else{
         return view('user.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
+        }
     }
     public function step1store(Request $request){
 
@@ -51,6 +56,20 @@ class CompanyController extends Controller
     }
     public function step1update(Request $request, $id)
     {
+        if(Auth::user()->role=='admin'){
+            $validatedData = $request->validate([
+               'regno' => 'nullable|string|max:255',
+                'regdate' => 'nullable|string|max:255',
+                'pan' => 'nullable|string|max:255',
+                'panregdate'=>'nullable|string|max:255',
+                'vat_pan' => 'nullable|string|max:255',
+            ]);
+            $company = Company::findOrFail($id); 
+            $company->update($validatedData);
+            return redirect()->route('admin.company.step2', $company->id);}
+        else{
+
+
         $company = Company::findOrFail($id); 
     
         $company->update([
@@ -58,6 +77,7 @@ class CompanyController extends Controller
                 ]);
     
         return redirect()->route('user.company.step2', $company->id);
+            }
     }
 
 
@@ -70,8 +90,13 @@ class CompanyController extends Controller
         $company = Company::where('user_id', $user->id)
                           ->when($id, fn($query) => $query->where('id', $id))
                           ->first();
+        if($user->role=='admin'){
+            return view('admin.company.step2', ['currentStep' => 'step2'], compact('company', 'user'));
+        }
+        else{
     
         return view('user.company.step2', ['currentStep' => 'step2'], compact('company', 'user'));
+        }
     }
     
 
@@ -92,7 +117,13 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $company->update($validatedData);
 
+        if(Auth::user()->role=='admin'){
+            return redirect()->route('admin.company.step3',$company->id);
+        }
+        else{
+
         return redirect()->route('user.company.step3',$company->id);
+        }
     }
     public function step3($id=null)
     {
@@ -147,7 +178,13 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $company->update($validatedData);
 
+          if(Auth::user()->role=='admin'){
+            return redirect()->route('admin.company.step4',$company->id);
+        }
+        else{
+
         return redirect()->route('user.company.step4',$company->id);
+        }
     }
     public function step4($id=null){
         $user = Auth::user();
@@ -156,11 +193,20 @@ class CompanyController extends Controller
         $company = Company::where('user_id', $user->id)
                           ->when($id, fn($query) => $query->where('id', $id))
                           ->first();
+                          if($user->role=='admin'){
+                            return view('admin.company.step4', [
+                                'company' => $company,
+                                'user' => $user,
+                                'currentStep' => 'step4',
+                            ]);
+                        }
+                        else{
         return view('user.company.step4', [
             'company' => $company,
             'user' => $user,
             'currentStep' => 'step4',
         ]);    }
+    }
 
     public function step4Update(Request $request, $id)
     {
@@ -174,8 +220,13 @@ class CompanyController extends Controller
 
         $company = Company::find($id);
         $company->update($validatedData);
+          if(Auth::user()->role=='admin'){
+            return redirect()->route('admin.company.step5',$company->id);
+        }
+        else{
 
         return redirect()->route('user.company.step5',$company->id);
+        }
     }
     public function step5($id=null){
         $user = Auth::user();
@@ -184,11 +235,20 @@ class CompanyController extends Controller
         $company = Company::where('user_id', $user->id)
                           ->when($id, fn($query) => $query->where('id', $id))
                           ->first();
+                          if($user->role=='admin'){
+                            return view('admin.company.step5', [
+                                'company' => $company,
+                                'user' => $user,
+                                'currentStep' => 'step5',
+                            ]);
+                        }
+                        else{
  return view('user.company.step5', [
             'company' => $company,
             'user' => $user,
             'currentStep' => 'step5',
         ]);    }
+    }
 
     public function step5Update(Request $request, $id)
     {
@@ -207,9 +267,15 @@ class CompanyController extends Controller
 
         $company = Company::find($id);
         $company->update($validatedData);
+            if(Auth::user()->role=='admin'){
+                return redirect()->route('admin.company.step1',$company->id);
+            }
+            else{
 
         return redirect()->route('user.company.step1',$company->id)->with('success', 'Company details created successfully!');
-    }
+    
+            }
+        }
     
     
  
