@@ -17,14 +17,11 @@ Route::middleware('auth')->group(function () {
     
     // User Routes
     Route::get('user/index', [HomepageController::class, 'index'])->name('user.index');
-    Route::get('user/userdetail/{id?}', [UserdetailController::class, 'userdetail'])->name('user.userdetail');
-    Route::get('user/companydetail', [HomepageController::class, 'companydetail'])->name('user.companydetail');
-
-    Route::match(['post', 'patch'], 'userdetail/store/{id?}', [UserdetailController::class, 'store'])->name('userdetail.store');
-    
-    Route::get('user/userindex', [HomepageController::class, 'viewuser'])->name('user.userindex');
     Route::get('user/edit', [HomepageController::class, 'edit'])->name('user.edit');
     Route::patch('user/update', [HomepageController::class, 'update'])->name('user.update');
+
+
+    //Company Routes
     Route::get('company/step1/{id?}', [CompanyController::class, 'step1'])->name('user.company.step1');
     Route::post('company/step1/store', [CompanyController::class, 'step1Store'])->name('user.company.step1.store');
     Route::put('company/step1/update/{id}', [CompanyController::class, 'step1Update'])->name('user.company.step1.update');
@@ -37,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('company/step5/{id?}', [CompanyController::class, 'step5'])->name('user.company.step5');
     Route::put('company/step5/update/{id}', [CompanyController::class, 'step5Update'])->name('user.company.step5.update');
 
+    //Shareholder Routes
+    Route::get('user/userindex', [UserdetailController::class, 'index'])->name('user.userindex');
+    Route::delete('user/delete/{id}', [UserdetailController::class, 'delete'])->name('user.delete');
 
     Route::get('shareholder/step1/{id?}', [UserdetailController::class, 'step1'])->name('user.shareholder.step1');
     Route::post('/shareholder/step1/store', [UserdetailController::class, 'step1Store'])->name('user.shareholder.step1.store');
@@ -52,7 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::get('shareholder/step6/{id}', [UserdetailController::class, 'step6'])->name('user.shareholder.step6');
     Route::put('/shareholder/step6/update/{id}', [UserdetailController::class, 'step6Update'])->name('user.shareholder.step6.update');
 
-    Route::delete('user/delete/{id}', [UserdetailController::class, 'delete'])->name('user.delete');
 
 
 

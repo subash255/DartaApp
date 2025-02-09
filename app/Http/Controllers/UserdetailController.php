@@ -9,28 +9,22 @@ use Illuminate\Support\Facades\Redis;
 
 class UserdetailController extends Controller
 {
-    // Display the user detail form (for adding or editing)
-    public function userdetail($id = null)
+
+    public function index()
     {
-        $authuser = Auth::user();
-
-        // If id is provided, fetch the user details; otherwise, create a new instance for adding
-        if ($id) {
-            $userdetail = Userdetails::where('user_id', $authuser->id)->where('id', $id)->first();
-
-            // If no record found, abort with a 403 error (security check)
-            if (!$userdetail) {
-                abort(403, 'Unauthorized action.');
-            }
-        } else {
-            // No id, so create a new instance for adding a user
-            $userdetail = new Userdetails();
-        }
-
-        return view('user.userdetail', compact('userdetail'));
+        $user = Auth::user();
+       
+        $userdetail = Userdetails::where('user_id', $user->id)->get();
+        return view('user.userindex', compact('userdetail','user'));
     }
 
-   
+
+    public function edit()
+    {
+        $user = Auth::user();
+        return view('user.edit', compact('user'));
+    }
+
     public function step1($id = null)
     {
         $userId = Auth::id();

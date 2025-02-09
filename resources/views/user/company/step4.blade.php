@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 
-<div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
+<div class="p-4 bg-white shadow-lg mt-5 mx-4 z-20 rounded-lg">
     @include('user.company.contents')
 <div class="container mx-auto p-6">
     <form method="POST" action="{{ route('user.company.step4.update',$company->id) }}">

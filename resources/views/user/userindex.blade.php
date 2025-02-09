@@ -39,7 +39,7 @@
 
 
 
-<div class="p-4 shadow-lg mt-12 rounded-lg">
+<div class="p-4 shadow-lg mt-5 rounded-lg">
     @if($user->type == 'single' && $userdetail->isEmpty())
         <div class="mb-4 flex justify-end">
             <a href="{{ route('user.shareholder.step1') }}"
@@ -84,17 +84,13 @@
                         <td class="border border-gray-300 px-4 py-2">
                             <div class="flex justify-center gap-2">
                                 <!-- View Icon -->
-                                <a href="{{ route('user.userdetail', $detail->id) }}" class="flex items-center">
+                                <a href="{{route('user.shareholder.step1', $detail->id)}}" class="flex items-center">
                                     <button
-                                        class="bg-orange-500 hover:bg-orange-700 p-1 w-8 h-8 rounded-full flex items-center justify-center">
+                                        class="bg-blue-500 hover:bg-blue-700 p-1 w-8 h-8 rounded-full flex items-center justify-center">
                                         <i class="ri-eye-line text-white"></i>
                                     </button>
                                 </a>
-                                <!-- Edit Icon -->
-                                <a href="{{ route('user.shareholder.step1', $detail->id) }}"
-                                    class="bg-blue-500 hover:bg-blue-700 p-2 w-8 h-8 rounded-full flex items-center justify-center">
-                                    <i class="ri-edit-box-line text-white"></i>
-                                </a>
+                               
                                 <!-- Delete Button -->
                                 <button type="button" 
                                     class="bg-red-500 hover:bg-red-700 p-2 w-8 h-8 rounded-full flex items-center justify-center"

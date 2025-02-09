@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
-    <div class="bg-white rounded-lg shadow-lg md:p-6 max-w-3xl mx-auto">
-        @include('user.company.contents')
+<div class="p-4 bg-white shadow-lg mt-5 mx-4 z-20 rounded-lg">
+    @include('user.company.contents')
         <div class="container mx-auto p-6">
         <form method="POST" action="{{$company ? route('user.company.step1.update', $company->id) : route('user.company.step1.store')}}">
                 @csrf
