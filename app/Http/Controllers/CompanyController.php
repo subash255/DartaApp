@@ -33,12 +33,8 @@ class CompanyController extends Controller
         $company = Company::where('user_id', $user->id)
         ->when($id, fn($query) => $query->where('id', $id))
         ->first();
-        if($user->role=='admin'){
-            return view('admin.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
-        }
-        else{
+        
         return view('user.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
-        }
     }
     public function step1store(Request $request){
 
