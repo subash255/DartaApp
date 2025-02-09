@@ -38,6 +38,7 @@ class CompanyController extends Controller
             return view('admin.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
         }
         else{
+            $user = Auth::user();
         $company = Company::where('user_id', $users->id)
                           ->when($id, fn($query) => $query->where('id', $id))
                           ->first();
@@ -96,13 +97,16 @@ class CompanyController extends Controller
         $user = Auth::user();
         
         // If no ID is provided, fetch the first company of the user
-        $company = Company::where('user_id', $user->id)
-                          ->when($id, fn($query) => $query->where('id', $id))
-                          ->first();
+      
         if($user->role=='admin'){
+            $company = Company::where('id', $id)->first();
+            $user = $company->user;
             return view('admin.company.step2', ['currentStep' => 'step2'], compact('company', 'user'));
         }
         else{
+            $company = Company::where('id', $id)
+            ->when($id, fn($query) => $query->where('id', $id))
+            ->first();
     
         return view('user.company.step2', ['currentStep' => 'step2'], compact('company', 'user'));
         }
@@ -138,6 +142,16 @@ class CompanyController extends Controller
     {
         $user = Auth::user();
         
+        if($user->role=='admin'){
+            $company = Company::where('id', $id)->first();
+            $user = $company->user;
+            return view('admin.company.step3', [
+                'company' => $company,
+                'user' => $user,
+                'currentStep' => 'step3',
+            ]);
+        }
+        else{
         // If no ID is provided, fetch the first company of the user
         $company = Company::where('user_id', $user->id)
                           ->when($id, fn($query) => $query->where('id', $id))
@@ -149,6 +163,7 @@ class CompanyController extends Controller
             'user' => $user,
             'currentStep' => 'step3',
         ]);
+    }
     }
     
     public function step3Update(Request $request, $id)
@@ -197,19 +212,21 @@ class CompanyController extends Controller
     }
     public function step4($id=null){
         $user = Auth::user();
-        
+        if($user->role=='admin'){
+            $company = Company::where('id', $id)->first();
+            $user = $company->user;
+            return view('admin.company.step4', [
+                'company' => $company,
+                'user' => $user,
+                'currentStep' => 'step4',
+            ]);
+        }
+        else{
         // If no ID is provided, fetch the first company of the user
         $company = Company::where('user_id', $user->id)
                           ->when($id, fn($query) => $query->where('id', $id))
                           ->first();
-                          if($user->role=='admin'){
-                            return view('admin.company.step4', [
-                                'company' => $company,
-                                'user' => $user,
-                                'currentStep' => 'step4',
-                            ]);
-                        }
-                        else{
+                         
         return view('user.company.step4', [
             'company' => $company,
             'user' => $user,
@@ -237,21 +254,21 @@ class CompanyController extends Controller
         return redirect()->route('user.company.step5',$company->id);
         }
     }
-    public function step5($id=null){
+    public function step5($id = null){
         $user = Auth::user();
-        
+         if($user->role=='admin'){
+            $company = Company::where('id', $id)->first();
+            $user = $company->user;
+            return view('admin.company.step5', [
+                'company' => $company,
+                'user' => $user,
+                'currentStep' => 'step5',
+            ]);
         // If no ID is provided, fetch the first company of the user
         $company = Company::where('user_id', $user->id)
                           ->when($id, fn($query) => $query->where('id', $id))
                           ->first();
-                          if($user->role=='admin'){
-                            return view('admin.company.step5', [
-                                'company' => $company,
-                                'user' => $user,
-                                'currentStep' => 'step5',
-                            ]);
-                        }
-                        else{
+                        
  return view('user.company.step5', [
             'company' => $company,
             'user' => $user,
