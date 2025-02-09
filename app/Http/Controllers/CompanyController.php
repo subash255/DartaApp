@@ -44,6 +44,7 @@ class CompanyController extends Controller
         return view('user.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
         }
     }
+    
     public function step1store(Request $request){
 
         $user = Auth::user();
