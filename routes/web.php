@@ -26,8 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::get('user/edit', [HomepageController::class, 'edit'])->name('user.edit');
     Route::patch('user/update', [HomepageController::class, 'update'])->name('user.update');
     Route::get('company/step1/{id?}', [CompanyController::class, 'step1'])->name('user.company.step1');
-    Route::get('company/step2/{id?}/{uid?}', [CompanyController::class, 'step2'])->name('user.company.step2');
-    Route::post('company/step2/store', [CompanyController::class, 'step2Store'])->name('user.company.step2.store');
+    Route::post('company/step1/store', [CompanyController::class, 'step1Store'])->name('user.company.step1.store');
+    Route::put('company/step1/update/{id}', [CompanyController::class, 'step1Update'])->name('user.company.step1.update');
+    Route::get('company/step2/{id?}', [CompanyController::class, 'step2'])->name('user.company.step2');
     Route::put('company/step2/update/{id}', [CompanyController::class, 'step2Update'])->name('user.company.step2.update');
     Route::get('company/step3/{id?}', [CompanyController::class, 'step3'])->name('user.company.step3');
     Route::put('company/step3/update/{id}', [CompanyController::class, 'step3Update'])->name('user.company.step3.update');
