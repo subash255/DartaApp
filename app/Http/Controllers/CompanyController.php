@@ -29,14 +29,18 @@ class CompanyController extends Controller
     
 
     public function step1($id = null){
-        $user = Auth::user();
-        $company = Company::where('user_id', $user->id)
-        ->when($id, fn($query) => $query->where('id', $id))
-        ->first();
-        if($user->role=='admin'){
+        $users = Auth::user();
+       
+        if($users->role=='admin'){
+            
+            $company = Company::where('id', $id)->first();
+            $user = $company->user;
             return view('admin.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
         }
         else{
+        $company = Company::where('user_id', $users->id)
+                          ->when($id, fn($query) => $query->where('id', $id))
+                          ->first();
         return view('user.company.step1', ['currentStep' => 'step1'], compact('company', 'user'));
         }
     }
@@ -48,11 +52,15 @@ class CompanyController extends Controller
         $company =  Company::create([
             'user_id' => $user->id,
         ]);
+        if(Auth::user()->role=='admin'){
+            return redirect()->route('admin.company.step1',$company->id);
+        }
+        else{
        
         
         return redirect()->route('user.company.step2',$company->id);
 
-
+        }
     }
     public function step1update(Request $request, $id)
     {

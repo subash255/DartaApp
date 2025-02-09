@@ -1,10 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
 
-<div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
+<div class="p-4 bg-white shadow-lg -mt-12 mx-4 z-20 rounded-lg">
     @include('admin.company.contents')
     <div class="container mx-auto p-6">
         <form method="POST" action="{{ route('admin.company.step3.update',$company->id) }}" enctype="multipart/form-data">

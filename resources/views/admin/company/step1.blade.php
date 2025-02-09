@@ -1,9 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
-    <div class="bg-white rounded-lg shadow-lg md:p-6 max-w-3xl mx-auto">
+<div class="p-4 bg-white shadow-lg -mt-12 mx-4 z-20 rounded-lg">
+
         @include('admin.company.contents')
         <div class="container mx-auto p-6">
-        <form method="POST" action="{{$company ? route('admin.company.step1.update', $company->id) : route('user.company.step1.store')}}">
+        <form method="POST" action="{{$company ? route('admin.company.step1.update', $company->id) : route('admin.company.step1.store')}}">
                 @csrf
                 @if($company)
                     @method('PUT')
