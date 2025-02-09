@@ -65,7 +65,7 @@
                     <i class="ri-user-fill"></i>
                     <span class="ml-4 font-semibold">Customer</span>
                 </a>
-                <a href="{{ route('admin.company.index') }}" class="sidebar-link flex items-center px-6 py-4 {{ request()->routeIs('admin.company.index','admin.company.todolist') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
+                <a href="{{ route('admin.company.index') }}" class="sidebar-link flex items-center px-6 py-4 {{Str::startsWith(request()->route()->getName(), 'admin.company.step') || request()->routeIs('admin.company.index','admin.company.todolist') ? 'bg-red-600 text-white' : 'hover:bg-red-500 hover:text-white' }} transition-colors duration-200">
                     <i class="ri-building-fill"></i>
                     <span class="ml-4 font-semibold">Companies</span>
                 </a>
