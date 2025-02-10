@@ -19,11 +19,6 @@ class UserdetailController extends Controller
     }
 
 
-    public function edit()
-    {
-        $user = Auth::user();
-        return view('user.edit', compact('user'));
-    }
 
     public function step1($id = null)
     {

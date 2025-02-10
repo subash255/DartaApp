@@ -32,6 +32,11 @@ class HomepageController extends Controller
     }
 
 
+    public function edit()
+    {
+        $user = Auth::user();
+        return view('user.edit', compact('user'));
+    }
 
     public function update(Request $request)
     {
