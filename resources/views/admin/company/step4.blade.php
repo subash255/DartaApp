@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="p-4 bg-white shadow-lg -mt-12 mx-4 z-20 rounded-lg">
     @include('admin.company.contents')
 <div class="container mx-auto p-6">
@@ -33,10 +32,10 @@
         </div>
         </div>
                     <!-- Button Section -->
-                    <div class="flex justify-between mt-6">
-                        <a href="{{route('admin.company.step3',$company->id)}}" class="px-4 py-2 bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 focus:outline-none focus:shadow-outline">Previous</a>
-                        <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:shadow-outline">Next</button>
-                    </div>
+            <div class="flex justify-between mt-6">
+             <a href="{{route('admin.company.step3',$company->id)}}" class="px-4 py-2 bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 focus:outline-none focus:shadow-outline">Previous</a>
+             <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:shadow-outline">Next</button>
+             </div>
     </form>
 </div>
 </div>

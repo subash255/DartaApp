@@ -26,7 +26,7 @@
             msg.style.opacity = 0;
             msg.style.transition = "opacity 0.5s ease-out";
             setTimeout(() => msg.remove(), 500);
-        }, 2000);
+        },2000);
     </script>
 
 
