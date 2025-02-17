@@ -13,9 +13,9 @@ class UserdetailController extends Controller
     public function index()
     {
         $user = Auth::user();
-       
+
         $userdetail = Userdetails::where('user_id', $user->id)->get();
-        return view('user.userindex', compact('userdetail','user'));
+        return view('user.userindex', compact('userdetail', 'user'));
     }
 
 
@@ -29,7 +29,7 @@ class UserdetailController extends Controller
 
     public function step1Store(Request $request)
     {
-        
+
         $data  = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -41,7 +41,7 @@ class UserdetailController extends Controller
 
         $userDetail =  Userdetails::create($data);
 
-        return redirect()->route('user.shareholder.step2',$userDetail->id);
+        return redirect()->route('user.shareholder.step2', $userDetail->id);
     }
 
 
@@ -63,10 +63,10 @@ class UserdetailController extends Controller
     public function step2($id)
     {
         $userDetail = Userdetails::find($id);
-        return view('user.shareholder.step2',['currentStep' => 'step2'],  compact('userDetail'));
+        return view('user.shareholder.step2', ['currentStep' => 'step2'],  compact('userDetail'));
     }
 
-    public function step2Update(Request $request,$id)
+    public function step2Update(Request $request, $id)
     {
 
         $data = $request->validate([
@@ -91,8 +91,8 @@ class UserdetailController extends Controller
             $cimage->move(public_path('citizenship'), $cimageName); // Move image to 'public/citizenship'
             $data['cimage'] =  $cimageName; // Store the path in the database
         }
-       
-        
+
+
         if ($request->hasFile('ccimage')) {
             $ccimage = $request->file('ccimage');
             $ccimageName = time() . '.' . $ccimage->getClientOriginalExtension(); // Set the file name with current timestamp
@@ -110,10 +110,10 @@ class UserdetailController extends Controller
     public function step3($id)
     {
         $userDetail = Userdetails::find($id);
-        return view('user.shareholder.step3',['currentStep' => 'step3'],  compact('userDetail'));
+        return view('user.shareholder.step3', ['currentStep' => 'step3'],  compact('userDetail'));
     }
 
-    public function step3Update(Request $request,$id)
+    public function step3Update(Request $request, $id)
     {
         $data = $request->validate([
             'ttole' => 'nullable|string|max:255',
@@ -135,10 +135,10 @@ class UserdetailController extends Controller
     public function step4($id)
     {
         $userDetail = Userdetails::find($id);
-        return view('user.shareholder.step4',['currentStep' => 'step4'],  compact('userDetail'));
+        return view('user.shareholder.step4', ['currentStep' => 'step4'],  compact('userDetail'));
     }
 
-    public function step4Update(Request $request,$id)
+    public function step4Update(Request $request, $id)
     {
         $data = $request->validate([
             'citizennumber' => 'nullable|string|max:255',
@@ -163,16 +163,16 @@ class UserdetailController extends Controller
 
         return redirect()->route('user.shareholder.step5', $userDetail->id);
     }
-   
+
 
     public function step5($id)
     {
         $userDetail = Userdetails::find($id);
-        return view('user.shareholder.step5',['currentStep' => 'step5'],  compact('userDetail'));
+        return view('user.shareholder.step5', ['currentStep' => 'step5'],  compact('userDetail'));
     }
-   
 
-    public function step5Update(Request $request,$id)
+
+    public function step5Update(Request $request, $id)
     {
         $data = $request->validate([
             'shareamt' => 'nullable|string|max:255',
@@ -199,10 +199,10 @@ class UserdetailController extends Controller
     public function step6($id)
     {
         $userDetail = Userdetails::find($id);
-        return view('user.shareholder.step6',['currentStep' => 'step6'],  compact('userDetail'));
+        return view('user.shareholder.step6', ['currentStep' => 'step6'],  compact('userDetail'));
     }
 
-    public function step6Update(Request $request,$id)
+    public function step6Update(Request $request, $id)
     {
         $data = $request->validate([
             'accno' => 'nullable|string|max:255',

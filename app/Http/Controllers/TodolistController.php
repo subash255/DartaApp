@@ -12,22 +12,22 @@ class TodolistController extends Controller
     {
         $company = Company::find($id);
         $todolist = Todolist::where('user_id', $company->user->id)->get();
-        return view('admin.company.todo',compact('todolist','company'),['title' => 'Todo Lists']);
+        return view('admin.company.todo', compact('todolist', 'company'), ['title' => 'Todo Lists']);
     }
 
-    public function store(Request $request ,$id)
+    public function store(Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            
+
         ]);
         $company = Company::find($id);
 
         Todolist::create([
             'title' => $request->title,
             'description' => $request->description,
-            'user_id' =>$company->user->id,
+            'user_id' => $company->user->id,
         ]);
 
         return back()->with('success', 'Todolist created successfully');
@@ -39,5 +39,4 @@ class TodolistController extends Controller
         Todolist::find($id)->delete();
         return back()->with('success', 'Todolist deleted successfully');
     }
-
 }
