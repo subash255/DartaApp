@@ -32,6 +32,8 @@ class HomepageController extends Controller
     }
 
 
+    
+
 
     public function update(Request $request)
     {
