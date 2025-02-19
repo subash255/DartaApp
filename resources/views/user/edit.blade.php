@@ -29,10 +29,16 @@
             </div>
 
             <!-- Company Name in Nepali -->
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <label for="companyname" class="block text-gray-700 font-semibold mb-2">Company Name in Nepali</label>
                 <input type="text" id="company-name" name="companyname" value="{{ old('companyname', $user->companyname) }}" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
+            </div> -->
+
+            <div class="sm:col-span-2">
+                                <label for="nepaliInput" class="text-base font-medium text-gray-700">Purposed
+                                        Company Name in Nepali</label>
+                                <input type="text" id="nepaliInput" placeholder="Type in English..." name="companyname_np" class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" oninput="transliterateText()" autocomplete="off"value="{{ old('companyname_np', $user->companyname_np) }}>
+                                </div>
             
             <!-- Email -->
             <div class="mb-4">
@@ -98,4 +104,31 @@
     </div>
 
 </body>
+
+<script>
+
+        let timeout = null;
+
+        async function transliterateText() {
+            clearTimeout(timeout);
+
+            timeout = setTimeout(async () => {
+                let text = document.getElementById("nepaliInput").value;
+                if (!text) return;
+
+                try {
+                    let response = await fetch(`https://inputtools.google.com/request?text=${encodeURIComponent(text)}&itc=ne-t-i0-und&num=1`);
+                    let result = await response.json();
+
+                    if (result[0] === "SUCCESS") {
+                        document.getElementById("nepaliInput").value = result[1][0][1][0];
+                    }
+                } catch (error) {
+                    console.error("Transliteration failed:", error);
+                }
+            }, 500); // Add a slight delay to prevent excessive API calls
+        }
+  
+    </script>
+
 @endsection

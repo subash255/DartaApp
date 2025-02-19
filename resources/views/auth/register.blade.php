@@ -8,7 +8,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Include Nepali Transliteration Script -->
-    <script src="https://cdn.jsdelivr.net/npm/nepali-transliteration@1.0.2/dist/nepali-transliteration.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/nepali-transliteration@1.0.2/dist/nepali-transliteration.min.js"></script> -->
+    <script src="https://www.google.com/ime/js/1/ime.js"></script>
+
+
 </head>
 
 <body>
@@ -59,19 +62,23 @@
                                     <input type="text" name="companyname" id="english"
                                         placeholder="Enter your company name"
                                         class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
-                                        oninput="transliterateText()"  required>
+                                        required>
                                 </div>
 
                                 <!-- Company Name in Nepali -->
-                                <div class="sm:col-span-2">
+                                <!-- 
                                     <label for="companyname_np" class="text-base font-medium text-gray-700">Purposed
                                         Company Name in Nepali</label>
                                     <input type="text" name="companyname_np" id="nepali"
                                         placeholder="Enter your company name in Nepali"
                                         class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
                                         readonly>
+                                </div> -->
+                                <div class="sm:col-span-2">
+                                <label for="nepaliInput" class="text-base font-medium text-gray-700">Purposed
+                                        Company Name in Nepali</label>
+                                <input type="text" id="nepaliInput" placeholder="Type in English..." name="companyname_np" class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base" oninput="transliterateText()" autocomplete="off">
                                 </div>
-
                                 <!-- Email -->
                                 <div>
                                     <label for="email" class="text-base font-medium text-gray-700">Email</label>
@@ -118,7 +125,7 @@
                                             class="mt-2 w-full px-4 py-4 border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
                                             required>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -140,8 +147,7 @@
                                 <div class="sm:col-span-2">
                                     <label for="remarks" class="text-base font-medium text-gray-700">Remarks</label>
                                     <textarea name="remarks" id="remarks" placeholder="Enter your remarks"
-                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"
-                                        ></textarea>
+                                        class="mt-2 w-full px-4 py-4 placeholder:text-sm border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:border-orange-500 sm:text-base"></textarea>
                                 </div>
                             </div>
 
@@ -169,7 +175,7 @@
             </div>
         </div>
     </div>
-
+    <!-- 
     <script>
         async function transliterateText() {
             let text = document.getElementById("english").value;
@@ -187,7 +193,32 @@
                 document.getElementById("nepali").value = "Transliteration failed!";
             }
         }
+    </script> -->
+
+    <script>
+        let timeout = null;
+
+        async function transliterateText() {
+            clearTimeout(timeout);
+
+            timeout = setTimeout(async () => {
+                let text = document.getElementById("nepaliInput").value;
+                if (!text) return;
+
+                try {
+                    let response = await fetch(`https://inputtools.google.com/request?text=${encodeURIComponent(text)}&itc=ne-t-i0-und&num=1`);
+                    let result = await response.json();
+
+                    if (result[0] === "SUCCESS") {
+                        document.getElementById("nepaliInput").value = result[1][0][1][0];
+                    }
+                } catch (error) {
+                    console.error("Transliteration failed:", error);
+                }
+            }, 500); // Add a slight delay to prevent excessive API calls
+        }
     </script>
 
 </body>
+
 </html>
