@@ -71,7 +71,8 @@
     progressBar.style.width = `${(stepIndex + 1) * 20}%`;  // Each step is 25% of the total width
 
     // Update opacity for steps
-    for (let i = 0; i <= stepIndex; i++) {
+    for (let i = 0; i <= stepIndex; i++) 
+    {
         stepElements[i].classList.remove('opacity-50');
     }
 </script>

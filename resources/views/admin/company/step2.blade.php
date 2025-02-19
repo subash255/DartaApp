@@ -5,10 +5,7 @@
         <div class="container mx-auto p-6">
         <form method="POST" action="{{ route('admin.company.step2.update',$company->id) }}">
                 @csrf
-               
-                    @method('PUT')
-                    
-              
+                 @method('PUT')
                 <input type="hidden"  value="step2">
                 <!-- Step 2: Company Address -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -60,7 +57,6 @@
                             required>
                     </div>
                 </div>
-               
                 <!-- Button Section -->
                 <div class="flex justify-between mt-6">
                     <a href="{{ route('admin.company.step1') }}"

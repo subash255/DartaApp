@@ -44,7 +44,6 @@
                         <option value="pan" {{ old('vat_pan', $company->vat_pan ?? '') == 'pan' ? 'selected' : '' }}>PAN</option>
                     </select>
                 </div>
-
                 <div class="mb-6">
                     <label for="pan_no" class="block mb-2 text-sm font-medium text-gray-900">PAN/VAT No:</label>
                     <input type="text" name="pan" id="pan" value="{{ old('pan', $company->pan ?? '') }}"
@@ -56,14 +55,11 @@
                     <input type="date" name="panregdate" id="panregdate" value="{{ old('panregdate', $company->panregdate ?? '') }}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
                 </div>
-
-
             </div>
             <button type="submit"
                 class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:shadow-outline">Next</button>
         </form>
     </div>
-
 
 </div>
 @endsection

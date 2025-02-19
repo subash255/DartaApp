@@ -50,7 +50,6 @@ class HomepageController extends Controller
             'type' => 'required|string',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
-
         if ($request->filled('password')) {
             $data['password'] = Hash::make($data['password']);
         } else {
