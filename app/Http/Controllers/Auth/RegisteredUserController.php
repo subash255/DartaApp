@@ -28,6 +28,12 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
+        $email= User::where('email', $request->email)->first();
+        if($email){
+            return redirect()->back()->with('error', 'Email already exists');
+        }
+        
         $request->validate([
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
@@ -43,7 +49,7 @@ class RegisteredUserController extends Controller
 
         ]);
 
-        $user = User::create([
+       User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'companyname' => $request->companyname,

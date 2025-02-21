@@ -10,7 +10,26 @@
     <!-- Include Nepali Transliteration Script -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/nepali-transliteration@1.0.2/dist/nepali-transliteration.min.js"></script> -->
     <script src="https://www.google.com/ime/js/1/ime.js"></script>
+    {{-- Flash Message --}}
+@if (session('success'))
+<div id="flash-message" class="bg-green-500 text-white px-6 py-2 rounded-lg fixed top-4 right-4 shadow-lg z-50">
+    {{ session('success') }}
+</div>
+@endif
+@if (session('error'))
+<div id="flash-message" class="bg-red-500 text-white px-6 py-2 rounded-lg fixed top-4 right-4 shadow-lg z-50">
+    {{ session('error') }}
+</div>
+@endif
 
+<script>
+    if (document.getElementById('flash-message')) setTimeout(() => {
+        const msg = document.getElementById('flash-message');
+        msg.style.opacity = 0;
+        msg.style.transition = "opacity 0.5s ease-out";
+        setTimeout(() => msg.remove(), 500);
+    }, 3000);
+</script>
 
 </head>
 

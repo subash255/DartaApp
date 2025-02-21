@@ -29,13 +29,21 @@ class UserdetailController extends Controller
 
     public function step1Store(Request $request)
     {
+   $data=$request->validate([
+        'firstname' => ['nullable', 'regex:/^[a-zA-Z]+$/u'],
+        'lastname' => ['nullable', 'regex:/^[a-zA-Z]+$/u'],
+        'wname' => ['nullable', 'regex:/^[a-zA-Z]+$/u'],
+        'waddress' => ['nullable', 'string'],
+    ], [
+        'firstname.regex' => 'Firstname must only contain alphabets.',
+        'lastname.regex' => 'Lastname must only contain alphabets.',
+        'wname.regex' => 'Witness Name must only contain alphabets.',
+    ]);
 
-        $data  = $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'wname' => 'nullable|string|max:255',
-            'waddress' => 'nullable|string|max:255',
-        ]);
+    // Save data to database
+
+
+        
 
         $data['user_id'] = Auth::id();
 
@@ -47,13 +55,16 @@ class UserdetailController extends Controller
 
     public function step1Update(Request $request, $id)
     {
-        $data  = $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'wname' => 'nullable|string|max:255',
-            'waddress' => 'nullable|string|max:255',
+        $data=$request->validate([
+            'firstname' => ['nullable', 'regex:/^[a-zA-Z]+$/u'],
+            'lastname' => ['nullable', 'regex:/^[a-zA-Z]+$/u'],
+            'wname' => ['nullable', 'regex:/^[a-zA-Z]+$/u'],
+            'waddress' => ['nullable', 'string'],
+        ], [
+            'firstname.regex' => 'Firstname must only contain alphabets.',
+            'lastname.regex' => 'Lastname must only contain alphabets.',
+            'wname.regex' => 'Witness Name must only contain alphabets.',
         ]);
-
         $userDetail = Userdetails::find($id);
         $userDetail->update($data);
         return redirect()->route('user.shareholder.step2', $userDetail->id);
@@ -68,7 +79,7 @@ class UserdetailController extends Controller
 
     public function step2Update(Request $request, $id)
     {
-
+        //data validation
         $data = $request->validate([
             'ctole' => 'nullable|string|max:255',
             'cmunicipality' => 'nullable|string|max:255',

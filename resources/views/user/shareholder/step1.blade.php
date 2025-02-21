@@ -19,12 +19,18 @@
                         <input type="text" name="firstname" id="firstname"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                             value="{{ old('firstname', $userDetail->firstname ?? '') }}" required>
+                            @error('firstname')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                     </div>
                     <div class="mb-6">
                         <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900">Lastname</label>
                         <input type="text" name="lastname" id="lastname"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                             value="{{ old('lastname', $userDetail->lastname ?? '') }}" required>
+                            @error('lastname')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                     </div>
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Witness
@@ -32,6 +38,9 @@
                         <input type="text" name="wname" id="wname"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                             value="{{ old('wname', $userDetail->wname ?? '') }}" required>
+                            @error('wname')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                     </div>
                     <div class="mb-6">
                         <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Witness
@@ -39,6 +48,9 @@
                         <input type="text" name="waddress" id="waddress"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                             value="{{ old('waddress', $userDetail->waddress ?? '') }}" required>
+                            @error('waddress')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                     </div>
 
                 </div>
